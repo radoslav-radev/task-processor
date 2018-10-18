@@ -1,0 +1,58 @@
+﻿<Window x:Class="Radoslav.TaskProcessor.ArchiveWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Radoslav.TaskProcessor"
+        mc:Ignorable="d" Height="500" Width="1000"
+        Title="Archive">
+    <TabControl>
+        <TabItem Header="Archive">
+            <DataGrid ItemsSource="{Binding ArchiveTasks}"
+                      AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding TaskId}" Width="Auto" />
+                    <DataGridTextColumn Header="Type" Binding="{Binding TaskType.Name}" Width="Auto" />
+                    <DataGridTextColumn Header="Priority" Binding="{Binding Priority}" Width="Auto" />
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="Auto" />
+                    <DataGridTextColumn Header="Submitted" Binding="{Binding SubmittedUtc}" Width="Auto" />
+                    <DataGridTextColumn Header="Started" Binding="{Binding StartedUtc}" Width="Auto" />
+                    <DataGridTextColumn Header="Canceled" Binding="{Binding CanceledUtc}" Width="Auto" />
+                    <DataGridTextColumn Header="Completed" Binding="{Binding CompletedUtc}" Width="Auto" />
+
+                    <DataGridTemplateColumn Header="Summary" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Summary" Click="OnTaskSummaryButtonClick" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+
+        <TabItem Header="Failed">
+            <DataGrid ItemsSource="{Binding FailedTasks}"
+                      AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding TaskId}" Width="Auto" />
+                    <DataGridTextColumn Header="Type" Binding="{Binding TaskType.Name}" Width="Auto" />
+                    <DataGridTextColumn Header="Priority" Binding="{Binding Priority}" Width="Auto" />
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="Auto" />
+                    <DataGridTextColumn Header="Submitted" Binding="{Binding SubmittedUtc}" Width="Auto" />
+                    <DataGridTextColumn Header="Started" Binding="{Binding StartedUtc}" Width="Auto" />
+                    <DataGridTextColumn Header="Canceled" Binding="{Binding CanceledUtc}" Width="Auto" />
+                    <DataGridTextColumn Header="Completed" Binding="{Binding CompletedUtc}" Width="Auto" />
+
+                    <DataGridTemplateColumn Header="Summary" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Summary" Click="OnTaskSummaryButtonClick" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+    </TabControl>
+</Window>

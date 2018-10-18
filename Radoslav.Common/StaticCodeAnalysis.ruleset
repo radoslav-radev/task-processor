@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="Radoslav Code Analysis Rule Set" Description=" " ToolsVersion="14.0">
+  <Include Path="basiccorrectnessrules.ruleset" Action="Default" />
+  <Include Path="basicdesignguidelinerules.ruleset" Action="Default" />
+  <Include Path="extendedcorrectnessrules.ruleset" Action="Default" />
+  <Include Path="extendeddesignguidelinerules.ruleset" Action="Default" />
+  <Include Path="globalizationrules.ruleset" Action="Default" />
+  <Include Path="managedminimumrules.ruleset" Action="Default" />
+  <Include Path="minimumrecommendedrules.ruleset" Action="Default" />
+  <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="CA1004" Action="None" />
+    <Rule Id="CA1006" Action="None" />
+    <Rule Id="CA1010" Action="None" />
+    <Rule Id="CA1014" Action="None" />
+    <Rule Id="CA1020" Action="None" />
+    <Rule Id="CA1024" Action="None" />
+    <Rule Id="CA1030" Action="None" />
+    <Rule Id="CA1040" Action="None" />
+    <Rule Id="CA1043" Action="None" />
+    <Rule Id="CA1303" Action="None" />
+    <Rule Id="CA1414" Action="None" />
+    <Rule Id="CA1702" Action="None" />
+    <Rule Id="CA1710" Action="None" />
+    <Rule Id="CA1716" Action="None" />
+    <Rule Id="CA1802" Action="Warning" />
+    <Rule Id="CA1806" Action="None" />
+    <Rule Id="CA2000" Action="Warning" />
+    <Rule Id="CA2104" Action="None" />
+  </Rules>
+</RuleSet>

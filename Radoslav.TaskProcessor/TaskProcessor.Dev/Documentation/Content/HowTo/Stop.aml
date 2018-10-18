@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="c31d80af-6938-4997-b2bc-c6d6f047a175" revisionNumber="1">
+  <developerHowToDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>
+        Stopping task processor instance is peculiar with the fact that the instance may execute tasks when you want to stop it.
+        That is why a task processor instance should not be stopped directly by killing its windows process.
+        If that happens, you may face two problems: By design, all task workers should be killed immediately, but currently
+        there is a problem with the implementation of this (see references below). In any case this is something not
+        advisable and should be done only in exteme cases knowing fully well what you are doing.
+      </para>
+
+      <para>
+        The recommended way to stop a task processor is to send a message to it via Redis from a monitoring tool.
+        The task processor receives the message, stops to accept new tasks, the master task processor stops to assign tasks to it,
+        waits for the currently active tasks to complete, and exists.
+        In production, where the task processor is usually hosted as a windows service,
+        the windows service stops but may be started again via the Services Manager.
+      </para>
+    </introduction>
+
+    <procedure>
+      <title>How to Stop Task Processor from the WPF Monitoring Tool</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              Start the WPF Monitoring Tool from Radoslav.TaskProcessor.Monitor.Wpf.exe in the folder where the task processor is running.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Find your task processor in the list and click "Stop" button.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>Wait until the task processor stops.</para>
+          </content>
+        </step>
+      </steps>
+    </procedure>
+
+    <codeExample>
+      <description>
+        <content>
+          <para>
+            In order to stop the task processor from code you should use:
+          </para>
+        </content>
+      </description>
+
+      <code language="c#">
+        <![CDATA[
+        ITaskProcessorFacade facade = RadoslavServiceLocator.DefaultInstance.ResolveSingle<ITaskProcessorFacade>();
+
+        facade.RequestTaskProcessorToStop(YOUR-TASK-PROCESSOR-ID);
+        ]]>
+      </code>
+    </codeExample>
+
+    <buildInstructions>
+      <content>
+        <para>
+          Reference Radoslav.ServiceLocator and Radoslav.TaskProcessor.Model projects from the project where you want to stop task processors.
+        </para>
+      </content>
+    </buildInstructions>
+
+    <relatedTopics>
+      <link xlink:href="db298ec6-cbea-4f98-8305-63e8308827ff" />
+      <link xlink:href="8c1cc97d-5eff-4f39-b0d9-3db36a6a6983#KillWorkers" />
+    </relatedTopics>
+  </developerHowToDocument>
+</topic>

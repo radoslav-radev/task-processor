@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="Radoslav.TaskProcessor.TasksConfigControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
+            <TextBlock Text="Max:" Margin="4" />
+
+            <TextBox Text="{Binding DataContext.MaxTasks, Mode=TwoWay, ElementName=LayoutRoot}"
+                     Width="50" Margin="4" />
+        </StackPanel>
+
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding DataContext.Tasks, ElementName=LayoutRoot}"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding TaskType.Name}" Header="Task Type" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding MaxWorkers}" Header="Max Workers" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

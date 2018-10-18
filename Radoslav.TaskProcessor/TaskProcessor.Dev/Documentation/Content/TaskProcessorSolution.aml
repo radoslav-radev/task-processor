@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="cb1a9e27-f92d-48a9-b4de-90a9d7399404" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        This document describes the structure of the Task Processor Visual Studio Solution
+        located at <token>SvnFolder</token>\Radoslav.TaskProcessor\Radoslav.TaskProcessor.sln.
+      </para>
+
+      <para>
+        It consists of the following solution folders:
+      </para>
+    </introduction>
+
+    <section>
+      <title>Radoslav.Common</title>
+
+      <content>
+        <para>In this solution folder are common libraries not directly related to Radoslav 6.1 Task Processor.</para>
+      </content>
+
+      <sections>
+        <section>
+          <title>Radoslav.Helpers</title>
+
+          <content>
+            <para>Project for helpers, extension methods, custom collections, timers and other utilities.</para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.Serialization</title>
+
+          <content>
+            <para>Project for serialization helpers and utilities.</para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.Configuration</title>
+
+          <content>
+            <para>
+              Radoslav 6.1 Task Processor relies heavily on .NET custom configuration sections.
+              In this projects there are some additional validators not provided by the .NET framework but needed by the Radoslav 6.1 software.
+            </para>
+
+            <para>
+              See Also: <token>ConfigurationSectionClass</token>, <token>HowToCreateCustomConfigurationSection</token>
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.Redis</title>
+
+          <content>
+            <para>
+              Radoslav 6.1 Task Processor relies heavily on <token>Redis</token>.
+              This project defines the abstractions for communication with Redis in order to hide and make replaceable the concrete Redis communication library,
+              which currently is <token>ServiceStack</token>.
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.Redis.ServiceStack</title>
+
+          <content>
+            <para>
+              A project for implementation of the abstraction defined in Radoslav.Redis project with the <token>ServiceStack</token> Redis library.
+            </para>
+
+            <para>
+              See Also: <token>Bridge</token>
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.DateTimeProvider</title>
+
+          <content>
+            <para>
+              A project that defines the abstraction of a centralized date and time provider to be used throughout the distributed Radoslav 6.1 software.
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.DateTimeProvider.Redis</title>
+
+          <content>
+            <para>
+              An implementation of the abstraction defined in Radoslav.DateTimeProvider project that retrieves the current date and time from <token>Redis</token>.
+            </para>
+
+            <para>
+              See Also: <token>RedisTime</token>
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.ServiceLocator</title>
+
+          <content>
+            <para>
+              Becase Radoslav 6.1 Task Processor is designed with the <token>InterfaceBasedProgramming</token>, <token>DependencyInjection</token>,
+              <token>InversionOfControl</token> is mind, it relies heavily on service location.
+              For the purpose a custom service locator is implemented in this project.
+            </para>
+
+            <para>
+              See Also: <token>ServiceLocator</token>
+            </para>
+          </content>
+        </section>
+      </sections>
+    </section>
+
+    <section>
+      <title>Radoslav.Common.Dev</title>
+
+      <content>
+        <para>
+          Here are common development projects (shared also with the RTA solution), mainly for unit testing.
+          They are included in the Task Processor Visual Studio only in case you modify the libraries in
+          the Radoslav.Common solution folder and then you should run the unit tests to ensure your changes have not broken anything.
+        </para>
+      </content>
+
+      <sections>
+        <section>
+          <title>Radoslav.UnitTesting</title>
+
+          <content>
+            <para>
+              Mocking library for unit testing including fake objects, complex assert methods, etc.
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.Common.UnitTests</title>
+
+          <content>
+            <para>
+              Unit Tests for all projects in Radoslav.Common solution folder.
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.Common.UnitTests.ConsoleApp</title>
+
+          <content>
+            <para>
+              A console application needed by the unit tests in Radoslav.Common.UnitTests project.
+            </para>
+          </content>
+        </section>
+      </sections>
+    </section>
+
+    <section>
+      <title>Solution Items</title>
+
+      <content>
+        <para>In this solution folder are common files shared among the projects in the solution:</para>
+
+        <list class="bullet">
+          <listItem>
+            <para>
+              CommonAssemblyInfo.cs - A common assembly information shared among all task processor projects.
+            </para>
+
+            <para>
+              The projects from Radoslav.Common solution folder share <legacyItalic>another</legacyItalic> CommonAssemblyInfo.cs.
+            </para>
+          </listItem>
+
+          <listItem>
+            <para>
+              StaticCodeAnalysis.ruleset - The ruleset to be used by the static code analysis.
+            </para>
+
+            <para>
+              See Also: <token>CodeAnalysis</token>
+            </para>
+          </listItem>
+
+          <listItem>
+            <para>
+              StaticCodeAnalysis.UnitTests.ruleset - The ruleset to be used by the static code analysis for the unit test projects.
+            </para>
+          </listItem>
+
+          <listItem>
+            <para>
+              CodeAnalysisDictionary.xml - A custom code analysis dictionaty for FxCop analysis.
+            </para>
+
+            <para>
+              See Also: <token>CustomCodeAnalysisDictionary</token>
+            </para>
+          </listItem>
+
+          <listItem>
+            <para>
+              Radoslav.TaskProcessor.chm - the last built version of the task processor documentation.
+            </para>
+          </listItem>
+        </list>
+      </content>
+    </section>
+
+    <section>
+      <title>TaskProcessor</title>
+
+      <content>
+        <para>
+          In this solution folder are only the core projects of the Radoslav 6.1 Task Processor itself.
+        </para>
+      </content>
+
+      <sections>
+        <section>
+          <title>Radoslav.TaskProcessor.Model</title>
+
+          <content>
+            <para>Project for domain model classes defining the basic abstractions in the task processor.</para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.TaskProcessor.Repository</title>
+
+          <content>
+            <para>Project for abstracting the data access for the task processor.</para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.TaskProcessor.Repository.Redis</title>
+
+          <content>
+            <para>
+              An implementation of the data-access abstraction defined in the Radoslav.TaskProcessor.Repository project using <token>Redis</token> for storage.
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.TaskProcessor.MessageBus</title>
+
+          <content>
+            <para>Project for abstracting the communication between the task processor instances and the external world.</para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.TaskProcessor.MessageBus.Redis</title>
+
+          <content>
+            <para>
+              An implementation of the communication abstraction defined in the Radoslav.TaskProcessor.MessageBus project using <token>Redis</token> pub/sub capacities for communication.
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.TaskProcessor.TaskDistributor</title>
+
+          <content>
+            <para>
+              A project defining the abstraction of the algorithm responsible to determine:
+            </para>
+
+            <list class="bullet">
+              <listItem>
+                <para>Which task processor instance to execute a newly submitted task?</para>
+              </listItem>
+
+              <listItem>
+                <para>When a task processor instance completes a task, which pending task it should execute next?</para>
+              </listItem>
+            </list>
+
+            <para>
+              This project contains also two implementations of the algorithm - a very simple one suitable for debugging and a more complex one
+              taking the task processor configuration into account.
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.TaskProcessor.TaskScheduler</title>
+
+          <content>
+            <para>
+              Project for schedulling task for execution at a specified time or regularly at a specified interval.
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.TaskProcessor.TaskWorker</title>
+
+          <content>
+            <para>
+              A bootstrap project representing a windows process in production, or console application in debug mode,
+              responsible for processing a <legacyItalic>single</legacyItalic> task.
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.TaskProcessor.Facade</title>
+
+          <content>
+            <para>
+              An implementation of the <token>Facade</token> - a proxy to communication with the task processor from the external world
+              (task processor clients submitting tasks, monitoring tools, etc.)
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.TaskProcessor.Configuration.AppConfig</title>
+
+          <content>
+            <para>
+              Project with classes for task processor configurations via App.config file. There are for types of configuration:
+            </para>
+
+            <list class="bullet">
+              <listItem>
+                <para>Task Processor Configuration - used by the Radoslav.TaskProcessor project.</para>
+              </listItem>
+
+              <listItem>
+                <para>Task Worker Configuration - used by the Radoslav.TaskProcessor.TaskWorker project.</para>
+              </listItem>
+
+              <listItem>
+                <para>Task Processor Client Configuration - configures a task processor client in order to submit tasks to the task processor.</para>
+              </listItem>
+
+              <listItem>
+                <para>Serialization Configuration - defines how different entities should be serialized in Redis project.</para>
+              </listItem>
+            </list>
+
+            <para>
+              See Also: <token>ConfigurationSectionClass</token>, <token>HowToCreateCustomConfigurationSection</token>
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.TaskProcessor</title>
+
+          <content>
+            <para>
+              The central project for the task processor itself. This is the heart of the task processor solution.
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.TaskProcessor.WindowsService</title>
+
+          <content>
+            <para>
+              A project to host the task processor as a windows service.
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.TaskProcessor.Helpers</title>
+
+          <content>
+            <para>
+              Project for classes that do not belong logically anywhere else.
+            </para>
+          </content>
+        </section>
+      </sections>
+    </section>
+
+    <section>
+      <title>TaskProcessor.Dev</title>
+
+      <content>
+        <para>
+          In this solution folder are the projects used for development purposes like debugging, unit tests, monitoring tools and documentation, etc.
+        </para>
+      </content>
+
+      <sections>
+        <section>
+          <title>Radoslav.TaskProcessor.Monitor.ConsoleApp</title>
+
+          <content>
+            <para>
+              A project to run the task processor not as a windows service as it should be in production mode
+              but as a console application instead in order to debug easy.
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.TaskProcessor.Monitor.Wpf</title>
+
+          <content>
+            <para>
+              A project with a task processor monitoring tool build in WPF. It is used mainly for debug purposes. In it you can
+              monitor the status of the task processor instances, the status of the tasks, etc.
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.TaskProcessor.UnitTests</title>
+
+          <content>
+            <para>
+              A project with unit tests of the task processor code.
+            </para>
+          </content>
+        </section>
+
+        <section>
+          <title>Radoslav.TaskProcessor.UnitTests.ConsoleApp</title>
+
+          <content>
+            <para>
+              A console application needed in some of the unit tests in the Radoslav.TaskProcessor.UnitTests project.
+            </para>
+          </content>
+        </section>
+      </sections>
+    </section>
+
+    <section>
+      <title>Project Output</title>
+
+      <content>
+        <para>
+          All the output is located at <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug or
+          <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Release depending on the build configuration.
+        </para>
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="8955b198-1679-4453-9575-47fe554d12f9" />
+      <link xlink:href="ff788bb8-8087-4699-b316-f0678e12dab2" />
+      <link xlink:href="db298ec6-cbea-4f98-8305-63e8308827ff" />
+      <link xlink:href="1e80db64-587d-445c-af51-5b4ca2f96383" />
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

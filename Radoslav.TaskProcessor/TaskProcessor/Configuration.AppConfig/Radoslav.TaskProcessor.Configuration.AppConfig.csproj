@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C54D789B-C346-4EB4-87A8-F0F693296310}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Radoslav.TaskProcessor.Configuration.AppConfig</RootNamespace>
+    <AssemblyName>Radoslav.TaskProcessor.Configuration.AppConfig</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\bin\Debug\Radoslav.TaskProcessor.Configuration.AppConfig.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>..\..\..\Radoslav.Common\StaticCodeAnalysis.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\Radoslav.Common\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Serialization\SerializationConfigurationSection.cs" />
+    <Compile Include="Serialization\SerializationConfigurationCollection.cs" />
+    <Compile Include="Serialization\SerializationConfigurationElement.cs" />
+    <Compile Include="TaskProcessorClient\ClientPollingQueuesConfiguration.cs" />
+    <Compile Include="TaskProcessorClient\ClientPollingQueueConfiguration.cs" />
+    <Compile Include="TaskProcessorClient\ClientConfigurationSection.cs" />
+    <Compile Include="TaskProcessorClient\ClientTasksConfiguration.cs" />
+    <Compile Include="TaskProcessorClient\ClientTaskConfiguration.cs" />
+    <Compile Include="TaskProcessor\PollingConfigurationElement.cs" />
+    <Compile Include="TaskProcessor\PollingJobConfiguration.cs" />
+    <Compile Include="TaskProcessor\PollingJobsConfiguration.cs" />
+    <Compile Include="TaskProcessor\PollingQueueConfiguration.cs" />
+    <Compile Include="TaskProcessor\PollingQueuesConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskProcessor\TaskJobConfigurationElement.cs" />
+    <Compile Include="TaskProcessor\TaskJobsConfigurationCollection.cs" />
+    <Compile Include="TaskProcessorConfigurationProvider.cs" />
+    <Compile Include="TaskProcessor\TaskProcessorConfigurationSection.cs" />
+    <Compile Include="TaskScheduler\ScheduledTaskConfigurationElement.cs" />
+    <Compile Include="TaskScheduler\ScheduledTasksConfigurationCollection.cs" />
+    <Compile Include="TaskScheduler\TaskSchedulerConfigurationSection.cs" />
+    <Compile Include="TaskWorker\TaskWorkerConfigurationSection.cs" />
+    <Compile Include="TaskWorker\TaskWorkerConfigurationElement.cs" />
+    <Compile Include="TaskWorker\TaskWorkerConfigurationCollection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\..\..\Radoslav.Common\CodeAnalysisDictionary.xml">
+      <Link>Properties\CodeAnalysisDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Radoslav.Common\Configuration\Radoslav.Configuration.csproj">
+      <Project>{0f0e722b-41c8-4518-a513-1b493dc5a430}</Project>
+      <Name>Radoslav.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\Helpers\Radoslav.Helpers.csproj">
+      <Project>{7a3cbcc0-43e6-44e1-adfa-245055f4e36d}</Project>
+      <Name>Radoslav.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Radoslav.TaskProcessor.Model.csproj">
+      <Project>{6917cfc2-4f2b-4c1a-939e-b05d07accfea}</Project>
+      <Name>Radoslav.TaskProcessor.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

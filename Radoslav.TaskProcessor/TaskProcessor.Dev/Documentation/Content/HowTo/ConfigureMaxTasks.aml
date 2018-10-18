@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="8df390e2-0a4d-4bcb-bf8e-a3402e74d009" revisionNumber="1">
+  <developerHowToDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>
+        This document describes how to configure the maximum number of parallel tasks that can be executed by a task processor instance.
+        They are taken into account by the <codeEntityReference>T:Radoslav.TaskProcessor.TaskDistributor.DefaultTaskDistributor</codeEntityReference> class.
+      </para>
+
+      <para>
+        You can limit the concurrent tasks per task type as well as the total concurrent tasks executed by a task processor instance.
+      </para>
+    </introduction>
+
+    <procedure>
+      <title>How to Configure the Maximum Number of Parallel Tasks per Type</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              For development, open the Radoslav.TaskProcessor.Monitor.ConsoleApp.exe.config file in <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug folder and add the following line:
+            </para>
+
+            <code>
+              <![CDATA[
+              <Radoslav.TaskProcessor>
+                <tasks>
+                  <add type="YOUR-TASK-CLASS-FULLY-QUALLIFIED-TYPE-NAME" max="VALUE" />
+                </tasks>
+              </Radoslav.TaskProcessor>
+              ]]>
+            </code>
+
+            <para>For example, it could be:</para>
+
+            <code>
+              <![CDATA[
+              <Radoslav.TaskProcessor>
+                <tasks>
+                  <add type="Radoslav.TaskProcessor.Model.ForecastTask, Radoslav.WfmLive.BL" max="10" />
+                </tasks>
+              </Radoslav.TaskProcessor>
+              ]]>
+            </code>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              For production, do the same in the Radoslav.TaskProcessor.WindowsService.exe.config in <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug folder.
+            </para>
+          </content>
+        </step>
+      </steps>
+    </procedure>
+
+    <procedure>
+      <title>How to Configure the Maximum Number of Parallel Tasks per Type in WFM Live</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              Open the Radoslav.TaskProcessor.config file in the folder Configuration in the Radoslav.WfmLive.TaskProcessor project and add the following line:
+            </para>
+
+            <code>
+              <![CDATA[
+              <Radoslav.TaskProcessor>
+                <tasks>
+                  <add type="YOUR-TASK-CLASS-FULLY-QUALLIFIED-TYPE-NAME" max="VALUE" />
+                </tasks>
+              </Radoslav.TaskProcessor>
+              ]]>
+            </code>
+
+            <para>For example, it could be:</para>
+
+            <code>
+              <![CDATA[
+              <Radoslav.TaskProcessor>
+                <tasks>
+                  <add type="Radoslav.TaskProcessor.Model.ForecastTask, Radoslav.WfmLive.BL" max="10" />
+                </tasks>
+              </Radoslav.TaskProcessor>
+              ]]>
+            </code>
+          </content>
+        </step>
+      </steps>
+    </procedure>
+
+    <procedure>
+      <title>How to Configure the Total Maximum Number of Parallel Tasks</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              For development, open the Radoslav.TaskProcessor.Monitor.ConsoleApp.exe.config file in <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug folder and add the following line:
+            </para>
+
+            <code>
+              <![CDATA[
+              <Radoslav.TaskProcessor>
+                <tasks max="VALUE">
+                  <!-- SOME TASKS DEFINED HERE -->
+                </tasks>
+              </Radoslav.TaskProcessor>
+              ]]>
+            </code>
+
+            <para>For example, it could be:</para>
+
+            <code>
+              <![CDATA[
+              <Radoslav.TaskProcessor>
+                <tasks max="100">
+                  <!-- SOME TASKS DEFINED HERE -->
+                </tasks>
+              </Radoslav.TaskProcessor>
+              ]]>
+            </code>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              For production, do the same in the Radoslav.TaskProcessor.WindowsService.exe.config in <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug folder.
+            </para>
+          </content>
+        </step>
+      </steps>
+    </procedure>
+
+    <procedure>
+      <title>How to Configure the Total Maximum Number of Parallel Tasks per Type in WFM Live</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              Open the Radoslav.TaskProcessor.config file in the folder Configuration in the Radoslav.WfmLive.TaskProcessor project and add the following line:
+            </para>
+
+            <code>
+              <![CDATA[
+              <Radoslav.TaskProcessor>
+                <tasks max="VALUE">
+                  <add type="YOUR-TASK-CLASS-FULLY-QUALLIFIED-TYPE-NAME" />
+                </tasks>
+              </Radoslav.TaskProcessor>
+              ]]>
+            </code>
+
+            <para>For example, it could be:</para>
+
+            <code>
+              <![CDATA[
+              <Radoslav.TaskProcessor>
+                <tasks max="10">
+                  <add type="Radoslav.TaskProcessor.Model.ForecastTask, Radoslav.WfmLive.BL" />
+                </tasks>
+              </Radoslav.TaskProcessor>
+              ]]>
+            </code>
+          </content>
+        </step>
+      </steps>
+    </procedure>
+
+    <relatedTopics>
+    </relatedTopics>
+  </developerHowToDocument>
+</topic>

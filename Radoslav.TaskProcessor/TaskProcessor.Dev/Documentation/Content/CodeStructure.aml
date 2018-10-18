@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="8955b198-1679-4453-9575-47fe554d12f9" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>
+        This document describes the code structure of the Radoslav 6.1 Task Processor - the Visual Studio
+        solutions in which the code is organized and the relations between them.
+      </para>
+    </introduction>
+
+    <section>
+      <title>Overview</title>
+
+      <content>
+        <para>
+          There are two Visual Studio solutions you need to consider in regard to the task processor:
+        </para>
+
+        <list class="bullet">
+          <listItem>
+            <para>
+              <link xlink:href="cb1a9e27-f92d-48a9-b4de-90a9d7399404" /> -
+              it contains only the general task processor code <legacyItalic>unrelated to any concrete Radoslav tasks</legacyItalic>,
+              i.e. the it contains only the infrastructural code of the task processor without any concrete Radoslav tasks and task workers.
+            </para>
+
+            <para>
+              <link xlink:href="ff788bb8-8087-4699-b316-f0678e12dab2" /> - it contains concrete implementations of some tasks and
+              task workers (like Forecast Task), SignalR notification code and other utilities <legacyItalic>specific to Radoslav WFM Live</legacyItalic>.
+            </para>
+          </listItem>
+        </list>
+
+        <para>
+          The reason to organize the code like this is in order to keep clear separation between the task processor,
+          which will be distributed and deployed as windows services on dedicated servers,
+          and the web application (WFM Live) which will be hosted on as web server.
+          The web application (WFM Live) is in fact a client to the task processor -
+          an external module that only submits tasks to the task processor but does not participate in the processment of tasks
+          which is a responsibility of the task processor alone.
+        </para>
+
+        <para>
+          Nevertheless, the concrete tasks and task workers processing them should be defined somewhere and plugged in the task processor.
+          In our case this "somewhere" is the WFM Live Visual Studio Solution.
+          So the WFM Live Visual Studio Solution has two purposes in regard to the Task Processor:
+        </para>
+
+        <list class="bullet">
+          <listItem>
+            <para>
+              It is a client that submits tasks to the task processor, like Forecast Tasks.
+            </para>
+          </listItem>
+
+          <listItem>
+            <para>
+              It contains the code defining the Forecast Tasks (and possibly other tasks) and the code of the task workers that should process them.
+              This code should be plugged into the task processor before it is being deployed on production.
+            </para>
+          </listItem>
+        </list>
+
+        <para>
+          The mechanism to deploy the task processor on production means to:
+        </para>
+
+        <list class="ordered">
+          <listItem>
+            <para>
+              Build <link xlink:href="cb1a9e27-f92d-48a9-b4de-90a9d7399404" />.
+              Because it is independent of <link xlink:href="ff788bb8-8087-4699-b316-f0678e12dab2" />,
+              you can always build it without relying on anything from <link xlink:href="ff788bb8-8087-4699-b316-f0678e12dab2" />.
+            </para>
+          </listItem>
+
+          <listItem>
+            <para>
+              Build <link xlink:href="ff788bb8-8087-4699-b316-f0678e12dab2" /> in order to produce the assemblies containg the definition of the tasks and task workers
+              (like Forecast Task and Forecast Task Worker) and other WFM Live Web Application <legacyItalic>specific</legacyItalic> code.
+            </para>
+          </listItem>
+
+          <listItem>
+            <para>
+              Copy these assemblies to the task processor output folder.
+            </para>
+          </listItem>
+        </list>
+
+        <para>
+          All this is explained step by step in <link xlink:href="fc4aa659-ebc5-4d8e-9b34-d78a52db9c06" /> and
+          <link xlink:href="5060f129-7c32-4c87-bb9a-d633a4e65079" />.
+        </para>
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="cb1a9e27-f92d-48a9-b4de-90a9d7399404" />
+      <link xlink:href="ff788bb8-8087-4699-b316-f0678e12dab2" />
+      <link xlink:href="fc4aa659-ebc5-4d8e-9b34-d78a52db9c06" />
+      <link xlink:href="5060f129-7c32-4c87-bb9a-d633a4e65079" />
+      <link xlink:href="db298ec6-cbea-4f98-8305-63e8308827ff" />
+      <link xlink:href="1e80db64-587d-445c-af51-5b4ca2f96383" />
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

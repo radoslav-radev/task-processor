@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{44AC2313-1E6E-44A5-8F16-D8F320C3EF1C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Radoslav.TaskProcessor.Sample</RootNamespace>
+    <AssemblyName>Radoslav.TaskProcessor.Sample.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Radoslav.TaskProcessor\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Radoslav.TaskProcessor.Sample.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\..\references\Redis_SessionProvider\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\references\Redis_SessionProvider\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\references\Redis_SessionProvider\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\references\Redis_SessionProvider\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Radoslav.Common\DateTimeProvider.Redis\Radoslav.DateTimeProvider.Redis.csproj">
+      <Project>{cd9075d8-ed44-47c7-a8d1-c4d4d2adde97}</Project>
+      <Name>Radoslav.DateTimeProvider.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Radoslav.Common\Helpers\Radoslav.Helpers.csproj">
+      <Project>{7a3cbcc0-43e6-44e1-adfa-245055f4e36d}</Project>
+      <Name>Radoslav.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Radoslav.Common\Redis.ServiceStack\Radoslav.Redis.ServiceStack.csproj">
+      <Project>{45f8aea0-62c2-4656-9773-a89a827f085d}</Project>
+      <Name>Radoslav.Redis.ServiceStack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Radoslav.Common\ServiceLocator\Radoslav.ServiceLocator.csproj">
+      <Project>{963deba2-7936-4077-95b4-137b0ab73486}</Project>
+      <Name>Radoslav.ServiceLocator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Radoslav.TaskProcessor\TaskProcessor\Helpers\Radoslav.TaskProcessor.Helpers.csproj">
+      <Project>{7934c29d-21fb-4f10-8831-f3d5a4ff6057}</Project>
+      <Name>Radoslav.TaskProcessor.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Radoslav.TaskProcessor\TaskProcessor\Model\Radoslav.TaskProcessor.Model.csproj">
+      <Project>{6917cfc2-4f2b-4c1a-939e-b05d07accfea}</Project>
+      <Name>Radoslav.TaskProcessor.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Radoslav.TaskProcessor.Sample.Model.csproj">
+      <Project>{6de27179-2534-4014-90cb-695db77b1fb3}</Project>
+      <Name>Radoslav.TaskProcessor.Sample.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

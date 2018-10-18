@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="22cd44c9-a3e5-44a2-ad4d-8657d25a6119" revisionNumber="1">
+  <developerHowToDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        This document describes how to submit tasks to the task processor from the WFM Live Web Application.
+      </para>
+    </introduction>
+
+    <codeExample>
+      <code language="c#">
+        <![CDATA[
+        ITask task = new MyTask();
+
+        ITaskProcessorFacade facade = RadoslavServiceLocator.DefaultInstance.ResolveSingle<ITaskProcessorFacade>();
+
+        facade.SubmitTask(task);
+        ]]>
+      </code>
+    </codeExample>
+
+    <buildInstructions>
+      <content>
+        <para>
+          Reference <legacyItalic>Radoslav.ServiceLocator</legacyItalic> and <legacyItalic>Radoslav.TaskProcessor.Model</legacyItalic>
+          projects from the project where you want to submit your task.
+        </para>
+      </content>
+    </buildInstructions>
+
+    <relatedTopics>
+      <link xlink:href="cc5643bc-827e-4c7b-9f26-00e4e3ed251b" />
+    </relatedTopics>
+  </developerHowToDocument>
+</topic>

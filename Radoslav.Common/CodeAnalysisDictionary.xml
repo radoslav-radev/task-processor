@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dictionary>
+  <Words>
+    <Recognized>
+      <Word>Cpu</Word>
+      <Word>Intelli</Word>
+      <Word>Lua</Word>
+      <Word>Multi</Word>
+      <Word>notifier</Word>
+      <Word>notifiers</Word>
+      <Word>Notifiers</Word>
+      <Word>Notifier</Word>
+      <Word>Prefetch</Word>
+      <Word>queueable</Word>
+      <Word>Retryable</Word>
+      <Word>WriteLine</Word>
+      <Word>Redis</Word>
+      <Word>Owin</Word>
+      <Word>SignalR</Word>
+      <Word>Unschedule</Word>
+    </Recognized>
+  </Words>
+</Dictionary>

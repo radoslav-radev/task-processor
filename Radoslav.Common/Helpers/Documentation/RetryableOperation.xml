@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Documentation>
+  <Class Name="RetryableOperation">
+    <summary>Class for trying to execute operation several times.</summary>
+    <example>
+      <list type="bullet">
+        <item>
+          <term>Example with simple operation</term>
+          <description>
+            <code>
+              <![CDATA[
+  using (RetryableOperation operation = new RetryableOperation())
+  {
+      operation.ExecuteOperation += (sender, e) =>
+      {
+          this.MyDangerousOperation();
+      };
+
+      operation.RetryFailed += (sender, e) =>
+      {
+          Console.WriteLine("Failed to execute operation (attempt {0}): {1}.".FormatInvariant(e.FailedRetriesCount, e.Error));
+
+          lastError = e.Error;
+      };
+
+      if (operation.Execute(10, DelayStrategy.Constant(TimeSpan.FromSeconds(1)))
+      {
+          Console.WriteLine("I succeeded :)");
+      }
+      else
+      {
+          Console.WriteLine("I failed after 10 attempts :(");
+      }
+  }
+]]>
+            </code>
+          </description>
+        </item>
+
+        <item>
+          <term>Example with specifying explicitly whether operation has succeeded</term>
+          <description>
+            <code>
+              <![CDATA[
+  using (RetryableOperation operation = new RetryableOperation())
+  {
+      operation.ExecuteOperation += (sender, e) =>
+      {
+          int result = this.GetResultFromSomething();
+
+          if (result < 0)
+          {
+              e.Success = false; // By default e.Success is true.
+          }
+      };
+
+      operation.RetryFailed += (sender, e) =>
+      {
+          Console.WriteLine("Failed to execute operation (attempt {0}): {1}.".FormatInvariant(e.FailedRetriesCount, e.Error));
+
+          lastError = e.Error;
+      };
+
+      if (operation.Execute(5, DelayStrategy.Exponential(TimeSpan.FromSeconds(0.125)))
+      {
+          Console.WriteLine("I succeeded :)");
+      }
+      else
+      {
+          Console.WriteLine("I failed after 5 attempts :(");
+      }
+  }
+]]>
+            </code>
+          </description>
+        </item>
+      </list>
+    </example>
+  </Class>
+</Documentation>

@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D162D949-7077-4A6A-9B5F-3DABEB0C12FB}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Radoslav.TaskProcessor</RootNamespace>
+    <AssemblyName>Radoslav.TaskProcessor.TaskWorker</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>..\..\..\Radoslav.Common\StaticCodeAnalysis.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>..\..\bin\Debug\Radoslav.TaskProcessor.TaskWorker.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Radoslav.TaskProcessor.TaskWorker.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="TaskWorkerFactory.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskWorkerBootstrap.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Radoslav.Common\DateTimeProvider.Redis\Radoslav.DateTimeProvider.Redis.csproj">
+      <Project>{cd9075d8-ed44-47c7-a8d1-c4d4d2adde97}</Project>
+      <Name>Radoslav.DateTimeProvider.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\DateTimeProvider\Radoslav.DateTimeProvider.csproj">
+      <Project>{02be1ae4-b099-4aef-a327-b5d272690000}</Project>
+      <Name>Radoslav.DateTimeProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\Helpers\Radoslav.Helpers.csproj">
+      <Project>{7a3cbcc0-43e6-44e1-adfa-245055f4e36d}</Project>
+      <Name>Radoslav.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\ServiceLocator\Radoslav.ServiceLocator.csproj">
+      <Project>{963deba2-7936-4077-95b4-137b0ab73486}</Project>
+      <Name>Radoslav.ServiceLocator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Configuration.AppConfig\Radoslav.TaskProcessor.Configuration.AppConfig.csproj">
+      <Project>{c54d789b-c346-4eb4-87a8-f0f693296310}</Project>
+      <Name>Radoslav.TaskProcessor.Configuration.AppConfig</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Helpers\Radoslav.TaskProcessor.Helpers.csproj">
+      <Project>{7934c29d-21fb-4f10-8831-f3d5a4ff6057}</Project>
+      <Name>Radoslav.TaskProcessor.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MessageBus\Radoslav.TaskProcessor.MessageBus.csproj">
+      <Project>{7f9bf0d3-6629-4d2e-9cb7-7061d8728f7b}</Project>
+      <Name>Radoslav.TaskProcessor.MessageBus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Radoslav.TaskProcessor.Model.csproj">
+      <Project>{6917cfc2-4f2b-4c1a-939e-b05d07accfea}</Project>
+      <Name>Radoslav.TaskProcessor.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Radoslav.TaskProcessor.Repository.csproj">
+      <Project>{974e0791-f6a4-4aae-9613-4d9deace4ff4}</Project>
+      <Name>Radoslav.TaskProcessor.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\..\Radoslav.Common\CodeAnalysisDictionary.xml">
+      <Link>Properties\CodeAnalysisDictionary.xml</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="NLog.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy $(ProjectDir)NLog.config $(TargetPath).nlog</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

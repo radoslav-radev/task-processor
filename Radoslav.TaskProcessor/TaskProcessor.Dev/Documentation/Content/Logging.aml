@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="f1eaafe0-7e46-4ffc-88c7-07d2deb8ed45" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>This document describes the logging in the task processor.</para>
+    </introduction>
+
+    <section>
+      <title>Overview</title>
+
+      <content>
+        <para>
+          The task processor uses <token>NLog</token> for logging.
+        </para>
+
+        <para>
+          The logs are located in the folder where the task processor files are located, in the subfolder <legacyItalic>Logs</legacyItalic>.
+        </para>
+      </content>
+    </section>
+
+    <relatedTopics>
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

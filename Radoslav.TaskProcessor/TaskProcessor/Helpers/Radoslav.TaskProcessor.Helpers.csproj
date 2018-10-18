@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7934C29D-21FB-4F10-8831-F3D5A4FF6057}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Radoslav.TaskProcessor</RootNamespace>
+    <AssemblyName>Radoslav.TaskProcessor.Helpers</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\bin\Debug\Radoslav.TaskProcessor.Helpers.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>..\..\..\Radoslav.Common\StaticCodeAnalysis.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="ConfigurationBinarySerializer.cs" />
+    <Compile Include="DictionaryTaskJobSettings.cs" />
+    <Compile Include="DictionaryTaskSummary.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\..\..\Radoslav.Common\CodeAnalysisDictionary.xml">
+      <Link>Properties\CodeAnalysisDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Radoslav.Common\Helpers\Radoslav.Helpers.csproj">
+      <Project>{7a3cbcc0-43e6-44e1-adfa-245055f4e36d}</Project>
+      <Name>Radoslav.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\Serialization\Radoslav.Serialization.csproj">
+      <Project>{1f4df8ba-6022-4920-9490-5383796d072d}</Project>
+      <Name>Radoslav.Serialization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\ServiceLocator\Radoslav.ServiceLocator.csproj">
+      <Project>{963deba2-7936-4077-95b4-137b0ab73486}</Project>
+      <Name>Radoslav.ServiceLocator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Radoslav.TaskProcessor.Model.csproj">
+      <Project>{6917cfc2-4f2b-4c1a-939e-b05d07accfea}</Project>
+      <Name>Radoslav.TaskProcessor.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

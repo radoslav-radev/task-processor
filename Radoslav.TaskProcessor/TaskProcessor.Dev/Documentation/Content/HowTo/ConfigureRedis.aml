@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="99fe7643-0a3f-4066-8a84-50168a3ef512" revisionNumber="1">
+  <developerHowToDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>
+        This document describes how to configure the Redis server settings (address, port, credentials and database)
+        used by the task processor.
+      </para>
+    </introduction>
+
+    <procedure>
+      <title>How to Configure Redis</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              Build the <link xlink:href="cb1a9e27-f92d-48a9-b4de-90a9d7399404" /> in Debug. Explanations below will be for Debug mode.
+              For Release build in Release mode and replace Debug with Release in all folder paths below.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Open the Radoslav.TaskProcessor.Monitor.ConsoleApp.exe.config file in <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug folder and find:
+            </para>
+
+            <code>
+              <![CDATA[
+              <add contract="Radoslav.Redis.IRedisProvider, Radoslav.Redis"
+                   implementation="Radoslav.Redis.ServiceStack.ServiceStackRedisProvider, Radoslav.Redis.ServiceStack" />
+              ]]>
+            </code>
+
+            <para>In order to configure the Redis server address, replace it with the following:</para>
+
+            <code>
+              <![CDATA[
+              <add contract="Radoslav.Redis.IRedisProvider, Radoslav.Redis"
+                   implementation="Radoslav.Redis.ServiceStack.ServiceStackRedisProvider, Radoslav.Redis.ServiceStack">
+                <constructor>
+                  <parameter name="host" value="SERVER-NAME-OR-IP-ADDRESS" />
+                </constructor>
+              </add>
+              ]]>
+            </code>
+
+            <para>By default Redis is listening on port 6379. In order to change it, replace the line with the following:</para>
+
+            <code>
+              <![CDATA[
+              <add contract="Radoslav.Redis.IRedisProvider, Radoslav.Redis"
+                   implementation="Radoslav.Redis.ServiceStack.ServiceStackRedisProvider, Radoslav.Redis.ServiceStack">
+              <constructor>
+                <parameter name="host" value="SERVER-NAME-OR-IP-ADDRESS" />
+                <parameter name="port" value="PORT" />
+              </constructor>
+            </add>
+              ]]>
+            </code>
+
+            <para>In order to change the password with which you connect to Redis and the database you are using, replace the line with the following:</para>
+
+            <code>
+              <![CDATA[
+              <add contract="Radoslav.Redis.IRedisProvider, Radoslav.Redis"
+                   implementation="Radoslav.Redis.ServiceStack.ServiceStackRedisProvider, Radoslav.Redis.ServiceStack">
+              <constructor>
+                <parameter name="host" value="SERVER-NAME-OR-IP-ADDRESS" />
+                <parameter name="port" value="PORT" />
+                <parameter name="password" value="PASSWORD" />
+                <parameter name="database" value="DATABASE-ID" /> <!-- Integer value -->
+              </constructor>
+            </add>
+              ]]>
+            </code>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Repeat the same for the following files in <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug folder:
+            </para>
+
+            <list class="bullet">
+              <listItem>
+                <para>Radoslav.TaskProcessor.TaskWorker.exe.config</para>
+                <para>Radoslav.TaskProcessor.Monitor.Wpf.exe.config</para>
+                <para>Radoslav.TaskProcessor.WindowsService.exe.config</para>
+              </listItem>
+            </list>
+          </content>
+        </step>
+      </steps>
+    </procedure>
+
+    <procedure>
+      <title>How to Configure Redis in WFM Live</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              Open the Radoslav.TaskProcessor.ServiceLocator.config file in the folder Configuration in the Radoslav.WfmLive.TaskProcessor project and add the following line:
+            </para>
+
+            <code>
+              <![CDATA[
+              <add contract="Radoslav.Redis.IRedisProvider, Radoslav.Redis"
+                   implementation="Radoslav.Redis.ServiceStack.ServiceStackRedisProvider, Radoslav.Redis.ServiceStack" />
+              ]]>
+            </code>
+
+            <para>In order to configure the Redis server address, replace it with the following:</para>
+
+            <code>
+              <![CDATA[
+              <add contract="Radoslav.Redis.IRedisProvider, Radoslav.Redis"
+                   implementation="Radoslav.Redis.ServiceStack.ServiceStackRedisProvider, Radoslav.Redis.ServiceStack">
+                <constructor>
+                  <parameter name="host" value="SERVER-NAME-OR-IP-ADDRESS" />
+                </constructor>
+              </add>
+              ]]>
+            </code>
+
+            <para>By default Redis is listening on port 6379. In order to change it, replace the line with the following:</para>
+
+            <code>
+              <![CDATA[
+              <add contract="Radoslav.Redis.IRedisProvider, Radoslav.Redis"
+                   implementation="Radoslav.Redis.ServiceStack.ServiceStackRedisProvider, Radoslav.Redis.ServiceStack">
+              <constructor>
+                <parameter name="host" value="SERVER-NAME-OR-IP-ADDRESS" />
+                <parameter name="port" value="PORT" />
+              </constructor>
+            </add>
+              ]]>
+            </code>
+
+            <para>In order to change the password with which you connect to Redis and the database you are using, replace the line with the following:</para>
+
+            <code>
+              <![CDATA[
+              <add contract="Radoslav.Redis.IRedisProvider, Radoslav.Redis"
+                   implementation="Radoslav.Redis.ServiceStack.ServiceStackRedisProvider, Radoslav.Redis.ServiceStack">
+              <constructor>
+                <parameter name="host" value="SERVER-NAME-OR-IP-ADDRESS" />
+                <parameter name="port" value="PORT" />
+                <parameter name="password" value="PASSWORD" />
+                <parameter name="database" value="DATABASE-ID" /> <!-- Integer value -->
+              </constructor>
+            </add>
+              ]]>
+            </code>
+          </content>
+        </step>
+      </steps>
+    </procedure>
+
+    <relatedTopics>
+      <externalLink>
+        <linkText>Redis</linkText>
+        <linkUri>http://www.redis.io</linkUri>
+      </externalLink>
+    </relatedTopics>
+  </developerHowToDocument>
+</topic>

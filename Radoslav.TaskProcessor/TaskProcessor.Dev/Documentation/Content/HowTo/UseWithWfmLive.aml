@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="fc4aa659-ebc5-4d8e-9b34-d78a52db9c06" revisionNumber="1">
+  <developerHowToDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        This document provides step by step instructions how to use Radoslav 6.1 Task Processor from the Radoslav 6.1 WFM Live Web Application on your local machine.
+      </para>
+    </introduction>
+
+    <procedure>
+      <title>How to Use the Task Processor with WFM Live Web Application</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              Build <token>SvnFolder</token>\Radoslav.TaskProcessor\Radoslav.TaskProcessor.sln in DEBUG mode.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Open <token>SvnFolder</token>\Radoslav.WfmLive.TaskProcessor\Configuration\Radoslav.TaskProcessor.ConnectionStrings.config and setup the connection string to the database you are using.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Open <token>SvnFolder</token>\Radoslav.WfmLive.TaskProcessor\Configuration\Radoslav.TaskProcessor.AppSettings.config and setup the SignalR parameters.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>Build the Radoslav.WfmLive.TaskProcessor project (You can do this from the Radoslav6_1.WfmLive.sln).</para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Copy the Radoslav files to the task processor by starting<token>SvnFolder</token>\Doc\TaskProcessor\ConfigureTaskProcessor.Debug.bat.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Open <token>SvnFolder</token>\Radoslav.WfmLive.Services\Web.config and setup <![CDATA[<add key="TaskProcessor" value="TaskProcessor6.1" /> in <appSettings>]]>.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              7. [Optional] Clear your Redis by starting redis-cli.exe in your Redis installation folder (most probably C:\Redis) and run command 'flushall'.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Run the task processor monitoring tool from <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Radoslav.TaskProcessor.Monitor.Wpf.exe.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>In the monitoring tool, click "Add Processor" from the top menu in order to start a task processor instance.</para>
+          </content>
+        </step>
+      </steps>
+
+      <conclusion>
+        <content>
+          <para>Now you are ready can submit forecast and other tasks from the WFM Live Web Application.</para>
+        </content>
+      </conclusion>
+    </procedure>
+
+    <relatedTopics>
+      <link xlink:href="5060f129-7c32-4c87-bb9a-d633a4e65079" />
+    </relatedTopics>
+  </developerHowToDocument>
+</topic>

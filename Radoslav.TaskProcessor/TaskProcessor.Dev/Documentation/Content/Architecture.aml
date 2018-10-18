@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="1e80db64-587d-445c-af51-5b4ca2f96383" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <autoOutline />
+    </introduction>
+
+    <section address="Overview">
+      <title>Overview</title>
+
+      <content>
+        <para>
+          The task processor cluster consists of multiple stand-alone task processors each hosted on a separate machine as a Windows service.
+          The task processors communicate with each other via Redis pub/sub capabilities.
+          Information about the state of each task processor is stored in Redis – which tasks are currently executed by the processor, etc.
+          The information about pending, active (currently executed), failed and completed tasks is also stored in Redis as well as in a SQL server database.
+        </para>
+
+        <mediaLink>
+          <image xlink:href="775B89AB-896C-435C-AAE7-B443DA6A95D5" />
+        </mediaLink>
+      </content>
+    </section>
+
+    <section address="MasterAndSlave">
+      <title>Master and Slave Task Processors</title>
+
+      <content>
+        <para>
+          At any given moment one (and only one) of the task processors is a master.
+          Correspondingly, all the others are slaves.
+          The main (but not only) difference is that the master is responsible for assigning tasks to the task processors.
+          This happens in three scenarios:
+        </para>
+
+        <list class="bullet">
+          <listItem>
+            <para>When a new task is requested, the master retrieves from Redis information about the currently available task processors in the cluster and runs an algorithm in order to determine which task processor is best suited to execute the task. If there is no such processor (for example, all are too busy) the task remains in the pending tasks queue and will be executed when another task has completed or a new task processor is added to the cluster.</para>
+          </listItem>
+
+          <listItem>
+            <para>When a task is completed by a task processor, the master retrieves from Redis the pending tasks queue and runs an algorithm in order to determine which task should be executed next by the task processor that has completed the task.</para>
+          </listItem>
+
+          <listItem>
+            <para>When a new task processor is added to the cluster, the master retrieves the pending tasks queue, runs the same algorithm as in case 2 and assigns tasks to the newly registered task processor.</para>
+          </listItem>
+        </list>
+
+        <para>
+          The master task processor executes tasks just as the slaves.
+        </para>
+      </content>
+    </section>
+
+    <section address="LoadBalance">
+      <title>Load Balance</title>
+
+      <content>
+        <para>Load balance is achieved through the distribution of the tasks between multiple task processes hosted on different machines. Each task is executed into its own process and its resources could be configured. For example, a process could be restricted from using too much memory and disturbing in this way the other processes on the same machine. Also, an algorithm is responsible for distributing the workload equally among the available task processors, which appear as nodes in the cluster.</para>
+      </content>
+    </section>
+
+    <section address="Failover">
+      <title>Failover</title>
+
+      <content>
+        <para>The following failover concerns are considered in design and implementation:</para>
+
+        <list class="bullet">
+          <listItem>
+            <para>
+              Every task processor “heartbeats” at certain interval to Redis.
+              If a heartbeat is missed or not received on time because the task processor process has crashed, lost connection to Redis, etc.,
+              the task processor is considered crashed by the master and tasks are not assigned to it until it is restarted
+              (in case of hosting the task processor process as a Windows service this could be done automatically by Windows).
+            </para>
+          </listItem>
+
+          <listItem>
+            <para>
+              The same “heart-beating” is done by the master processor.
+              At every heartbeat a slave checks if the master is still active and if not, tries to become the master.
+              In this case if the master crashes very soon one of the slave task processors will become the master.
+            </para>
+          </listItem>
+
+          <listItem>
+            <para>
+              Because it is still possible to lose information in the interval between an eventual master crash until a slave becomes the master
+              (imagine a new task processor is added to the cluster or a new task is requested exactly in that period),
+              every operation that should be performed by the master is added in Redis to a specified queue (master commands queue).
+              When the master is up and running and receives a new command, it tries to execute the corresponding actions (for example assigning a task to a task processor) and then deletes it from the queue.
+              If the master crashes, when a slave becomes the master, it reads the master commands queue and executes the new commands after the last master crash.
+              In this way a command that should be processes by the master is never lost.
+            </para>
+          </listItem>
+
+          <listItem>
+            <para>
+              When the master assigns task to a task processor, it waits for confirmation that the task is started.
+              If such a confirmation is not received (for example the task processor has just crashed),
+              the master chooses another task processor and assigns the task to it.
+            </para>
+          </listItem>
+        </list>
+      </content>
+    </section>
+
+    <section address="Monitoring">
+      <title>Monitoring</title>
+
+      <content>
+        <para>Notifications about task status (pending, started, progressed, canceled, failed, completed) can be received via Redis pub/sub API. The same is valid for the state of the task processors (started, stopping, stopped). In this way a monitoring tool or screen can be implemented relatively easy. Such a simple screen was implemented as a proof of concept for development purposes.</para>
+      </content>
+    </section>
+
+    <section address="AddAndRemove">
+      <title>Add and Shut Down Task Processors</title>
+
+      <content>
+        <para>When a new task processor is added to the cluster, it registers itself in Redis and notifies the master. Then the master assigns some of the pending tasks to it.</para>
+        <para>When there are multiple task processors active but there are not many tasks in the moment, it is reasonable to shut down a task processor in order to avoid additional costs because of using resources in the cloud. Task processor can be notified via Redis to shut down. If the task processor does not execute tasks in the moment, it shuts down immediately. If the task processor executes tasks in the moment, it will wait all the tasks to complete and then will shut down. Also, it will not accept any new tasks assigned to it.</para>
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="84eed8e2-2c0a-4305-86a2-ca60b28feffe" />
+      <link xlink:href="db298ec6-cbea-4f98-8305-63e8308827ff" />
+      <link xlink:href="05a70fa1-74b0-4a0b-a9e2-9dac83a56358" />
+      <link xlink:href="8c1cc97d-5eff-4f39-b0d9-3db36a6a6983" />
+      <link xlink:href="8955b198-1679-4453-9575-47fe554d12f9" />
+
+      <externalLink>
+        <linkText>Redis</linkText>
+        <linkUri>http://www.redis.io</linkUri>
+      </externalLink>
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

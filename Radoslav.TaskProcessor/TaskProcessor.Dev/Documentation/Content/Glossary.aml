@@ -1,0 +1,853 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<topic id="db298ec6-cbea-4f98-8305-63e8308827ff" revisionNumber="1">
+  <developerGlossaryDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <glossary>
+
+      <glossaryEntry>
+        <terms>
+          <term>Active Task</term>
+        </terms>
+
+        <definition>
+          <para>A task currently executed by a task processor instance.</para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Bridge</term>
+        </terms>
+
+        <definition>
+          <para>
+            A design pattern used in software engineering which is meant to decouple an abstraction from its implementation so that the two can vary independently.
+            The bridge uses encapsulation, aggregation, and can use inheritance to separate responsibilities into different classes.
+          </para>
+
+          <para>
+            See Also: <token>Bridge</token>
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Composite</term>
+        </terms>
+
+        <definition>
+          <para>
+            A design pattern which describes that a group of objects is to be treated in the same way as a single instance of an object.
+            The intent of a composite is to "compose" objects into tree structures to represent part-whole hierarchies.
+            Implementing the composite pattern lets clients treat individual objects and compositions uniformly.
+          </para>
+
+          <para>
+            See Also: <token>Composite</token>
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Dependency Injection</term>
+        </terms>
+
+        <definition>
+          <para>
+            A software design pattern that implements inversion of control for resolving dependencies.
+            A dependency is an object that can be used (a service).
+            An injection is the passing of a dependency to a dependent object (a client) that would use it.
+            The service is made part of the client's state.[1]
+            Passing the service to the client, rather than allowing a client to build or find the service, is the fundamental requirement of the pattern.
+          </para>
+
+          <para>
+            See Also: <token>DependencyInjection</token>
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Failed Task</term>
+        </terms>
+
+        <definition>
+          <para>
+            Failed Task is a task for which an unhandled exception occurred while it was processed by the corresponding Task Worker.
+          </para>
+
+          <para>
+            In the current task processor implementation there is no concept of restarting a failed task.
+            Once the task fails, it remains failed and nothing more is done about it.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Failover</term>
+        </terms>
+
+        <definition>
+          <para>
+            The capacity of the task processor cluster to continue to work even when one or more task processor instances crash, and even if the master task processor crashes.
+          </para>
+
+          <para>
+            See Also <link xlink:href="1e80db64-587d-445c-af51-5b4ca2f96383#Failover" />.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Facade</term>
+        </terms>
+
+        <definition>
+          <para>
+            A software design pattern defining an object that provides a simplified interface to a larger body of code, such as a class library.
+          </para>
+
+          <para>
+            See Also: <token>Facade</token>
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Forecast Task</term>
+        </terms>
+
+        <definition>
+          <para>
+            A task that generates forecast based on some statistics run on collected data.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Interface-based Programming</term>
+        </terms>
+
+        <definition>
+          <para>
+            An architectural pattern that defines the application as a collection of components,
+            in which API calls between components may only be made to interfaces wherever possible, not concrete classes.
+          </para>
+
+          <para>
+            See Also: <token>InterfaceBasedProgramming</token>
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Inversion of Control</term>
+        </terms>
+
+        <definition>
+          <para>
+            A design principle in which custom-written portions of a computer program receive the flow of control from a generic, reusable library.
+          </para>
+
+          <para>
+            See Also: <token>InversionOfControl</token>
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Load Balance</term>
+        </terms>
+
+        <definition>
+          <para>Load balance is achieved through the distribution of the tasks between multiple task processor instances hosted on different machines. Each task is executed into its own process and its resources could be configured. For example, a process could be restricted from using too much memory and disturbing in this way the other processes on the same machine. Also, an algorithm is responsible for distributing the workload equally among the available task processors, which appear as nodes in the cluster.</para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Master Commands Queue</term>
+        </terms>
+
+        <definition>
+          <para>
+            All the operations that require processing from the master task processor are stored in a message queue.
+            This is needed because if the master task processor crashes there is a time interval until one of the other task processors to become master.
+            In this time interval (it should be no more than several seconds) there is no active master and if, for example, a task is submitted, there will be no active master to assign it to a task processor instance.
+            That is why some of the notifications are stored in a message queue called Master Commands Queue.
+            When a master command is processed from the master task processor, it is removed from the queue.
+            If the master task processor crashes, the new one will continue processing of the commands in the queue.
+          </para>
+
+          <para>
+            See Also <link xlink:href="1e80db64-587d-445c-af51-5b4ca2f96383#MasterAndSlave" />.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term termId="MasterTaskProcessor">Master Task Processor</term>
+        </terms>
+
+        <definition>
+          <para>
+            One (and only one at any given moment) of the task processor instances that is responsible for responsible for assigning tasks to the task processor instances.
+          </para>
+
+          <para>
+            The master task processor executes tasks just as the slaves - it can assign tasks to itself and execute them.
+          </para>
+
+          <para>
+            See Also: <link xlink:href="1e80db64-587d-445c-af51-5b4ca2f96383#MasterAndSlave" />.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Message Bus</term>
+        </terms>
+
+        <definition>
+          <para>
+            All the communication within the task processor cluster is implemented as messages via the pub/sub mechanism of Redis. Again, the design allows you to substitute this with any other messaging mechanism you would like. The communication is in three directions:
+          </para>
+
+          <list class="bullet">
+            <listItem>
+              <para>Between task processor instances – assigning tasks, reporting task completion, etc.</para>
+            </listItem>
+
+            <listItem>
+              <para>From task processor monitoring tool to a task processor instance – change the instance configuration, request the instance to stop, start performance monitoring, etc.</para>
+            </listItem>
+
+            <listItem>
+              <para>From a task processor instance to monitoring tools – report task start, completion, error, task processor instance status, performance results, etc.</para>
+            </listItem>
+          </list>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Monitoring Tool</term>
+        </terms>
+
+        <definition>
+          <para>
+            An external application that displays monitoring information for the task processor:
+          </para>
+
+          <list class="bullet">
+            <listItem>
+              <para>Which task processor instances are active.</para>
+            </listItem>
+
+            <listItem>
+              <para>Which tasks are currently pending and executed.</para>
+            </listItem>
+
+            <listItem>
+              <para>Which task processor is master.</para>
+            </listItem>
+
+            <listItem>
+              <para>The archive with the completed tasks.</para>
+            </listItem>
+          </list>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Pending Task</term>
+        </terms>
+
+        <definition>
+          <para>A task submitted to the task processor cluster but that is not yet started by a task processor instance.</para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Polling Job</term>
+        </terms>
+
+        <definition>
+          <para>
+            We can instruct a task processor instance to execute some operation at a specified interval.
+            Such an operation is called “polling job” and is more general case of the polling queue.
+            It could not be related to task processing but instead to monitoring, clearing Redis, etc.
+          </para>
+
+          <para>
+            The only polling job implemented so far is called Task Scheduler.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Polling Queue</term>
+        </terms>
+
+        <definition>
+          <para>
+            By default the task processor is event-driven – when a client submits a task, a message is sent via the message bus, and the master task processor receives it and assigns the submitted task to one of the running task processor instances in the cluster. But for some task jobs we may not want event-driven design but use polling instead. This could be useful when we have continuous submission of several tasks per second, for example. Then we can instruct a task processor instance to check for newly submitted tasks of the specified task job at a specified time interval. Thus instead in the normal, event-driven tasks queue, these special tasks go to a polling queue instead.
+          </para>
+
+          <para>
+            Every task job could belong up to 1 polling queue. It cannot be both event-driven task job and polling queue task job simultaneously.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Redis</term>
+        </terms>
+
+        <definition>
+          <para>
+            Redis is an open source, in-memory data structure store, used as database, cache and message broker.
+          </para>
+
+          <para>
+            See Also: <token>Redis</token>
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Repository</term>
+        </terms>
+
+        <definition>
+          <para>
+            Repository is the place where the task processor stores its runtime information. It consists mainly of the Task Runtime Info entities and Task Processor Runtime Info entities, but also of some other minor entities.
+          </para>
+
+          <para>
+            The current implementation uses Redis for storage, but the design allows you to implement any other storage mechanism you would like such an SQL Server database, etc.
+          </para>
+
+          <para>
+            You can configure the format in which the entities are stored in Redis. Currently 3 formats are supported – Binary, XML and JSON, but you can implement also a custom format of your own.
+            Also, you can set up different serialization format (Binary, XML, JSON, etc.) for every entity stored in Redis.
+            This allows you to store some entities in Binary format, others – in XML and others – in JSON.
+          </para>
+
+          <para>
+            Binary format is supposed to be the fastest one so it is recommend to be used in production mode. XML and JSON formats are slower but readable which is convenient for debug purposes.
+          </para>
+
+          <para>
+            See Also: <token>Repository</token>
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Separation of Concerns</term>
+        </terms>
+
+        <definition>
+          <para>
+            A design principle for separating a computer program into distinct sections, such that each section addresses a separate concern.
+          </para>
+
+          <para>
+            See Also: <token>SeparationOfConcerns</token>
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Single Responsibility Principle</term>
+        </terms>
+
+        <definition>
+          <para>
+            A design principle stating that every module or class should have responsibility over a single part of the functionality provided by the software,
+            and that responsibility should be entirely encapsulated by the class.
+            All its services should be narrowly aligned with that responsibility.
+          </para>
+
+          <para>
+            See Also: <token>SingleResponsibilityPrinciple</token>
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>SignalR</term>
+        </terms>
+
+        <definition>
+          <para>
+            A server-side software system designed for writing scalable Internet applications, notably web servers.
+            Programs are written on the server side in C#, using event-driven, asynchronous I/O to minimize overhead and maximize scalability.
+          </para>
+
+          <para>
+            In Radoslav 6.1 software, SignalR is used for communication between server-side (IIS, task processor) and the client side (web browser).
+          </para>
+
+          <para>
+            The task processor should send SignalR notifications in order that the client web application running in a browser
+            should receive them and visualize the state of the tasks to the user.
+          </para>
+
+          <para>
+            See Also: <token>SignalR</token>
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Service Locator</term>
+        </terms>
+
+        <definition>
+          <para>
+            A design pattern used in software development to encapsulate the processes involved in obtaining a service with a strong abstraction layer.
+            This pattern uses a central registry known as the "service locator", which on request returns the information necessary to perform a certain task.
+          </para>
+
+          <para>
+            See Also: <token>ServiceLocator</token>
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Service Stack</term>
+        </terms>
+
+        <definition>
+          <para>
+            C#/.NET Redis library used to communicate with Redis.
+          </para>
+
+          <para>
+            See Also: <token>ServiceStack</token>
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Slave Task Processor</term>
+        </terms>
+
+        <definition>
+          <para>
+            Each task processor instance that is not the master task processor at any given moment.
+          </para>
+
+          <para>
+            See Also <link xlink:href="1e80db64-587d-445c-af51-5b4ca2f96383#MasterAndSlave" />.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Scheduled Task</term>
+        </terms>
+
+        <definition>
+          <para>
+            This is a definition of a task that should be executed regularly at a specified time period.
+            For example, you may schedule sending reports by e-mail every evening.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Task</term>
+        </terms>
+
+        <definition>
+          <para>
+            A definition of a <legacyItalic>single</legacyItalic> task of a specified task job that has to be executed by the task processor.
+            It does not include any execution information such as status, percent of completion, error, etc.
+            It defines only what needs to be done, for example: <legacyItalic>Generate auto forecast for tenant with ID 31 between 1st January and 31st December 2016</legacyItalic>, and nothing more.
+            The task can be considered as all input parameters that a task processor instance must receive in order to be able to execute the task.
+          </para>
+
+          <para>
+            Each task is an <legacyItalic>instance</legacyItalic> of a task job class that inherits from the <codeEntityReference>T:Radoslav.TaskProcessor.Model.ITask</codeEntityReference> interface.
+          </para>
+
+          <para>
+            Each task is uniquely identified by a Global Unique Identifier (GUID) referred below as task ID.
+          </para>
+
+          <para>
+            All pending and active (currently executed) tasks are stored in Redis. That is why all the classes that define task jobs should be serializable in the format configured for Redis serialization.
+          </para>
+
+          <para>
+            Potentially the Task object could be very big, for example a few megabytes.
+            That is why when the task completes (either successfully, with an unhandled exception or because it was canceled) the task is deleted from Redis.
+            If you want to keep some information for a task after it has been completed, use Task Summary.
+          </para>
+
+          <para>
+            The task should contain only data specified to it as a <legacyItalic>single</legacyItalic> task.
+            If you have parameters common to all tasks of a specified type (for example, SMTP server and credentials), it is better to use Task Job Parameters.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Task Distributor</term>
+        </terms>
+
+        <definition>
+          <para>
+            The algorithm responsible to determine:
+          </para>
+
+          <list class="bullet">
+            <listItem>
+              <para>Which task processor instance to execute a newly submitted task?</para>
+            </listItem>
+
+            <listItem>
+              <para>When a task processor instance completes a task, which pending task it should execute next?</para>
+            </listItem>
+          </list>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Task Job</term>
+        </terms>
+
+        <definition>
+          <para>
+            Task jobs define the different <legacyItalic>types of tasks</legacyItalic> that can be executed by the task processor, for example:
+          </para>
+
+          <list class="bullet">
+            <listItem>
+              <para>Forecast task – task used to test the task processor.</para>
+            </listItem>
+
+            <listItem>
+              <para>Demo task – task used to test the task processor.</para>
+            </listItem>
+
+            <listItem>
+              <para>Send email task - send an e-mail with a specified subject and content to specified recipients.</para>
+            </listItem>
+          </list>
+
+          <para>Currently only Forecast tasks are implemented and supported in Radoslav 6.1 Task Processor.</para>
+
+          <para>
+            The different task jobs are defined as classes that inherit from the <codeEntityReference>T:Radoslav.TaskProcessor.Model.ITask</codeEntityReference> interface.
+            Each such descendant class is a single task job.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Task Job Parameters</term>
+        </terms>
+
+        <definition>
+          <para>
+            In some cases it is possible all tasks of a certain task job to receive shared input parameters that are specific for the task job and not for the <legacyItalic>single</legacyItalic> task, for example SMTP server address and credentials when sending e-mails.
+            These parameters are stored as a separate Task Job Parameters entity in Redis.
+            There is only one Task Job Parameters entity for each Task Job.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Task Processor Client</term>
+        </terms>
+
+        <definition>
+          <para>
+            An external application that submits tasks to the task processor, for example the WFM Live Web Application.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Task Processor Facade</term>
+        </terms>
+
+        <definition>
+          <para>
+            External world should communicate with the task processor cluster only through an instance of a class called Task Processor Facade.
+            Repository, message bus, etc. should never be instantiated and accessed directly but only through the Facade.
+            The basic operations provided by the Task Processor Facade are:
+          </para>
+
+          <list class="bullet">
+            <listItem>
+              <para>Submit Task</para>
+            </listItem>
+
+            <listItem>
+              <para>Cancel  Task</para>
+            </listItem>
+
+            <listItem>
+              <para>Request task processor instance to stop</para>
+            </listItem>
+
+            <listItem>
+              <para>Get / Set / Clear Task Job Settings</para>
+            </listItem>
+
+            <listItem>
+              <para>Add / Update / Delete Scheduled Task</para>
+            </listItem>
+
+            <listItem>
+              <para>Get Task Runtime Information</para>
+            </listItem>
+
+            <listItem>
+              <para>Get Task Processor Runtime Information</para>
+            </listItem>
+
+            <listItem>
+              <para>Update Task Processor Configurartion</para>
+            </listItem>
+          </list>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Task Processor Heartbeat</term>
+        </terms>
+
+        <definition>
+          <para>
+            Every task processor “heartbeats” at certain interval to Redis.
+            If a heartbeat is missed or not received on time because the task processor process has crashed, lost connection to Redis, etc.,
+            the task processor is considered crashed by the master and tasks are not assigned to it until it is restarted
+            (in case of hosting the task processor process as a Windows service this could be done automatically by Windows).
+          </para>
+
+          <para>
+            The same “heart-beating” is done by the master processor.
+            At every heartbeat a slave checks if the master is still active and if not, tries to become the master.
+            In this case if the master crashes very soon one of the slave task processors will become the master.
+          </para>
+
+          <para>
+            See Also <link xlink:href="1e80db64-587d-445c-af51-5b4ca2f96383#Failover" />.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term termId="TaskProcessorInstance">Task Processor Instance</term>
+        </terms>
+
+        <definition>
+          <para>
+            Each running task processor process.
+            In production it is supposed to have only one such process per machine and it should be hosted as a windows service.
+            But for debug you may want to start more than one task processor instance on your development machine to
+            simulate several servers, each one with a single (per machine) task processor instance deployed.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term termId="TaskProcessorProcess">Task Processor Process</term>
+        </terms>
+
+        <definition>
+          <para>
+            The windows process that hosts each task processor instance.
+            In production it is supposed to be a windows service, but for debugging it could be also a console application.
+          </para>
+
+          <para>
+            If the task processor process crashes, all task worker processes started by it are terminated immediately.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Task Processor Runtime Information</term>
+        </terms>
+
+        <definition>
+          <para>
+            An entity stored in Redis that contains all the information about a single task processor instance/machine/server in the cluster.
+          </para>
+
+          <para>
+            Each task processor instance is identified by a Global Unique Identifier (GUID) referred below as task processor ID.
+            The ID is generated each time the task processor process is started either as a console application or as a windows service.
+            This means that if you start the task processor windows service, you will have a task processor instance with an auto-generated unique ID.
+            If you stop the service and start it again, you will have a task processor instance with another, <legacyItalic>different</legacyItalic> auto-generated unique ID.
+          </para>
+
+          <para>
+            The Task Processor Runtime Info stores also the name of the machine on which it is hosted, and configuration how the task processor should work.
+            This allows configuring the task processor during run-time, although no such a tool exists currently in Radoslav WFM Live.
+            But the Radoslav Task Processor architecture and implementation provides everything needed to add such tool.
+          </para>
+
+          <para>
+            The basic functionality of the Task Processor Runtime Information is defined by the <codeEntityReference>T:Radoslav.TaskProcessor.Model.ITaskProcessorRuntimeInfo</codeEntityReference> inteface.
+            Each implementation of <codeEntityReference>T:Radoslav.TaskProcessor.Repository.ITaskProcessorRuntimeInfoRepository</codeEntityReference> can define its own implenentation of the <codeEntityReference>T:Radoslav.TaskProcessor.Model.ITaskProcessorRuntimeInfo</codeEntityReference> inteface.
+            The current implementation is <codeEntityReference>T:Radoslav.TaskProcessor.Repository.Redis.RedisTaskProcessorRuntimeInfo</codeEntityReference> and it is designed to be serialized and stored in Redis.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Task Runtime Information</term>
+        </terms>
+
+        <definition>
+          <para>
+            An entity stored in Redis that contains all the information for a single task execution.
+            It is completely independent of the task job and the input parameters for the specific task.
+            It stores only information about the task execution status, priority, when the task was submitted, started, canceled and completed, percent of completion, the error that occurred during task execution, etc.
+            In contrary to the Task entity, Task Runtime Information entity is a very lightweight and small object.
+          </para>
+
+          <para>
+            The Task Runtime Information is never deleted from Redis in order to maintain archive.
+            If you want, you could implement your own mechanism to clean up old Task Runtime Information records using aa Scheduled Task or a Polling Job.
+          </para>
+
+          <para>
+            The basic functionality of the Task Runtime Information is defined by the <codeEntityReference>T:Radoslav.TaskProcessor.Model.ITaskRuntimeInfo</codeEntityReference> inteface.
+            Each implementation of <codeEntityReference>T:Radoslav.TaskProcessor.Repository.ITaskRuntimeInfoRepository</codeEntityReference> can define its own implenentation of the <codeEntityReference>T:Radoslav.TaskProcessor.Model.ITaskRuntimeInfo</codeEntityReference> inteface.
+            The current implementation is <codeEntityReference>T:Radoslav.TaskProcessor.Repository.Redis.RedisTaskRuntimeInfo</codeEntityReference> and it is designed to be serialized and stored in Redis.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Task Scheduler</term>
+        </terms>
+
+        <definition>
+          <para>
+            The algorithm responsible for submitting scheduled tasks to the task processor.
+            It is responsible for reading the schedule configuration, materializes it as concrete Task entities and submits them via the Task Processor Facade.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Task Summary</term>
+        </terms>
+
+        <definition>
+          <para>
+            Because the Task entity could be very big in size (for example several megabytes), it is deleted immediately after the task is completed either successfully, with an unhandled exception or because it was canceled.
+            On the contrary, Task Runtime Info records are not deleted from Redis so you can view an archive of all tasks executed by the task processor.
+          </para>
+
+          <para>
+            But sometimes this is not enough, especially in the case of failed tasks.
+            Because the corresponding Task record has been deleted from Redis in the moment the task process has crashed, you cannot view later the input data for the task and reproduce it in debug mode.
+          </para>
+
+          <para>
+            Also, if you browse the record of the tasks archive, you cannot see what exactly has this task done – for example, for what period and for which department was a forecast generated.
+          </para>
+
+          <para>
+            That is why another entity is introduced – Task Summary.
+            It is designed as a lightweight entity stored in Redis used to describe in a very simple way what the task did.
+            There are two basic types of Task Summary – text summary (represented as a simple string) and a dictionary summary (key/value pairs).
+            This opens the way to create a tool in Radoslav WFM Live to browse the tasks archive and perhaps to create statistics based on the archive.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term>Task Worker</term>
+        </terms>
+
+        <definition>
+          <para>
+            A class that can process tasks of specified task job(s).
+            Usually one Task Worker class processes tasks of one Task Job only, but that is not mandatory.
+            It is quite possible one Task Worker class to process tasks of several Task Jobs.
+            The mapping between Tasks and Task Workers is configurable.
+          </para>
+
+          <para>
+            The basic functionality of the Task Worker is defined by the <codeEntityReference>T:Radoslav.TaskProcessor.TaskWorker.ITaskWorker</codeEntityReference> inteface.
+            Each concrete Task Worker, for example Forecast Task Worker, should implement this interface.
+          </para>
+        </definition>
+      </glossaryEntry>
+
+      <glossaryEntry>
+        <terms>
+          <term termId="TaskWorkerProcess">Task Worker Process</term>
+        </terms>
+
+        <definition>
+          <para>
+            Each task processor instance is a process running on a dedicated machine/server.
+            When a task is assigned to this task processor instance, it starts the task as a separate child process.
+            The task processor process monitors the state of the child task process.
+            There is a mechanism to ensure that all these child processes will be killed if the task processor process terminates for some reason (for example, unexpected critical error).
+            By design we should never have an active task process if the task processor process is dead.
+          </para>
+
+          <para>
+            <!-- TODO: Task worker project -->
+          </para>
+
+          <para>
+            The Task Worker Process receives as an input parameter only the ID of the task that should be executed.
+          </para>
+        </definition>
+      </glossaryEntry>
+    </glossary>
+  </developerGlossaryDocument>
+</topic>

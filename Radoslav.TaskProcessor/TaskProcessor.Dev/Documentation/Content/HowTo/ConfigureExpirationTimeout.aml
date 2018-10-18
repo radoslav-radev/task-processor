@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="9f8395a9-e773-49be-b898-5f70897dd12c" revisionNumber="1">
+  <developerHowToDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>
+        Every task processor instance heartbeats at a specified interval by renewing its unique key in Redis.
+        If a task processor does not heartbeat in a specified interval, it can be considered crashed, or lost
+        internet connection or connection with Redis. As a consequence, the master task processor does not assign tasks
+        to such task processor.
+      </para>
+
+      <para>
+        The master itself could also crash. That is why when heartbeating, every task processor checks if the master is still
+        alive by checking its unique key in Redis. If it has been expired, this means that the master has not renewed it
+        in time, and can be considered crashed.
+      </para>
+
+      <para>
+        The default heartbeat interval is defined in
+        <codeEntityReference linkText="Radoslav.TaskProcessor.RadoslavTaskProcessor.DefaultHeartbeatInterval" />.
+      </para>
+
+      <para>
+        The default expiration timeout is defined in
+        <codeEntityReference linkText="Radoslav.TaskProcessor.Repository.TaskProcessorRepository.DefaultExpirationTimeout" />
+      </para>
+
+      <para>
+        This document describes how the configure the heartbeat interval and the expiration timeout after which a task processor instance is considered not available.
+      </para>
+    </introduction>
+
+    <procedure>
+      <title>How to Configure the Task Processor Heartbeat Interval</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              Build the <link xlink:href="cb1a9e27-f92d-48a9-b4de-90a9d7399404" /> in Debug. Explanations below will be for Debug mode.
+              For Release build in Release mode and replace Debug with Release in all folder paths below.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Open the Radoslav.TaskProcessor.Monitor.ConsoleApp.exe.config file in <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug folder and find:
+            </para>
+
+            <code>
+              <![CDATA[
+               <add contract="Radoslav.TaskProcessor.Repository.ITaskProcessorRepository, Radoslav.TaskProcessor.Repository"
+                    implementation="Radoslav.TaskProcessor.Repository.Redis.RedisTaskProcessorRepository, Radoslav.TaskProcessor.Repository.Redis" />
+              ]]>
+            </code>
+
+            <para>Replace it with the following:</para>
+
+            <code>
+              <![CDATA[
+               <add contract="Radoslav.TaskProcessor.Repository.ITaskProcessorRepository, Radoslav.TaskProcessor.Repository"
+                    implementation="Radoslav.TaskProcessor.Repository.Redis.RedisTaskProcessorRepository, Radoslav.TaskProcessor.Repository.Redis">
+
+                <properties>
+                  <set property="TaskProcessorRuntimeInfo.Expiration" value="TIMESPAN-VALUE" /> <!-- For example, 00:00:30 for 30 seconds. --->
+                </properties>
+              </add>
+              ]]>
+            </code>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Repeat the same in <legacyItalic>Radoslav.TaskProcessor.WindowsService.exe.config</legacyItalic> file in <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug folder:
+            </para>
+          </content>
+        </step>
+      </steps>
+    </procedure>
+
+    <procedure>
+      <title>How to Configure the Task Processor Heartbeat Interval in WFM Live</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              Open the Radoslav.TaskProcessor.ServiceLocator.config file in the folder Configuration in the Radoslav.WfmLive.TaskProcessor project and add the following line:
+            </para>
+
+            <code>
+              <![CDATA[
+               <add contract="Radoslav.TaskProcessor.Repository.ITaskProcessorRepository, Radoslav.TaskProcessor.Repository"
+                    implementation="Radoslav.TaskProcessor.Repository.Redis.RedisTaskProcessorRepository, Radoslav.TaskProcessor.Repository.Redis" />
+              ]]>
+            </code>
+
+            <para>Replace it with the following:</para>
+
+            <code>
+              <![CDATA[
+               <add contract="Radoslav.TaskProcessor.Repository.ITaskProcessorRepository, Radoslav.TaskProcessor.Repository"
+                    implementation="Radoslav.TaskProcessor.Repository.Redis.RedisTaskProcessorRepository, Radoslav.TaskProcessor.Repository.Redis">
+
+                <properties>
+                  <set property="TaskProcessorRuntimeInfo.Expiration" value="TIMESPAN-VALUE" /> <!-- For example, 00:00:30 for 30 seconds. --->
+                </properties>
+              </add>
+              ]]>
+            </code>
+          </content>
+        </step>
+      </steps>
+    </procedure>
+
+    <procedure>
+      <title>How to Configure the Task Processor Expiration Timeout</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              Build the <link xlink:href="cb1a9e27-f92d-48a9-b4de-90a9d7399404" /> in Debug. Explanations below will be for Debug mode.
+              For Release build in Release mode and replace Debug with Release in all folder paths below.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Open the Radoslav.TaskProcessor.Monitor.ConsoleApp.exe.config file in <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug folder and find:
+            </para>
+
+            <code>
+              <![CDATA[
+               <add contract="Radoslav.TaskProcessor.RadoslavTaskProcessor, Radoslav.TaskProcessor"
+                    implementation="Radoslav.TaskProcessor.RadoslavTaskProcessor, Radoslav.TaskProcessor" />
+              ]]>
+            </code>
+
+            <para>Replace it with the following:</para>
+
+            <code>
+              <![CDATA[
+               <add contract="Radoslav.TaskProcessor.RadoslavTaskProcessor, Radoslav.TaskProcessor"
+                    implementation="Radoslav.TaskProcessor.RadoslavTaskProcessor, Radoslav.TaskProcessor">
+
+                <properties>
+                  <set property="HeartbeatTimer.Interval" value="TIMESPAN-VALUE" /> <!-- For example, 00:00:05. -->
+                </properties>
+              </add>
+              ]]>
+            </code>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Repeat the same in <legacyItalic>Radoslav.TaskProcessor.WindowsService.exe.config</legacyItalic> file in <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug folder:
+            </para>
+          </content>
+        </step>
+      </steps>
+    </procedure>
+
+    <procedure>
+      <title>How to Configure the Task Processor Expiration Timeout in WFM Live</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              Open the Radoslav.TaskProcessor.config file in the folder Configuration in the Radoslav.WfmLive.TaskProcessor project and add the following line:
+            </para>
+
+            <code>
+              <![CDATA[
+               <add contract="Radoslav.TaskProcessor.RadoslavTaskProcessor, Radoslav.TaskProcessor"
+                    implementation="Radoslav.TaskProcessor.RadoslavTaskProcessor, Radoslav.TaskProcessor" />
+              ]]>
+            </code>
+
+            <para>Replace it with the following:</para>
+
+            <code>
+              <![CDATA[
+               <add contract="Radoslav.TaskProcessor.RadoslavTaskProcessor, Radoslav.TaskProcessor"
+                    implementation="Radoslav.TaskProcessor.RadoslavTaskProcessor, Radoslav.TaskProcessor">
+
+                <properties>
+                  <set property="HeartbeatTimer.Interval" value="TIMESPAN-VALUE" /> <!-- For example, 00:00:05. -->
+                </properties>
+              </add>
+              ]]>
+            </code>
+          </content>
+        </step>
+      </steps>
+    </procedure>
+
+    <relatedTopics>
+      <link xlink:href="1e80db64-587d-445c-af51-5b4ca2f96383" />
+      <link xlink:href="db298ec6-cbea-4f98-8305-63e8308827ff" />
+
+      <externalLink>
+        <linkText>Redis</linkText>
+        <linkUri>http://www.redis.io</linkUri>
+      </externalLink>
+
+      <externalLink>
+        <linkText>Redis SETNX Command</linkText>
+        <linkUri>http://www.redis.io/commands/setnx</linkUri>
+      </externalLink>
+
+      <externalLink>
+        <linkText>Redis SETEX Command</linkText>
+        <linkUri>http://www.redis.io/commands/setex</linkUri>
+      </externalLink>
+    </relatedTopics>
+  </developerHowToDocument>
+</topic>

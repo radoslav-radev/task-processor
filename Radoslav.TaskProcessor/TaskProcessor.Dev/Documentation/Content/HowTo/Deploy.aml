@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="5060f129-7c32-4c87-bb9a-d633a4e65079" revisionNumber="1">
+  <developerHowToDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>This document describes how to deploy the Radoslav 6.1 Task Processor to a production machine.</para>
+    </introduction>
+
+    <procedure>
+      <title>How to Deploy the Radoslav 6.1 Task Processor to a Production Machine</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>If the task processor is already deployed on this machine:</para>
+
+            <list class="ordered">
+              <listItem>
+                <para>Start the task processor monitoring tool from [DEPLOYMENT-FOLDER]\Radoslav.TaskProcessor.Monitor.Wpf.exe.</para>
+              </listItem>
+
+              <listItem>
+                <para>If you do not see the task processor in the monitoring tool, then it is not running (perhaps it has crashed). In this case skip this step and go to step 2.</para>
+              </listItem>
+
+              <listItem>
+                <para>If you do see the task processor in the monitoring tool, then click the "Stop" button. This will request the task processor to stop. The task processor will wait for all currently executing tasks to complete and then will stop itself, i.e. the Radoslav.TaskProcessor windows service will stop. Wait until this happens and check the status of the windows service to be sure.</para>
+              </listItem>
+
+              <listItem>
+                <para>If you ever stop directly the Radoslav.TaskProcessor windows service, then all currently executing tasks will remain unfinished. Always stop the task processor from the monitoring tool, and only in emergency cases kill it by stopping the windows service directly.</para>
+              </listItem>
+            </list>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Build <token>SvnFolder</token>\Radoslav.TaskProcessor\Radoslav.TaskProcessor.sln in RELEASE mode.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>Build the Radoslav.WfmLive.TaskProcessor project in RELEASE mode (You can do this from the Radoslav6_1.WfmLive.sln).</para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Copy the Radoslav files to the task processor by starting <token>SvnFolder</token>\Radoslav.WfmLive.TaskProcessor\Configuration\ConfigureTaskProcessor.Release.bat.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Copy <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Release folder to the deployment machine.
+            </para>
+
+            <list class="ordered">
+              <listItem>
+                <para>If this is the first time you deploy the task processor to this machine, rename the folder as you wish.</para>
+              </listItem>
+
+              <listItem>
+                <para>
+                  If the task processor is already installed on this machine, copy the content of the <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Release folder into the same folder. You may delete the old files before that if you wish.
+                </para>
+              </listItem>
+            </list>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>Open [DEPLOYMENT-FOLDER]\Radoslav.TaskProcessor.ConnectionStrings.config and setup the connection string to the database you are using.</para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              If this is the first time you deploy the task processor on this machine, open Command Prompt as administrator and run [DEPLOYMENT-FOLDER]\Install Windows Service.bat. This will install the task processor as a windows service.
+              If the task processor windows service is already installed on the deployment machine, skip this step.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Start Radoslav.TaskProcessor windows service.
+              If the start fails or the service stops immediately, check the windows event logs for the reason.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              If you want to monitor the task processor, start the task processor monitoring tool from [DEPLOYMENT-FOLDER]\Radoslav.TaskProcessor.Monitor.Wpf.exe.
+            </para>
+
+            <para>
+              The logs of the task processor are in [DEPLOYMENT-FOLDER]\Logs folder.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Open [WEB-APPLICATION-DEPLOYMENT-FOLDER]\Radoslav.WfmLive.Services\Web.config and setup <![CDATA[<add key="TaskProcessor" value="TaskProcessor6.1" /> in <appSettings>]]>.
+            </para>
+          </content>
+        </step>
+      </steps>
+
+      <conclusion>
+        <content>
+          <para>Now you are ready can submit forecast and other tasks from the WFM Live Web Application.</para>
+        </content>
+      </conclusion>
+    </procedure>
+
+    <relatedTopics>
+      <link xlink:href="fc4aa659-ebc5-4d8e-9b34-d78a52db9c06" />
+    </relatedTopics>
+  </developerHowToDocument>
+</topic>

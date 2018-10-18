@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="ff788bb8-8087-4699-b316-f0678e12dab2" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        This documents describes the task processor projects included in the Radoslav 6.1 WFM Live Web Application located at <token>SvnFolder</token>\Radoslav6_1.WfmLive.sln.
+      </para>
+
+      <para>
+        All projects related to the task processor are in the solution folder <legacyItalic>11. Task Processor </legacyItalic>.
+      </para>
+    </introduction>
+
+    <section>
+      <title>Projects from the Task Processor Solution</title>
+
+      <content>
+        <para>
+          The following projects from the <link xlink:href="cb1a9e27-f92d-48a9-b4de-90a9d7399404" />
+          are included in the <link xlink:href="ff788bb8-8087-4699-b316-f0678e12dab2" />:
+        </para>
+
+        <list class="bullet">
+          <listItem>
+            <para>Radoslav.Configuration</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.DateTimeProvider</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.DateTimeProvider.Redis</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.Helpers</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.Owin</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.Redis</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.Redis.ServiceStack</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.Serialization</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.ServiceLocator</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.TaskProcessor.Configuration.AppConfig</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.TaskProcessor.Facade</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.TaskProcessor.Helpers</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.TaskProcessor.MessageBus</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.TaskProcessor.MessageBus.Redis</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.TaskProcessor.Model</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.TaskProcessor.Monitor.Wpf</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.TaskProcessor.Repository</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.TaskProcessor.Repository.Redis</para>
+          </listItem>
+
+          <listItem>
+            <para>Radoslav.TaskProcessor.TaskWorker</para>
+          </listItem>
+        </list>
+
+        <para>
+          In fact only two of them are directly referenced in the code of WFM Live Web Application - Radoslav.ServiceLocator and Radoslav.TaskProcessor.Model.
+          The others are included only because they are needed by the service locator to build the task processor facade.
+        </para>
+      </content>
+    </section>
+
+    <section>
+      <title>Project for Task Processor Integration</title>
+
+      <content>
+        <para>
+          There is a single project responsible for the bridge between the task processor and WFM Live Web Application - Radoslav.WfmLive.TaskProcessor project.
+        </para>
+
+        <para>
+          It contains the following classes:
+        </para>
+
+        <list class="bullet">
+          <listItem>
+            <para>ForecastTaskWorker - the task worker processing forecast tasks.</para>
+          </listItem>
+
+          <listItem>
+            <para>
+              DatabaseTaskMessageBusSender - an implementation of the
+              <codeEntityReference>T:Radoslav.TaskProcessor.MessageBus.ITaskMessageBusSender</codeEntityReference> inteface
+              responsible to save information about forecast (and possible other) tasks in the SQL Server database.
+            </para>
+          </listItem>
+
+          <listItem>
+            <para>
+              SignalRTaskProcessorMessageBus - an implementation of the
+              <codeEntityReference>T:Radoslav.TaskProcessor.MessageBus.ITaskProcessorMessageBusSender</codeEntityReference> and
+              <codeEntityReference>T:Radoslav.TaskProcessor.MessageBus.ITaskMessageBusSender</codeEntityReference> intefaces
+              responsible to send notifications about the task processor and task statuses via <token>SignalR</token>.
+            </para>
+          </listItem>
+        </list>
+
+        <para>
+          This project contains also the configurations needed by the task processor in order to process forecast tasks.
+          They are in the <legacyItalic>Configuration</legacyItalic> folder.
+          The files <legacyItalic>ConfigureTaskProcessor.Debug</legacyItalic> and <legacyItalic>ConfigureTaskProcessor.Release</legacyItalic>
+          are created in order to copy files from the <link xlink:href="ff788bb8-8087-4699-b316-f0678e12dab2" /> output to the
+          <link xlink:href="cb1a9e27-f92d-48a9-b4de-90a9d7399404" /> output.
+        </para>
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="8955b198-1679-4453-9575-47fe554d12f9" />
+      <link xlink:href="cb1a9e27-f92d-48a9-b4de-90a9d7399404" />
+      <link xlink:href="fc4aa659-ebc5-4d8e-9b34-d78a52db9c06" />
+      <link xlink:href="5060f129-7c32-4c87-bb9a-d633a4e65079" />
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

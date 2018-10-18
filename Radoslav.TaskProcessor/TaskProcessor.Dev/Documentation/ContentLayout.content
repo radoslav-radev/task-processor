@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Topics>
+  <Topic id="7246e1db-60f5-4b25-9c07-fa3d3115dbfa" visible="True" isDefault="true" title="Welcome to the Radoslav 6.1 Task Processor" tocTitle="Welcome" />
+  <Topic id="1e80db64-587d-445c-af51-5b4ca2f96383" visible="True">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="architecture, design" />
+    </HelpKeywords>
+  </Topic>
+  <Topic id="84eed8e2-2c0a-4305-86a2-ca60b28feffe" visible="True">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="features" />
+    </HelpKeywords>
+  </Topic>
+  <Topic id="db298ec6-cbea-4f98-8305-63e8308827ff" visible="True">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="glossary" />
+    </HelpKeywords>
+  </Topic>
+  <Topic id="fd6957af-c439-46fc-ad83-d603803d4387" visible="True" title="How To">
+    <Topic id="fc4aa659-ebc5-4d8e-9b34-d78a52db9c06" visible="True" title="How to Use Task Processor with WFM Live" tocTitle="Use Task Processor with WFM Live" linkText="How to Use Task Processor with WFM Live" />
+    <Topic id="9ba20bd7-f801-4b12-a2a4-864549d28f8f" visible="True" title="How to Debug Task Processor with WFM Live" tocTitle="Debug Task Processor with WFM Live" linkText="How to Debug Task Processor with WFM Live" />
+    <Topic id="5060f129-7c32-4c87-bb9a-d633a4e65079" visible="True" title="How to Deploy Task Processor" tocTitle="Deploy Task Processor" linkText="How to Deploy Task Processor" />
+    <Topic id="22cd44c9-a3e5-44a2-ad4d-8657d25a6119" visible="True" title="How to Submit Task from WFM Live" tocTitle="Submit Task in WFM Live" linkText="How to Submit Task from WFM Live" />
+    <Topic id="089218ee-5292-44c0-bed2-59d7213fc40d" visible="True" title="How to Add New Tasks" tocTitle="Add New Tasks" linkText="How to Add New Tasks" />
+    <Topic id="cc5643bc-827e-4c7b-9f26-00e4e3ed251b" visible="True" title="How to Add New Tasks in WFM Live" tocTitle="Add New Tasks in WFM Live" linkText="How to Add New Tasks in WFM Live" />
+    <Topic id="8df390e2-0a4d-4bcb-bf8e-a3402e74d009" visible="True" title="How to Configure the Maximum Number of Parallel Tasks" tocTitle="Configure the Maximum Number of Parallel Tasks" linkText="How to Configure the Maximum Number of Parallel Tasks" />
+    <Topic id="e4fe115e-5528-4333-a266-23af9f50d8b7" visible="True" title="How to Clean Up Redis" tocTitle="Clean Up Redis" linkText="How to Clean Up Redis" />
+    <Topic id="42ceaaec-fad6-4c50-ac8e-e378a5ddde6f" visible="True" title="How to Make a Task Processor Master" tocTitle="Make a Task Processor Master" linkText="How to Make a Task Processor Master" />
+    <Topic id="99fe7643-0a3f-4066-8a84-50168a3ef512" visible="True" title="How to Configure Redis" tocTitle="Configure Redis" linkText="How to Configure Redis" />
+    <Topic id="0f7136c8-acf4-42c4-adbd-ce9dccc5bd3a" visible="True" title="How to Change the Task Distributor" tocTitle="Change the Task Distributor" linkText="How to Change the Task Distributor" />
+    <Topic id="9f8395a9-e773-49be-b898-5f70897dd12c" visible="True" title="How to Configure Heartbeat and Expiration Timeout" tocTitle="Configure Heartbeat and Expiration Timeout" linkText="How to Configure Heartbeat and Expiration Timeout" />
+    <Topic id="c31d80af-6938-4997-b2bc-c6d6f047a175" visible="True" title="How to Stop Task Processor" tocTitle="Stop Task Processor" linkText="How to Stop Task Processor" />
+    <Topic id="b163d6e4-9f69-44e7-910f-84772e314e7f" visible="True" title="How to Build New Documentation" tocTitle="Build New Documentation" linkText="How to Build New Documentation" />
+  </Topic>
+  <Topic id="f1eaafe0-7e46-4ffc-88c7-07d2deb8ed45" visible="True" />
+  <Topic id="05a70fa1-74b0-4a0b-a9e2-9dac83a56358" visible="True" title="Questions &amp; Answers" />
+  <Topic id="8c1cc97d-5eff-4f39-b0d9-3db36a6a6983" visible="True" title="Known Issues" />
+  <Topic id="ac20babe-8d20-4594-8e2e-aa67fc54a97d" visible="True" isSelected="true" title="Sample Project" />
+  <Topic id="8955b198-1679-4453-9575-47fe554d12f9" visible="True" title="Code Structure">
+    <Topic id="cb1a9e27-f92d-48a9-b4de-90a9d7399404" visible="True" title="Task Processor Solution" linkText="Task Processor Visual Studio Solution" />
+    <Topic id="ff788bb8-8087-4699-b316-f0678e12dab2" visible="True" title="WFM Live Solution" linkText="WFM Live Visual Studio Solution" />
+  </Topic>
+  <Topic id="75fe345a-6c21-41e0-8696-8f5be96e1caa" visible="True" apiParentMode="InsertAsChild" />
+</Topics>

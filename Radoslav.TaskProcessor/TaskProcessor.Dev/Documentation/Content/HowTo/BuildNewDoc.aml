@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="b163d6e4-9f69-44e7-910f-84772e314e7f" revisionNumber="1">
+  <developerHowToDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>
+        This document describes how to build a new documentation file.
+      </para>
+    </introduction>
+
+    <procedure>
+      <title>How to Build New Documentation File</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              Download and install <token>Sandcastle</token>.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Open the <link xlink:href="cb1a9e27-f92d-48a9-b4de-90a9d7399404"  /> in Visual Studio.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Include the project <token>SvnFolder</token>\Radoslav.TaskProcessor\TaskProcessor.Dev\Documentation\Radoslav.TaskProcessor.Documentation.shfbproj.
+            </para>
+          </content>
+        </step>
+      </steps>
+
+      <conclusion>
+        <content>
+          <para>
+            Now you can edit the task processor documentation and build a new version.
+            The output is <token>SvnFolder</token>\Radoslav.TaskProcessor\Radoslav.TaskProcessor.chm.
+          </para>
+        </content>
+      </conclusion>
+    </procedure>
+
+    <relatedTopics>
+    </relatedTopics>
+  </developerHowToDocument>
+</topic>

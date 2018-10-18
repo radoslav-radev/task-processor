@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <!-- The configuration and platform will be used to determine which assemblies to include from solution and
+				 project documentation sources -->
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>d7488e72-e166-4718-83dc-0e8e06df22ca</ProjectGuid>
+    <SHFBSchemaVersion>2015.6.5.0</SHFBSchemaVersion>
+    <!-- AssemblyName, Name, and RootNamespace are not used by SHFB but Visual Studio adds them anyway -->
+    <AssemblyName>Documentation</AssemblyName>
+    <RootNamespace>Documentation</RootNamespace>
+    <Name>Radoslav.TaskProcessor.Documentation</Name>
+    <!-- SHFB properties -->
+    <FrameworkVersion>.NET Framework 4.5</FrameworkVersion>
+    <OutputPath>..\..\</OutputPath>
+    <HtmlHelpName>Radoslav.TaskProcessor</HtmlHelpName>
+    <Language>en-US</Language>
+    <TransformComponentArguments>
+      <Argument Key="logoFile" Value="Help.png" xmlns="" />
+      <Argument Key="logoHeight" Value="" xmlns="" />
+      <Argument Key="logoWidth" Value="" xmlns="" />
+      <Argument Key="logoAltText" Value="" xmlns="" />
+      <Argument Key="logoPlacement" Value="left" xmlns="" />
+      <Argument Key="logoAlignment" Value="left" xmlns="" />
+      <Argument Key="maxVersionParts" Value="" xmlns="" />
+    </TransformComponentArguments>
+    <DocumentationSources>
+      <DocumentationSource sourceFile="..\..\..\Radoslav.Common\Helpers\Radoslav.Helpers.csproj" />
+      <DocumentationSource sourceFile="..\..\..\Radoslav.Common\Configuration\Radoslav.Configuration.csproj" />
+      <DocumentationSource sourceFile="..\..\..\Radoslav.Common\DateTimeProvider\Radoslav.DateTimeProvider.csproj" />
+      <DocumentationSource sourceFile="..\..\..\Radoslav.Common\Redis\Radoslav.Redis.csproj" />
+      <DocumentationSource sourceFile="..\..\..\Radoslav.Common\Redis.ServiceStack\Radoslav.Redis.ServiceStack.csproj" />
+      <DocumentationSource sourceFile="..\..\..\Radoslav.Common\Serialization\Radoslav.Serialization.csproj" />
+      <DocumentationSource sourceFile="..\..\..\Radoslav.Common\ServiceLocator\Radoslav.ServiceLocator.csproj" />
+      <DocumentationSource sourceFile="..\..\TaskProcessor\Model\Radoslav.TaskProcessor.Model.csproj" />
+      <DocumentationSource sourceFile="..\..\TaskProcessor\Repository\Radoslav.TaskProcessor.Repository.csproj" />
+      <DocumentationSource sourceFile="..\..\TaskProcessor\Repository.Redis\Radoslav.TaskProcessor.Repository.Redis.csproj" />
+      <DocumentationSource sourceFile="..\..\TaskProcessor\TaskWorker\Radoslav.TaskProcessor.TaskWorker.csproj" />
+      <DocumentationSource sourceFile="..\..\TaskProcessor\MessageBus\Radoslav.TaskProcessor.MessageBus.csproj" />
+      <DocumentationSource sourceFile="..\..\TaskProcessor\MessageBus.Redis\Radoslav.TaskProcessor.MessageBus.Redis.csproj" />
+      <DocumentationSource sourceFile="..\..\TaskProcessor\Helpers\Radoslav.TaskProcessor.Helpers.csproj" />
+      <DocumentationSource sourceFile="..\..\TaskProcessor\Configuration.AppConfig\Radoslav.TaskProcessor.Configuration.AppConfig.csproj" />
+      <DocumentationSource sourceFile="..\..\TaskProcessor\TaskProcessorFacade\Radoslav.TaskProcessor.Facade.csproj" />
+      <DocumentationSource sourceFile="..\..\..\Radoslav.Common\Diagnostics\Radoslav.Diagnostics.csproj" />
+      <DocumentationSource sourceFile="..\..\TaskProcessor\TaskProcessor\Radoslav.TaskProcessor.csproj" />
+      <DocumentationSource sourceFile="..\..\TaskProcessor\TaskDistributor\Radoslav.TaskProcessor.TaskDistributor.csproj" />
+      <DocumentationSource sourceFile="..\..\..\Radoslav.Common\DateTimeProvider.Redis\Radoslav.DateTimeProvider.Redis.csproj" />
+      <DocumentationSource sourceFile="..\..\TaskProcessor\TaskScheduler\Radoslav.TaskProcessor.TaskScheduler.csproj" />
+      <DocumentationSource sourceFile="..\..\TaskProcessor\WindowsService\Radoslav.TaskProcessor.WindowsService.csproj" />
+    </DocumentationSources>
+    <MaximumGroupParts>2</MaximumGroupParts>
+    <NamespaceGrouping>False</NamespaceGrouping>
+    <SyntaxFilters>C#</SyntaxFilters>
+    <SdkLinkTarget>Blank</SdkLinkTarget>
+    <RootNamespaceContainer>False</RootNamespaceContainer>
+    <PresentationStyle>VS2013</PresentationStyle>
+    <Preliminary>False</Preliminary>
+    <NamingMethod>Guid</NamingMethod>
+    <HelpTitle>Radoslav 6.1 Task Processor</HelpTitle>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <PostBuildEvent>START "$(WINDIR)\hh.exe" "$(OutputPath)Radoslav.TaskProcessor.chm"</PostBuildEvent>
+    <NamespaceSummaries>
+      <NamespaceSummaryItem name="(global)" isDocumented="False" />
+      <NamespaceSummaryItem name="Radoslav" isDocumented="True">Namespace for helpers, common classes and other classes that do not belong to any of the more specific namespaces.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.Collections" isDocumented="True">Namespace for collection extensions.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.TaskProcessor" isDocumented="True">Namespace for the task processor instance classes.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.TaskProcessor.MessageBus" isDocumented="True">Namespace for task processor message bus communication.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.TaskProcessor.Model" isDocumented="True">Namespace for task processor model classes.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.TaskProcessor.Redis" isDocumented="True">Namespace for Redis communication.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.TaskProcessor.Repository" isDocumented="True">Namespace for task processor repositories.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.Diagnostics" isDocumented="True">Namespace for diagnostic classes for logging, etc.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="System.Xml" isDocumented="True">The System.Xml namespace provides standards-based support for processing XML.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.Configuration" isDocumented="True">Namespace for configuration classes.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.Configuration.Validators" isDocumented="True">Namespace for Radoslav configuration validators and attributes.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.DateTimeProvider" isDocumented="True">Namespace for centralized Radoslav date time providers.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.DateTimeProvider.Redis" isDocumented="True">Namespace for the implementation of date time provider that retrieves the current date and time from Redis.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.Redis" isDocumented="True">Namespace for Redis interfaces and classes - an abstraction layer to hide concrete Redis libraries used to connect to Redis.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.Redis.ServiceStack" isDocumented="True">Namespace for classes that map the abstractions in Radoslav.Redis namespace and the Service Stack library.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.Retryable" isDocumented="True">Namespace for retryable operations.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.Retryable.DelayStrategy" isDocumented="True">Namespaces for delay strategies used in retryable operations.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.Serialization" isDocumented="True">Namespace for serialization classes.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.ServiceLocator" isDocumented="True">Namespace for the service locator classes.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.ServiceLocator.Configuration" isDocumented="True">Namespace for the configuration of the service locator.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.TaskProcessor.Configuration" isDocumented="True">Namespace for the configuration of the task processor, task worker, and all modules in the task processor.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.TaskProcessor.Configuration.AppConfig" isDocumented="True">Namespace for task processor configuration with App.config files.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.TaskProcessor.Diagnostics" isDocumented="True">Namespace for task processor logging.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.TaskProcessor.Facade" isDocumented="True">Namespace for the task processor facade.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.TaskProcessor.MessageBus.Redis" isDocumented="True">Namespace for task processor message bus communication via Redis.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.TaskProcessor.Repository.Redis" isDocumented="True">Namespace for task processor repositories that use Redis for storage.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.TaskProcessor.TaskDistributor" isDocumented="True">Namespace for task distributors.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.TaskProcessor.TaskScheduler" isDocumented="True">Namespace for task schedulers.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.TaskProcessor.TaskWorker" isDocumented="True">Namespace for task workers.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.TaskProcessor.WindowsService" isDocumented="True">Namespace for the task processor windows service.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="Radoslav.Timers" isDocumented="True">Namespace for timers.</NamespaceSummaryItem>
+    </NamespaceSummaries>
+    <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
+    <HelpFileFormat>HtmlHelp1</HelpFileFormat>
+    <IndentHtml>False</IndentHtml>
+    <KeepLogFile>False</KeepLogFile>
+    <DisableCodeBlockComponent>False</DisableCodeBlockComponent>
+    <CleanIntermediates>True</CleanIntermediates>
+    <ProjectSummary>
+    </ProjectSummary>
+    <HelpFileVersion>6.1.0.0</HelpFileVersion>
+    <WebsiteSdkLinkType>Msdn</WebsiteSdkLinkType>
+    <HtmlSdkLinkType>Msdn</HtmlSdkLinkType>
+    <IncludeFavorites>True</IncludeFavorites>
+    <BinaryTOC>True</BinaryTOC>
+    <VisibleItems>Attributes, ExplicitInterfaceImplementations, InheritedMembers, InheritedFrameworkMembers, Internals, Protected, SealedProtected</VisibleItems>
+    <MissingTags>None</MissingTags>
+  </PropertyGroup>
+  <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
+			 the build.  The others are optional common platform types that may appear. -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Win32' ">
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Win32' ">
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Content" />
+    <Folder Include="Content\HowTo" />
+    <Folder Include="icons" />
+    <Folder Include="Media" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Code.aml" />
+    <None Include="Content\Architecture.aml" />
+    <None Include="Content\CodeStructure.aml" />
+    <None Include="Content\Features.aml" />
+    <None Include="Content\Glossary.aml" />
+    <None Include="Content\HowTo\AddTask.aml" />
+    <None Include="Content\HowTo\AddWfmLiveTask.aml" />
+    <None Include="Content\HowTo\BuildNewDoc.aml" />
+    <None Include="Content\HowTo\CleanUpRedis.aml" />
+    <None Include="Content\HowTo\ConfigureHeartbeatExpiration.aml" />
+    <None Include="Content\HowTo\ConfigureMaxTasks.aml" />
+    <None Include="Content\HowTo\DebugWithWfmLive.aml" />
+    <None Include="Content\HowTo\ChangeTaskDistributor.aml" />
+    <None Include="Content\HowTo\ConfigureRedis.aml" />
+    <None Include="Content\HowTo\MakeMaster.aml" />
+    <None Include="Content\HowTo\HowTo.aml" />
+    <None Include="Content\HowTo\Deploy.aml" />
+    <None Include="Content\HowTo\SampleProject.aml" />
+    <None Include="Content\HowTo\Stop.aml" />
+    <None Include="Content\HowTo\SubmitTaskWfmLive.aml" />
+    <None Include="Content\HowTo\UseWithWfmLive.aml" />
+    <None Include="Content\KnownIssues.aml" />
+    <None Include="Content\Logging.aml" />
+    <None Include="Content\QuestionsAndAnswers.aml" />
+    <None Include="Content\TaskProcessorSolution.aml" />
+    <None Include="Content\Welcome.aml" />
+    <None Include="Content\WfmLiveSolution.aml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ContentLayout Include="ContentLayout.content" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icons\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Media\Architecture.png">
+      <ImageId>775B89AB-896C-435C-AAE7-B443DA6A95D5</ImageId>
+      <AlternateText>
+      </AlternateText>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Tokens Include="Tokens.tokens" />
+  </ItemGroup>
+  <!-- Import the SHFB build targets -->
+  <Import Project="$(SHFBROOT)\SandcastleHelpFileBuilder.targets" />
+</Project>

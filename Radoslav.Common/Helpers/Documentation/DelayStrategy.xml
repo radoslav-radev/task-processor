@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Documentation>
+  <Method Name="None">
+    <summary>
+      Gets a delay strategy that always returns <see cref="TimeSpan.Zero" /> as next delay.
+    </summary>
+    <returns>
+      A delay strategy that always returns <see cref="TimeSpan.Zero" /> as next delay.
+    </returns>
+    <example>
+      <code>
+        IDelayStrategy strategy = DelayStrategy.None();
+
+        strategy.NextDelay(); // Returns TimeSpan.Zero
+        strategy.NextDelay(); // Returns TimeSpan.Zero
+        strategy.NextDelay(); // Returns TimeSpan.Zero
+        // And so on ...
+      </code>
+    </example>
+  </Method>
+
+  <Method Name="Constant">
+    <summary>Gets a constant delay strategy with a specified time between two retry attempts.</summary>
+    <param name="delayBetweenRetries">The delay between two retry attempts.</param>
+    <returns>A constant delay strategy with the specified time between two retry attempts.</returns>
+    <exception cref="ArgumentOutOfRangeException">
+      Parameter <paramref name="delayBetweenRetries" /> is less than <see cref="TimeSpan.Zero" />.
+    </exception>
+    <example>
+      <code>
+        IDelayStrategy strategy = DelayStrategy.Constant(TimeSpan.FromSeconds(1));
+
+        strategy.NextDelay(); // Returns 1 second
+        strategy.NextDelay(); // Returns 1 second
+        strategy.NextDelay(); // Returns 1 second
+        // And so on ...
+      </code>
+    </example>
+  </Method>
+
+  <Method Name="Exponential">
+    <summary>Gets an exponential delay strategy with a specified time to be used as a first delay and doubled each time.</summary>
+    <param name="initialDelayBetweenRetries">The delay to be used as a first delay and doubled each time.</param>
+    <returns>An exponential delay strategy with the specified time to be used as a first delay and doubled each time.</returns>
+    <exception cref="ArgumentOutOfRangeException">
+      Parameter <paramref name="initialDelayBetweenRetries" /> is less than <see cref="TimeSpan.Zero" />.
+    </exception>
+    <example>
+      <code>
+        IDelayStrategy strategy = DelayStrategy.Exponential(TimeSpan.FromSeconds(1));
+
+        strategy.NextDelay(); // Returns 1 second
+        strategy.NextDelay(); // Returns 2 seconds
+        strategy.NextDelay(); // Returns 4 seconds
+        strategy.NextDelay(); // Returns 8 seconds
+        // And so on ...
+      </code>
+    </example>
+  </Method>
+</Documentation>

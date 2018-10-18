@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <item id="Bridge"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>Bridge Design Pattern</ddue:linkText>
+    <ddue:linkUri>https://en.wikipedia.org/wiki/Bridge_pattern</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="CodeAnalysis"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>Code Analysis for Managed Code Overview</ddue:linkText>
+    <ddue:linkUri>https://msdn.microsoft.com/en-us/library/3z0aeatx.aspx</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="Composite"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>Composite Design Pattern</ddue:linkText>
+    <ddue:linkUri>https://en.wikipedia.org/wiki/Composite_pattern</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="ConfigurationSectionClass"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>ConfigurationSection Class</ddue:linkText>
+    <ddue:linkUri>https://msdn.microsoft.com/en-us/library/system.configuration.configurationsection(v=vs.110).aspx</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="CustomCodeAnalysisDictionary"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>How to: Customize the Code Analysis Dictionary</ddue:linkText>
+    <ddue:linkUri>https://msdn.microsoft.com/en-us/library/bb514188.aspx</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="DependencyInjection"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>Dependency Injection Design Pattern</ddue:linkText>
+    <ddue:linkUri>https://en.wikipedia.org/wiki/Dependency_injection</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="Facade"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>Facade Design Pattern</ddue:linkText>
+    <ddue:linkUri>https://en.wikipedia.org/wiki/Facade_pattern</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="HowToCreateCustomConfigurationSection"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>How to: Create Custom Configuration Section</ddue:linkText>
+    <ddue:linkUri>https://msdn.microsoft.com/en-us/library/2tw134k3.aspx</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="InterfaceBasedProgramming"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>Interface-based Programming</ddue:linkText>
+    <ddue:linkUri>https://en.wikipedia.org/wiki/Interface-based_programming</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="InversionOfControl"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>Inversion of Control Design Principle</ddue:linkText>
+    <ddue:linkUri>https://en.wikipedia.org/wiki/Inversion_of_control</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="NLog"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>NLog</ddue:linkText>
+    <ddue:linkUri>http://nlog-project.org</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="Redis"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>Redis Website</ddue:linkText>
+    <ddue:linkUri>http://www.redis.io</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="RedisTime"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>Redis Time Command</ddue:linkText>
+    <ddue:linkUri>http://www.redis.io/commands/time</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="Repository"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>Repository Design Pattern</ddue:linkText>
+    <ddue:linkUri>https://msdn.microsoft.com/en-us/library/ff649690.aspx</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="Sandcastle"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>Sandcastle - Documentation Compiler for Managed Class Libraries</ddue:linkText>
+    <ddue:linkUri>https://sandcastle.codeplex.com/</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="SeparationOfConcerns"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>Separation of Concerns Design Principle</ddue:linkText>
+    <ddue:linkUri>https://en.wikipedia.org/wiki/Separation_of_concerns</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="ServiceLocator"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>Service Stack Redis Client</ddue:linkText>
+    <ddue:linkUri>https://en.wikipedia.org/wiki/Service_locator_pattern</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="ServiceStack"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>Service Stack Redis Client</ddue:linkText>
+    <ddue:linkUri>https://github.com/servicestack/servicestack.redis</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="SignalR"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>ASP .NET SignalR</ddue:linkText>
+    <ddue:linkUri>http://www.asp.net/signalr</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="SingleResponsibilityPrinciple"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>Single Responsibility Principle</ddue:linkText>
+    <ddue:linkUri>https://en.wikipedia.org/wiki/Single_responsibility_principle</ddue:linkUri>
+    </ddue:externalLink></item>
+  <item id="SvnFolder">[Radoslav-SVN-FOLDER]</item>
+  <item id="SETNX"><ddue:externalLink xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    <ddue:linkText>SETNX</ddue:linkText>
+    <ddue:linkUri>http://redis.io/commands/setnx</ddue:linkUri>
+    </ddue:externalLink></item>
+</content>

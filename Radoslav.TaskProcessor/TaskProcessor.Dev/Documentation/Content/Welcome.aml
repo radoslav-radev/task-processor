@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<topic id="7246e1db-60f5-4b25-9c07-fa3d3115dbfa" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>
+        Radoslav 6.1 Task Processor is a distributed task processing and schedulling system.
+      </para>
+
+      <para>
+        Its purpose is to process all kinds of off-line tasks in the whole Radoslav 6.1 WFM application with load balance and failover capacity.
+      </para>
+    </introduction>
+
+    <relatedTopics>
+      <link xlink:href="1e80db64-587d-445c-af51-5b4ca2f96383" />
+      <link xlink:href="84eed8e2-2c0a-4305-86a2-ca60b28feffe" />
+      <link xlink:href="db298ec6-cbea-4f98-8305-63e8308827ff" />
+      <link xlink:href="05a70fa1-74b0-4a0b-a9e2-9dac83a56358" />
+      <link xlink:href="8c1cc97d-5eff-4f39-b0d9-3db36a6a6983" />
+      <link xlink:href="8955b198-1679-4453-9575-47fe554d12f9" />
+
+      <externalLink>
+        <linkText>Redis</linkText>
+        <linkUri>http://www.redis.io</linkUri>
+      </externalLink>
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="cc5643bc-827e-4c7b-9f26-00e4e3ed251b" revisionNumber="1">
+  <developerHowToDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>
+        This document describes how to create a new task type
+        that is part of part of the <link xlink:href="ff788bb8-8087-4699-b316-f0678e12dab2" />
+        and how to configure the task processor to process it.
+      </para>
+
+      <para>
+        If your task and task worker are not defined in the <link xlink:href="ff788bb8-8087-4699-b316-f0678e12dab2" />,
+        then follow <link xlink:href="089218ee-5292-44c0-bed2-59d7213fc40d" /> instead of this tutorial.
+      </para>
+    </introduction>
+
+    <procedure>
+      <title>How to Add Support for a New Task Type in WFM Live</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              Create a class implementing <codeEntityReference>T:Radoslav.TaskProcessor.Model.ITask</codeEntityReference>
+              in a project that is part of the <link xlink:href="ff788bb8-8087-4699-b316-f0678e12dab2" />.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Create a class implementing <codeEntityReference>T:Radoslav.TaskProcessor.TaskWorker.ITaskWorker</codeEntityReference>
+              in a project that is part of the <link xlink:href="ff788bb8-8087-4699-b316-f0678e12dab2" />.
+              This class should process tasks of the type you defined in the previous step.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Reference the projects where you created the classes in the previous two steps from the Radoslav.WfmLive.TaskProcessor project.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Open the Radoslav.TaskProcessor.config file in the folder Configuration in the Radoslav.WfmLive.TaskProcessor project and add the following line:
+            </para>
+
+            <code>
+              <![CDATA[
+              <Radoslav.TaskProcessor>
+                <tasks>
+                  <add type="YOUR-TASK-CLASS-FULLY-QUALLIFIED-TYPE-NAME" />
+                </tasks>
+              </Radoslav.TaskProcessor>
+              ]]>
+            </code>
+
+            <para>For example, it could be:</para>
+
+            <code>
+              <![CDATA[
+              <Radoslav.TaskProcessor>
+                <tasks>
+                  <add type="Radoslav.TaskProcessor.Model.ForecastTask, Radoslav.WfmLive.BL" />
+                </tasks>
+              </Radoslav.TaskProcessor>
+              ]]>
+            </code>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Open the Radoslav.TaskProcessor.TaskWorker.config file in the folder Configuration in the Radoslav.WfmLive.TaskProcessor project and add the following line:
+            </para>
+
+            <code>
+              <![CDATA[
+              <Radoslav.TaskProcessor.TaskWorker>
+                <add task="YOUR-TASK-CLASS-FULLY-QUALLIFIED-TYPE-NAME" worker="YOUR-TASK-WORKER-CLASS-FULLY-QUALLIFIED-TYPE-NAME" />
+              </Radoslav.TaskProcessor.TaskWorker>
+              ]]>
+            </code>
+
+            <para>For example, it could be:</para>
+
+            <code>
+              <![CDATA[
+               <Radoslav.TaskProcessor.TaskWorker>
+                <add task="Radoslav.TaskProcessor.Model.ForecastTask, Radoslav.WfmLive.BL"
+                     worker="Radoslav.TaskProcessor.TaskWorker.ForecastTaskWorker, Radoslav.WfmLive.TaskProcessor" />
+              </Radoslav.TaskProcessor.TaskWorker>
+              ]]>
+            </code>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Open the Radoslav.TaskProcessor.Client.config file in the Radoslav.WfmLive.Services project and add the following line:
+            </para>
+
+            <code>
+              <![CDATA[
+              <Radoslav.TaskProcessor.Client>
+                <add task="YOUR-TASK-CLASS-FULLY-QUALLIFIED-TYPE-NAME" worker="YOUR-TASK-WORKER-CLASS-FULLY-QUALLIFIED-TYPE-NAME" />
+              </Radoslav.TaskProcessor.Client>
+              ]]>
+            </code>
+
+            <para>For example, it could be:</para>
+
+            <code>
+              <![CDATA[
+               <Radoslav.TaskProcessor.Client>
+                <add task="Radoslav.TaskProcessor.Model.ForecastTask, Radoslav.WfmLive.BL"
+                     worker="Radoslav.TaskProcessor.TaskWorker.ForecastTaskWorker, Radoslav.WfmLive.TaskProcessor" />
+              </Radoslav.TaskProcessor.Client>
+              ]]>
+            </code>
+          </content>
+        </step>
+      </steps>
+    </procedure>
+
+    <relatedTopics>
+      <link xlink:href="089218ee-5292-44c0-bed2-59d7213fc40d" />
+      <link xlink:href="fc4aa659-ebc5-4d8e-9b34-d78a52db9c06" />
+
+      <externalLink>
+        <linkText>Specifying Fully Qualified Type Names</linkText>
+        <linkUri>https://msdn.microsoft.com/en-us/library/yfsftwz6(v=vs.110).aspx</linkUri>
+      </externalLink>
+    </relatedTopics>
+  </developerHowToDocument>
+</topic>

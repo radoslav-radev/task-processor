@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="42ceaaec-fad6-4c50-ac8e-e378a5ddde6f" revisionNumber="1">
+  <developerHowToDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <introduction>
+      <para>This document describes how to make a task processor instance the master task processor.</para>
+    </introduction>
+
+    <procedure>
+      <title>How to Make a Task Processor Master</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              Start Radoslav.TaskProcessor.Monitor.Wpf.exe in the folder where the task processor is running.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>Click the "Make Master" button at the task processor instance you want to make the master.</para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Wait until the selected instance has become the master.
+            </para>
+          </content>
+        </step>
+      </steps>
+    </procedure>
+
+    <relatedTopics>
+    </relatedTopics>
+  </developerHowToDocument>
+</topic>

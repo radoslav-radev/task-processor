@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Documentation>
+  <Class Name="NotSupportedException">
+    <summary>
+      The exception that is thrown when an invoked method is not supported, or when there is an attempt
+      to read, seek, or write to a stream that does not support the invoked functionality.
+    </summary>
+    <typeparam name="T">The type of the object that is not supported.</typeparam>
+    <example>
+      <code>
+        <![CDATA[
+         try
+         {
+            throw new NotSupportedException<ConsoleColor>(ConsoleColor.Red);
+         }
+         catch (NotSupportedException ex)
+         {
+            Console.WriteLine(ex.Message); // Prints "System.ConsoleColor 'Red' is not supported."
+         }
+     ]]>
+      </code>
+    </example>
+  </Class>
+</Documentation>

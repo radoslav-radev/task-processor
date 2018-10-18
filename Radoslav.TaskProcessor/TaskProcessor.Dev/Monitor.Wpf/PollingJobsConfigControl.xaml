@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Radoslav.TaskProcessor.PollingJobsConfigControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid Name="LayoutRoot">
+        <DataGrid ItemsSource="{Binding DataContext.PollingJobs, ElementName=LayoutRoot}"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ImplementationType.Name}" Header="Implementation Type" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding PollInterval}" Header="Poll Interval" />
+                <DataGridCheckBoxColumn Binding="{Binding IsActive}" Header="Active" />
+                <DataGridCheckBoxColumn Binding="{Binding IsMasterQueue}" Header="Master" />
+                <DataGridCheckBoxColumn Binding="{Binding IsConcurrent}" Header="Concurrent" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

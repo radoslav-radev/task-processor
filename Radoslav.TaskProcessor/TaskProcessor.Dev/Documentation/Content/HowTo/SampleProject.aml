@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="ac20babe-8d20-4594-8e2e-aa67fc54a97d" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+
+      <para>
+        In order to make yourself familiar with the complex relations in the task processor,
+        you can take a look at a sample Visual Studio Solution that tries to give an orientation
+        in the task processor, how it is configured and and how to submit tasks to it.
+      </para>
+
+      <para>
+        The Visual Studio solution is located at
+        <token>SvnFolder</token>\Radoslav.TaskProcessor.Sample\Radoslav.TaskProcessor.Sample.sln.
+      </para>
+    </introduction>
+
+    <relatedTopics>
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

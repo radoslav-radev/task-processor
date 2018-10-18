@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EFB76932-713A-4124-B0C2-704765868582}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Radoslav.TaskProcessor.UnitTests</RootNamespace>
+    <AssemblyName>Radoslav.TaskProcessor.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\..\..\Radoslav.Common\StaticCodeAnalysis.UnitTests.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\..\..\references\Redis_SessionProvider\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\references\Redis_SessionProvider\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\references\Redis_SessionProvider\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\references\Redis_SessionProvider\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="..\..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="AppConfigConfigurationUnitTests.cs" />
+    <Compile Include="AssemblyUnitTests.cs" />
+    <Compile Include="CompositeMessageBusUnitTests.cs" />
+    <Compile Include="ConfigurationBinarySerializerTests.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Fakes\AbstractPollingJob.cs" />
+    <Compile Include="Fakes\Configuration\FakeClientConfiguration.cs" />
+    <Compile Include="Fakes\Configuration\FakeConfigurationProvider.cs" />
+    <Compile Include="Fakes\Configuration\FakeSerializationConfiguration.cs" />
+    <Compile Include="Fakes\Configuration\TaskWorker\FakeTaskWorkerConfiguration.cs" />
+    <Compile Include="Fakes\Configuration\TaskProcessor\FakePollingConfiguration.cs" />
+    <Compile Include="Fakes\Configuration\TaskProcessor\FakePollingJobConfiguration.cs" />
+    <Compile Include="Fakes\Configuration\TaskProcessor\FakePollingJobsConfiguration.cs" />
+    <Compile Include="Fakes\Configuration\TaskProcessor\FakePollingQueueConfiguration.cs" />
+    <Compile Include="Fakes\Configuration\TaskProcessor\FakePollingQueuesConfiguration.cs" />
+    <Compile Include="Fakes\Configuration\TaskProcessor\FakeTaskJobsConfiguration.cs" />
+    <Compile Include="Fakes\Configuration\TaskProcessor\FakeTaskProcessorConfiguration.cs" />
+    <Compile Include="Fakes\Configuration\TaskWorker\FakeTaskWorkersConfiguration.cs" />
+    <Compile Include="Fakes\FakeApplicationKiller.cs" />
+    <Compile Include="Fakes\FakePollingJob2.cs" />
+    <Compile Include="Fakes\FakePollingJob3.cs" />
+    <Compile Include="Fakes\FakePollingJob.cs" />
+    <Compile Include="Fakes\FakePollingQueueTask.cs" />
+    <Compile Include="Fakes\FakeScheduleDefinition.cs" />
+    <Compile Include="Fakes\FakeScheduledTask.IScheduledTask.cs" />
+    <Compile Include="Fakes\FakeScheduledTask.cs" />
+    <Compile Include="Fakes\FakeSerializableScheduledTask.cs" />
+    <Compile Include="Fakes\FakeTaskJobSettings2.cs" />
+    <Compile Include="Fakes\FakeTaskJobSettings.cs" />
+    <Compile Include="Fakes\FakeTaskProcessorFacade.cs" />
+    <Compile Include="Fakes\FakeTaskWorker3.cs" />
+    <Compile Include="Fakes\FakeTaskWorker2.cs" />
+    <Compile Include="Fakes\IFakeTask2.cs" />
+    <Compile Include="Fakes\MessageBus\FakeMessageBusBase.cs" />
+    <Compile Include="Fakes\MessageBus\FakeTaskMessageBus.cs" />
+    <Compile Include="Fakes\MessageBus\FakeTaskProcessorsMessageBus.cs" />
+    <Compile Include="Fakes\PollingJobWithoutParameterlessConstructor.cs" />
+    <Compile Include="Fakes\FakeMasterCommandsProcessor.cs" />
+    <Compile Include="Fakes\MessageBus\FakeMessageQueue.cs" />
+    <Compile Include="Fakes\FakeTaskDistributor.cs" />
+    <Compile Include="Fakes\MessageBus\FakeMessageBus.cs" />
+    <Compile Include="Fakes\Repository\FakeTaskProcessorRepositoryRepository.cs" />
+    <Compile Include="Fakes\FakeTaskExecutor.cs" />
+    <Compile Include="Fakes\FakeTask.cs" />
+    <Compile Include="Fakes\Configuration\TaskProcessor\FakeTaskJobConfiguration.cs" />
+    <Compile Include="Fakes\Repository\FakeScheduledTaskRepository.cs" />
+    <Compile Include="Fakes\Repository\FakeTaskJobSettingsRepository.cs" />
+    <Compile Include="Fakes\Repository\FakeTaskRepository.cs" />
+    <Compile Include="Fakes\FakeTaskProcessorRuntimeInfo.cs" />
+    <Compile Include="Fakes\Repository\FakeTaskProcessorRuntimeInfoRepository.cs" />
+    <Compile Include="Fakes\FakeTaskRuntimeInfo.cs" />
+    <Compile Include="Fakes\Repository\FakeTaskRuntimeInfoRepository.cs" />
+    <Compile Include="Fakes\FakeTaskWorker.cs" />
+    <Compile Include="Fakes\FakeTaskWorkerFactory.cs" />
+    <Compile Include="Fakes\IFakeTask.cs" />
+    <Compile Include="Fakes\Repository\FakeTaskSummaryRepository.cs" />
+    <Compile Include="MasterCommandsProcessorUnitTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterCommandsUnitTests.cs" />
+    <Compile Include="MergeConfigurationUnitTests.cs" />
+    <Compile Include="MessageBusEventArgsTests.cs" />
+    <Compile Include="MessageBus\MessageBusBaseTests.cs" />
+    <Compile Include="MessageBus\RedisTaskMessageBusSharedProviderTests.cs" />
+    <Compile Include="MessageBus\RedisTaskMessageBusTests.cs" />
+    <Compile Include="MessageBus\RedisTaskMessageBusTestsBase.cs" />
+    <Compile Include="MessageBus\RedisTaskProcessorsMessageBusTestsBase.cs" />
+    <Compile Include="MessageBus\RedisTaskProcessorsMessageBusTests.cs" />
+    <Compile Include="MessageBus\TaskMessageBusTests.cs" />
+    <Compile Include="MessageBus\TaskProcessorsMessageBusTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DefaultTaskDistributorUnitTests.cs" />
+    <Compile Include="MessageBus\RedisTaskProcessorsMessageBusSharedProviderTests.cs" />
+    <Compile Include="Repository\Redis\ScheduledTasks\RedisScheduledTaskRepositoryBinaryXmlSerializerTests.cs" />
+    <Compile Include="Repository\Redis\ScheduledTasks\RedisScheduledTaskRepositoryBinaryJsonSerializerTests.cs" />
+    <Compile Include="Repository\Redis\ScheduledTasks\RedisScheduledTaskRepositoryBinarySerializerTests.cs" />
+    <Compile Include="Repository\Redis\ScheduledTasks\RedisScheduledTaskRepositoryTests.cs" />
+    <Compile Include="Repository\Redis\TaskJobSettings\RedisTaskJobSettingsRepositoryBinaryXmlSerializerTests.cs" />
+    <Compile Include="Repository\Redis\TaskJobSettings\RedisTaskJobSettingsRepositoryBinaryJsonSerializerTests.cs" />
+    <Compile Include="Repository\Redis\TaskJobSettings\RedisTaskJobSettingsRepositoryBinarySerializerTests.cs" />
+    <Compile Include="Repository\Redis\TaskJobSettings\RedisTaskJobSettingsRepositoryTestsBase.cs" />
+    <Compile Include="Repository\Redis\TaskRuntimeInfo\RedisTaskRuntimeInfoRepositoryBinaryJsonSerializationTests.cs" />
+    <Compile Include="Repository\Redis\TaskRuntimeInfo\RedisTaskRuntimeInfoRepositoryBinaryXmlSerializationTests.cs" />
+    <Compile Include="Repository\Redis\TaskRuntimeInfo\RedisTaskRuntimeInfoRepositoryBinarySerializationTests.cs" />
+    <Compile Include="Repository\Redis\TaskSummary\RedisTaskSummaryRepositoryBinarySerializerUnitTests.cs" />
+    <Compile Include="Repository\Redis\TaskSummary\RedisTaskSummaryRepositoryBinaryJsonSerializerUnitTests.cs" />
+    <Compile Include="Repository\Redis\TaskSummary\RedisTaskSummaryRepositoryBinaryXmlSerializerUnitTests.cs" />
+    <Compile Include="Repository\Redis\TaskSummary\RedisTaskSummaryRepositoryUnitTestsBase.cs" />
+    <Compile Include="Repository\Redis\Tasks\RedisTaskRepositoryBinaryJsonSerializerUnitTests.cs" />
+    <Compile Include="Repository\RepositoryTestsBase.cs" />
+    <Compile Include="Repository\ScheduledTaskRepositoryTests.cs" />
+    <Compile Include="Repository\TaskJobSettingsRepositoryExtensionsTests.cs" />
+    <Compile Include="Repository\TaskJobSettingsRepositoryTestsBase.cs" />
+    <Compile Include="Repository\Redis\RedisTaskProcessorRepositoryUnitTests.cs" />
+    <Compile Include="Repository\TaskSummaryRepositoryUnitTestsBase.cs" />
+    <Compile Include="SimpleTaskDistributorUnitTests.cs" />
+    <Compile Include="Repository\Redis\Tasks\RedisTaskRepositoryBinarySerializerUnitTests.cs" />
+    <Compile Include="Repository\Redis\Tasks\RedisTaskRepositoryUnitTestsBase.cs" />
+    <Compile Include="Repository\Redis\RedisTaskProcessorRuntimeInfoRepositoryUnitTests.cs" />
+    <Compile Include="Repository\Redis\Tasks\RedisTaskRepositoryBinaryXmlSerializerUnitTests.cs" />
+    <Compile Include="Repository\Redis\TaskRuntimeInfo\RedisTaskRuntimeInfoRepositoryTestsBase.cs" />
+    <Compile Include="Repository\TaskRepositoryUnitTestsBase.cs" />
+    <Compile Include="Repository\TaskRuntimeInfoRepositoryUnitTestsBase.cs" />
+    <Compile Include="Repository\TaskProcessorRuntimeInfoRepositoryUnitTestsBase.cs" />
+    <Compile Include="FacadeExtensionsTests.cs" />
+    <Compile Include="TaskJobSettings\Dictionary\SerializeDictionaryTaskJobSettingsBinaryJsonTests.cs" />
+    <Compile Include="TaskJobSettings\Dictionary\SerializeDictionaryTaskJobSettingsBinaryTests.cs" />
+    <Compile Include="TaskJobSettings\Dictionary\SerializeDictionaryTaskJobSettingsBinaryXmlTests.cs" />
+    <Compile Include="TaskJobSettings\Dictionary\SerializeDictionaryTaskJobSettingsTests.cs" />
+    <Compile Include="TaskJobSettings\TaskJobSettingsTestsBase.cs" />
+    <Compile Include="TaskProcessExecutorUnitTests.cs" />
+    <Compile Include="TaskProcessorFacadeUnitTests.cs" />
+    <Compile Include="Fakes\FakeTaskExecutor.ITaskExecutor.cs" />
+    <Compile Include="Fakes\MessageBus\FakeMessageQueue.IMessageQueue.cs" />
+    <Compile Include="TaskProcessorUnitTests.cs" />
+    <Compile Include="TaskSchedulerUnitTests.cs" />
+    <Compile Include="TaskSummary\Dictionary\SerializeDictionaryTaskSummaryBinaryJsonTests.cs" />
+    <Compile Include="TaskSummary\Dictionary\SerializeDictionaryTaskSummaryBinaryXmlTests.cs" />
+    <Compile Include="TaskSummary\Dictionary\SerializeDictionaryTaskSummaryTests.cs" />
+    <Compile Include="TaskSummary\Dictionary\SerializeDictionaryTaskSummaryBinaryTests.cs" />
+    <Compile Include="TaskSummary\String\SerializeStringTaskSummaryBinaryJsonTests.cs" />
+    <Compile Include="TaskSummary\String\SerializeStringTaskSummaryBinaryXmlTests.cs" />
+    <Compile Include="TaskSummary\String\SerializeStringTaskSummaryTests.cs" />
+    <Compile Include="TaskSummary\String\SerializeStringTaskSummaryBinaryTests.cs" />
+    <Compile Include="TaskSummary\TaskSummaryTestsBase.cs" />
+    <Compile Include="TaskSummary\String\StringTaskSummaryUnitTests.cs" />
+    <Compile Include="TaskWorkerBootstrapUnitTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Radoslav.Common\Configuration\Radoslav.Configuration.csproj">
+      <Project>{0f0e722b-41c8-4518-a513-1b493dc5a430}</Project>
+      <Name>Radoslav.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\Serialization\Radoslav.Serialization.csproj">
+      <Project>{1f4df8ba-6022-4920-9490-5383796d072d}</Project>
+      <Name>Radoslav.Serialization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\ServiceLocator\Radoslav.ServiceLocator.csproj">
+      <Project>{963deba2-7936-4077-95b4-137b0ab73486}</Project>
+      <Name>Radoslav.ServiceLocator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\UnitTesting\Radoslav.UnitTesting.csproj">
+      <Project>{86ce3e8b-aa8a-42b4-acdb-2f1c53d3ade6}</Project>
+      <Name>Radoslav.UnitTesting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\Helpers\Radoslav.Helpers.csproj">
+      <Project>{7a3cbcc0-43e6-44e1-adfa-245055f4e36d}</Project>
+      <Name>Radoslav.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\DateTimeProvider.Redis\Radoslav.DateTimeProvider.Redis.csproj">
+      <Project>{cd9075d8-ed44-47c7-a8d1-c4d4d2adde97}</Project>
+      <Name>Radoslav.DateTimeProvider.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\DateTimeProvider\Radoslav.DateTimeProvider.csproj">
+      <Project>{02be1ae4-b099-4aef-a327-b5d272690000}</Project>
+      <Name>Radoslav.DateTimeProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\Configuration.AppConfig\Radoslav.TaskProcessor.Configuration.AppConfig.csproj">
+      <Project>{c54d789b-c346-4eb4-87a8-f0f693296310}</Project>
+      <Name>Radoslav.TaskProcessor.Configuration.AppConfig</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\Helpers\Radoslav.TaskProcessor.Helpers.csproj">
+      <Project>{7934c29d-21fb-4f10-8831-f3d5a4ff6057}</Project>
+      <Name>Radoslav.TaskProcessor.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\TaskDistributor\Radoslav.TaskProcessor.TaskDistributor.csproj">
+      <Project>{94084a2d-4781-43bb-999a-8fb9544f1168}</Project>
+      <Name>Radoslav.TaskProcessor.TaskDistributor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\MessageBus.Redis\Radoslav.TaskProcessor.MessageBus.Redis.csproj">
+      <Project>{ac68e80d-2a36-497b-a410-25a259a0e2d1}</Project>
+      <Name>Radoslav.TaskProcessor.MessageBus.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\MessageBus\Radoslav.TaskProcessor.MessageBus.csproj">
+      <Project>{7f9bf0d3-6629-4d2e-9cb7-7061d8728f7b}</Project>
+      <Name>Radoslav.TaskProcessor.MessageBus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\TaskScheduler\Radoslav.TaskProcessor.TaskScheduler.csproj">
+      <Project>{3e76622f-9b20-40d5-bfd5-c2710f0bdaf8}</Project>
+      <Name>Radoslav.TaskProcessor.TaskScheduler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\TaskWorker\Radoslav.TaskProcessor.TaskWorker.csproj">
+      <Project>{d162d949-7077-4a6a-9b5f-3dabeb0c12fb}</Project>
+      <Name>Radoslav.TaskProcessor.TaskWorker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\Model\Radoslav.TaskProcessor.Model.csproj">
+      <Project>{6917cfc2-4f2b-4c1a-939e-b05d07accfea}</Project>
+      <Name>Radoslav.TaskProcessor.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\Redis.ServiceStack\Radoslav.Redis.ServiceStack.csproj">
+      <Project>{45f8aea0-62c2-4656-9773-a89a827f085d}</Project>
+      <Name>Radoslav.Redis.ServiceStack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\Redis\Radoslav.Redis.csproj">
+      <Project>{f143340b-3635-4a24-949b-5196ef04c3f2}</Project>
+      <Name>Radoslav.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\Repository.Redis\Radoslav.TaskProcessor.Repository.Redis.csproj">
+      <Project>{7205fb51-1a99-4baf-8e4b-855f21ad275d}</Project>
+      <Name>Radoslav.TaskProcessor.Repository.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\Repository\Radoslav.TaskProcessor.Repository.csproj">
+      <Project>{974e0791-f6a4-4aae-9613-4d9deace4ff4}</Project>
+      <Name>Radoslav.TaskProcessor.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\TaskProcessorFacade\Radoslav.TaskProcessor.Facade.csproj">
+      <Project>{75f0b73f-e1c4-4484-9209-bd1ebda352d6}</Project>
+      <Name>Radoslav.TaskProcessor.Facade</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\TaskProcessor\Radoslav.TaskProcessor.csproj">
+      <Project>{45a7b5fc-72c1-4787-a0cd-8e289c2188b9}</Project>
+      <Name>Radoslav.TaskProcessor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UnitTests.ConsoleApp\Radoslav.TaskProcessor.UnitTests.ConsoleApp.csproj">
+      <Project>{0a70d379-6214-4e24-bc52-d9133b6005b9}</Project>
+      <Name>Radoslav.TaskProcessor.UnitTests.ConsoleApp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\..\..\Radoslav.Common\CodeAnalysisDictionary.xml">
+      <Link>Properties\CodeAnalysisDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Configuration\Client\AmbigousTaskPollingQueue.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Client\AmbigousTask.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Client\DuplicatePollingQueueTask.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Client\Empty.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Client\DuplicatePollingQueue.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Client\DuplicateTask.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Client\Client.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\PollingQueueEmptyKey.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\PollingQueueNoKey.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\DuplicatePollingQueues.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\NegativePollingQueueMaxWorkers.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\PollingQueues.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\PollingJobs.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\PollingJobEmptyInterval.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\DuplicatePollingJobs.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\PollingJobZeroInterval.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\PollingJobNoInterval.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\PollingJobTypeWithoutParameterlessConstructor.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\AbstractPollingJobType.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\EmptyPollingJobType.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\EmptyTaskType.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\NoTaskType.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\NoPollingJobType.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\Empty.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\NegativeMaxTasks2.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\NegativeMaxTasks1.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\NoMaxTasks.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Processor\MaxTasks.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Serialization\DuplicateTask.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\Serialization\Serialization.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskScheduler\InvalidScheduledTaskType.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskScheduler\EmptyScheduledTaskType.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskScheduler\NoScheduledTaskType.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskScheduler\WaitTrue.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskScheduler\WaitFalse.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskScheduler\TaskScheduler.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskWorker\Empty2.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskWorker\Empty1.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskWorker\EmptyTaskType.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskWorker\DuplicateTask.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskWorker\WorkerTypeNoPublicConstructor.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskWorker\WorkerTypeNoParameterlessConstructor.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskWorker\NoTaskType.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskWorker\NoWorkerType.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskWorker\EmptyWorkerType.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskWorker\InvalidTaskType.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskWorker\InvalidWorkerType.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Configuration\TaskWorker\TaskWorker.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="App.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

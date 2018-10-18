@@ -1,0 +1,41 @@
+﻿<Window x:Class="Radoslav.TaskProcessor.ScheduleTaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Schedule Task" SizeToContent="Height" Width="300">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Min Duration (in seconds)"  Margin="4" />
+
+        <TextBox Name="txtMinDuration" Grid.Row="0" Grid.Column="1" Margin="4" Text="5" />
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Max Duration (in seconds)" Margin="4" />
+
+        <TextBox Name="txtMaxDuration" Grid.Row="1" Grid.Column="1" Margin="4" Text="30" />
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Delay (in seconds)"  Margin="4" />
+
+        <TextBox Name="txtDelay" Grid.Row="2" Grid.Column="1" Margin="4" Text="2" />
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Number of occurences"  Margin="4" />
+
+        <TextBox Name="txtOccurences" Grid.Row="3" Grid.Column="1" Margin="4" Text="3" />
+
+        <Button Grid.Row="4" Grid.Column="1"
+                Content="Send"
+                HorizontalAlignment="Right" Margin="4" Padding="4"
+                Click="OnSaveButtonClick" />
+    </Grid>
+</Window>

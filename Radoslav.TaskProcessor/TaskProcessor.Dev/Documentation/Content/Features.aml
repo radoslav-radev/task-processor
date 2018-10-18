@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="84eed8e2-2c0a-4305-86a2-ca60b28feffe" revisionNumber="1">
+  <developerConceptualDocument
+    xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <summary>
+      <para>This document describes the features of the Radoslav 6.1 Task Processor.</para>
+    </summary>
+
+    <introduction>
+      <!--<autoOutline />-->
+    </introduction>
+
+    <section address="Generic">
+      <title>Generic</title>
+
+      <content>
+        <para>You can configure the task processor to process any tasks you define and implement code to process them.</para>
+      </content>
+    </section>
+
+    <section address="Distributed">
+      <title>Distributed</title>
+
+      <content>
+        <para>
+          It is designed as a cluster of servers with task processor window service deployed and running on each one of them.
+        </para>
+
+        <para>
+          If you need more workforce - just add another server and start the task processor service on it.
+        </para>
+      </content>
+    </section>
+
+    <section address="Failover">
+      <title>Failover</title>
+
+      <content>
+        <para>If one of the servers or or the service hosted there crashes or connection is lost, the other servers continues to work.</para>
+
+        <para>
+          If for some reason there is not even one active task processor in the moment, the submitted tasks are stored in a pending tasks queue.
+          When a task processor server is started, it will immediately start to process them.
+        </para>
+      </content>
+    </section>
+
+    <section address="Event-driven">
+      <title>Event-driven</title>
+
+      <content>
+        <para>You can submit tasks that should be processed immediately, if there is enough work force</para>
+      </content>
+    </section>
+
+    <section address="Schedulling">
+      <title>Schedulling</title>
+
+      <content>
+        <para>You can schedule one-time or recurrent tasks to be executed later at a specified moment in the future..</para>
+      </content>
+    </section>
+
+    <section address="Cancellation">
+      <title>Task Cancellation</title>
+
+      <content>
+        <para>You can cancel tasks that are currently processed..</para>
+      </content>
+    </section>
+
+    <section address="Storage">
+      <title>Storage</title>
+
+      <content>
+        <para>Pending, active and archive tasks are stored in a persistant storage.</para>
+        <para>By default it is Redis, but can be changed via configuration.</para>
+      </content>
+    </section>
+
+    <section address="Communication">
+      <title>Communication</title>
+
+      <content>
+        <para>The task processor instances communicate via message bus.</para>
+        <para>By default it is Redis, but can be changed via configuration.</para>
+      </content>
+    </section>
+
+    <section address="Configurable">
+      <title>Highly Configurable</title>
+
+      <content>
+        <para>You can make a lot of configurations for each task processor server, including:</para>
+
+        <list class="bullet">
+          <listItem>
+            <para>How many tasks a task processor instance can process in parallel.</para>
+          </listItem>
+
+          <listItem>
+            <para>How many tasks of a certain type a task processor instance can process in parallel.</para>
+          </listItem>
+
+          <listItem>
+            <para>How to distribute the tasks between the task processor servers.</para>
+          </listItem>
+
+          <listItem>
+            <para>The storage where the tasks are persisted.</para>
+          </listItem>
+
+          <listItem>
+            <para>The message bus used for communication between the task processor servers in the cluster.</para>
+          </listItem>
+
+          <listItem>
+            <para>And many other things - the task processor is designed as a pluggable system and you can plug in your code almost everywhere.</para>
+          </listItem>
+        </list>
+      </content>
+    </section>
+
+    <section address="Monitoring">
+      <title>Monitoring</title>
+
+      <content>
+        <para>You can implement your own monitoring tool(s), be it a desktop or web application.</para>
+        <para>By default we provide a simple but fully functional WPF monitoring tool as an example.</para>
+      </content>
+    </section>
+
+    <section address="PollingQueues">
+      <title>Polling Queues</title>
+
+      <content>
+        <para>
+          Besides event-driven tasks, i.e. tasks that are processed immediately after they are submiited,
+          we provide a possibility to store tasks in queues that are polled and processod at some interval.
+        </para>
+
+        <para>
+          The Data Collection Receiver Service was meant to rely on such tasks but it is not implemented yet.
+          Nevertheless, the task processor provides all the functionality needed for that.
+        </para>
+      </content>
+    </section>
+
+    <section address="PollingJobs">
+      <title>Polling Jobs</title>
+
+      <content>
+        <para>The task processor can run some plugged-in code of yours at a specified interval.</para>
+        <para>The task scheduler is implemented like this - it checks every 1 second if there is a scheduled task that has to be executed right now.</para>
+        <para>In the future you can implement a job to clear old tasks in the storage in order not to overburden the persistent storage.</para>
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="1e80db64-587d-445c-af51-5b4ca2f96383" />
+      <link xlink:href="db298ec6-cbea-4f98-8305-63e8308827ff" />
+      <link xlink:href="05a70fa1-74b0-4a0b-a9e2-9dac83a56358" />
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

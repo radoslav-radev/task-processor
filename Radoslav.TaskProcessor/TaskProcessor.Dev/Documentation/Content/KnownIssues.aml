@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="8c1cc97d-5eff-4f39-b0d9-3db36a6a6983" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>
+        This document describes the issues and problems of the task processor known
+        at this point of development but for which no solution is found yet.
+      </para>
+
+      <autoOutline />
+    </introduction>
+
+    <section address="KillWorkers">
+      <title>Kill Task Worker Processes on Task Processor Process Crash</title>
+
+      <content>
+        <para>
+          The task processor runs as a windows service on a production machine.
+          By design if the windows service crashes, all task worker processes should be terminated immediately.
+          In no case an orphaned task worker process should continue to run if its parent task processor is no longer running.
+        </para>
+
+        <para>
+          If the crash is not fatal and all destructors of the code are executed, the task worker processes will be disposed.
+          But in case of a very severe error, for example killing the task processor process from the Windows Task Manager, the destructors will not be called.
+          Then a more specific solution must be found to solve this issue.
+        </para>
+
+        <para>
+          For the purpose an interface is defined - <codeEntityReference>T:Radoslav.Diagnostics.IChildProcessKiller</codeEntityReference>.
+          and two implementations of it - <codeEntityReference>T:Radoslav.Diagnostics.JobObjectChildProcessKiller</codeEntityReference>
+          and <codeEntityReference>T:Radoslav.Diagnostics.DebuggerChildProcessKiller</codeEntityReference>.
+          Both work locally on a development machine but sometimes does not work in production on a server.
+        </para>
+      </content>
+    </section>
+
+    <section address="SignalR">
+      <title>SignalR Notifications Not Working In Production</title>
+
+      <content>
+        <para>
+          The task processor and task workers notify the WFM Live Web Application for the status of the task processor
+          and the tasks via <token>SignalR</token>.
+        </para>
+
+        <para>
+          These notification system works on a development machine but does not work in production when deployed on a server.
+          Perhaps this is a security issue that could be solved with opening some ports or adding some firewall exceptions
+          but a working solution is not found yet.
+        </para>
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="db298ec6-cbea-4f98-8305-63e8308827ff" />
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

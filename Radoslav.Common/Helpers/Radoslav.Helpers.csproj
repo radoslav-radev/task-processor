@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7A3CBCC0-43E6-44E1-ADFA-245055F4E36D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Radoslav</RootNamespace>
+    <AssemblyName>Radoslav.Helpers</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\StaticCodeAnalysis.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Debug\Radoslav.Helpers.xml</DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="ApplicationKiller\EnvironmentExitApplicationKiller.cs" />
+    <Compile Include="ApplicationKiller\IApplicationKiller.cs" />
+    <Compile Include="Collections\SerializableDictionary.cs" />
+    <Compile Include="Collections\MultiKeyDictionary.cs" />
+    <Compile Include="Collections\SerializableStringDictionary.cs" />
+    <Compile Include="Diagnostics\DebuggerChildProcessKiller.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Diagnostics\EmptyChildProcessKiller.cs" />
+    <Compile Include="Diagnostics\IChildProcessKiller.cs" />
+    <Compile Include="Diagnostics\JobObjectChildProcessKiller.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Collections\ConcurrentCollection.cs" />
+    <Compile Include="Collections\ConcurrentHashSet.cs" />
+    <Compile Include="Collections\ConcurrentList.cs" />
+    <Compile Include="Collections\IReadOnlyConcurrentList.cs" />
+    <Compile Include="Collections\LockEnumeratorWrapper.cs" />
+    <Compile Include="Collections\Collection.extensions.cs" />
+    <Compile Include="Collections\LockEnumeratorWrapper`1.cs" />
+    <Compile Include="Collections\ReadOnlyConcurrentCollection.cs" />
+    <Compile Include="ComputerInfo.cs" />
+    <Compile Include="Diagnostics\NativeException.cs" />
+    <Compile Include="Diagnostics\NativeMethods.cs" />
+    <Compile Include="DisposeState.cs" />
+    <Compile Include="Extensions\DateTime.cs" />
+    <Compile Include="Extensions\XmlReader.cs" />
+    <Compile Include="RetryableOperation\DelayStrategy\NoDelayStrategy.cs" />
+    <Compile Include="Collections\Dictionary.extensions.cs" />
+    <Compile Include="Extensions\Exception.cs" />
+    <Compile Include="NotSupportedException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extensions\Reflection.cs" />
+    <Compile Include="RetryableOperation\DelayStrategy\ExponentialDelayStrategy.cs" />
+    <Compile Include="RetryableOperation\DelayStrategy\ConstantDelayStrategy.cs" />
+    <Compile Include="RetryableOperation\DelayStrategy\IDelayStrategy.cs" />
+    <Compile Include="RetryableOperation\RetryableOperationEventArgs.cs" />
+    <Compile Include="RetryableOperation\RetryableOperationFailedEventArgs.cs" />
+    <Compile Include="Extensions\String.cs" />
+    <Compile Include="RetryableOperation\RetryableOperation.cs" />
+    <Compile Include="Extensions\Helpers.cs" />
+    <Compile Include="SuppressMessages.cs" />
+    <Compile Include="Timers\ITimer.cs" />
+    <Compile Include="Timers\ITimerFactory.cs" />
+    <Compile Include="Timers\ThreadingTimer.cs" />
+    <Compile Include="Timers\ThreadingTimerFactory.cs" />
+    <Compile Include="Timers\TimersTimer.cs" />
+    <Compile Include="Timers\TimersTimerFactory.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\CodeAnalysisDictionary.xml">
+      <Link>Properties\CodeAnalysisDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+    <Content Include="Documentation\DelayStrategy.xml" />
+    <Content Include="Documentation\NotSupportedException.xml" />
+    <Content Include="Documentation\RetryableOperation.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{99131EDA-1650-48BD-A6C0-CA28F9218E46}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Radoslav.Common.UnitTests</RootNamespace>
+    <AssemblyName>Radoslav.Common.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\..\references\Redis_SessionProvider\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\references\Redis_SessionProvider\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\references\Redis_SessionProvider\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\references\Redis_SessionProvider\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="Collections\CollectionExtensionsUnitTests.cs" />
+    <Compile Include="Collections\ConcurrentCollectionsTests.cs" />
+    <Compile Include="Collections\MultiKeyDictionaryTests.cs" />
+    <Compile Include="Diagnostics\ChildProcessKillerTestsBase.cs" />
+    <Compile Include="Diagnostics\DebuggerChildProcessKillerTests.cs" />
+    <Compile Include="Diagnostics\JobObjectChildProcessKillerTests.cs" />
+    <Compile Include="Fakes\FakeEntity.cs" />
+    <Compile Include="Fakes\FakeMockObject.cs" />
+    <Compile Include="Fakes\FakeEntityWithoutDefaultConstructor.cs" />
+    <Compile Include="Fakes\IFakeEntity.cs" />
+    <Compile Include="HelpersTests.cs" />
+    <Compile Include="MockObjectTests.cs" />
+    <Compile Include="Redis\RedisConverterUnitTests.cs" />
+    <Compile Include="Redis\RedisPipelineUnitTests.cs" />
+    <Compile Include="Redis\RedisProviderUnitTests.cs" />
+    <Compile Include="Redis\RedisQueueableOperationUnitTests.cs" />
+    <Compile Include="Redis\RedisSubscriptionUnitTests.cs" />
+    <Compile Include="Redis\RedisTransactionUnitTests.cs" />
+    <Compile Include="Serialization\BinarySerializerUnitTests.cs" />
+    <Compile Include="Serialization\BinaryXmlSerializerUnitTests.cs" />
+    <Compile Include="Serialization\XmlSerializerUnitTests.cs" />
+    <Compile Include="Redis\ServiceStack\ServiceStackRedisProviderUnitTests.cs" />
+    <Compile Include="Redis\ServiceStack\ServiceStackPipelineUnitTests.cs" />
+    <Compile Include="Redis\ServiceStack\ServiceStackSubscriptionUnitTests.cs" />
+    <Compile Include="Redis\ServiceStack\ServiceStackTransactionUnitTests.cs" />
+    <Compile Include="ServiceLocator\Fakes\FakeCompositeServiceLocatorObject.cs" />
+    <Compile Include="ServiceLocator\Fakes\FakeServiceLocatorObjectSimple.cs" />
+    <Compile Include="ServiceLocator\Fakes\FakeServiceLocatorObjectWithTimer.cs" />
+    <Compile Include="ServiceLocator\Fakes\FakeServiceLocatorObject.cs" />
+    <Compile Include="ServiceLocator\Fakes\IFakeServiceLocatorObject.cs" />
+    <Compile Include="ServiceLocator\ServiceLocatorConfigurationTests.cs" />
+    <Compile Include="ServiceLocator\ServiceLocatorExtensionsTests.cs" />
+    <Compile Include="ServiceLocator\ServiceLocatorTests.cs" />
+    <Compile Include="Timers\FakeTimer.cs" />
+    <Compile Include="Collections\ConcurrentHashSetTests.cs" />
+    <Compile Include="Collections\ConcurrentListTests.cs" />
+    <Compile Include="DateTimeTests.cs" />
+    <Compile Include="DelayStrategyTests.cs" />
+    <Compile Include="Validation\HourDividerValidatorTests.cs" />
+    <Compile Include="MethodCallExpressionVisitorTests.cs" />
+    <Compile Include="Timers\ThreadingTimerTests.cs" />
+    <Compile Include="Timers\TimersTimerTests.cs" />
+    <Compile Include="Timers\TimerTestsBase.cs" />
+    <Compile Include="Validation\NullableIntegerValidatorTests.cs" />
+    <Compile Include="Validation\TimeSpanValidatorTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DateTimeProvider\Radoslav.DateTimeProvider.csproj">
+      <Project>{02be1ae4-b099-4aef-a327-b5d272690000}</Project>
+      <Name>Radoslav.DateTimeProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Redis.ServiceStack\Radoslav.Redis.ServiceStack.csproj">
+      <Project>{45f8aea0-62c2-4656-9773-a89a827f085d}</Project>
+      <Name>Radoslav.Redis.ServiceStack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Redis\Radoslav.Redis.csproj">
+      <Project>{f143340b-3635-4a24-949b-5196ef04c3f2}</Project>
+      <Name>Radoslav.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Configuration\Radoslav.Configuration.csproj">
+      <Project>{0f0e722b-41c8-4518-a513-1b493dc5a430}</Project>
+      <Name>Radoslav.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Helpers\Radoslav.Helpers.csproj">
+      <Project>{7a3cbcc0-43e6-44e1-adfa-245055f4e36d}</Project>
+      <Name>Radoslav.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Serialization\Radoslav.Serialization.csproj">
+      <Project>{1f4df8ba-6022-4920-9490-5383796d072d}</Project>
+      <Name>Radoslav.Serialization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceLocator\Radoslav.ServiceLocator.csproj">
+      <Project>{963deba2-7936-4077-95b4-137b0ab73486}</Project>
+      <Name>Radoslav.ServiceLocator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UnitTesting\Radoslav.UnitTesting.csproj">
+      <Project>{86ce3e8b-aa8a-42b4-acdb-2f1c53d3ade6}</Project>
+      <Name>Radoslav.UnitTesting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UnitTests.ConsoleApp\Radoslav.Common.UnitTests.ConsoleApp.csproj">
+      <Project>{17c60bf1-78db-4449-bfd9-2217fa745b41}</Project>
+      <Name>Radoslav.Common.UnitTests.ConsoleApp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ServiceLocator\Config\ConfigSourceNotFound.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\ConfigSourcesDuplicateKey.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\ConfigSources1.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\ConfigSources3.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\ConfigSources2.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\OptionalKeys4.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\RemoveServices.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\RemoveServiceByKey.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\OptionalKeys3.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\OptionalKeys2.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\OptionalKeys1.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\RegisterLocatorAsService.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\RegisterLocatorAsServiceShared.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\CompositionNoCollection.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\CompositionResolveUnkownKey.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\CompositionResolveKeysEmpty.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\CompositionResolveKeysNone.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\CompositionResolveKeysAll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\CompositionExplicit.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\CompositionEmpty.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\CompositionNone.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\CompositionAll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\AbstractImplementationType.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\ConstantDelayStrategy.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\ContractNotAssignable.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\DateTimeProviderNoTimer.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\DateTimeProviderWithInvalidTimerKey.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\ResolveDependencyPropertyWithKey.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\ResolveDependencyProperty.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\CollectionPropertyDependencyValues.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\CollectionPropertyValues.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\SetPropertyChainValue.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\DateTimeProviderWithTimer.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\DateTimeProviderWithValidTimerKey.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\DelayStrategiesEmptyKey.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\DelayStrategiesNoKeys.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\DelayStrategiesOneKey.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\DelayStrategiesTwoKeys.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\DuplicateKeys.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\DuplicateServices.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\Empty.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\MultiplePublicConstructors.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\MultipleTimersOneWithKey.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\MultipleTimersWithDifferentKeys.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\MultipleTimersWithoutKeys.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\MultipleTimersWithSameKeys.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\NoPublicConstructor.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\SharedImplementation.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\SharedTimer.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\SingleTimer.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ServiceLocator\Config\TimerWithInterval.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

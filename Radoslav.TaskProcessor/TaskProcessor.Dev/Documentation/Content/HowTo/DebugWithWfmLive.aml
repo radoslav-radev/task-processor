@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="9ba20bd7-f801-4b12-a2a4-864549d28f8f" revisionNumber="1">
+  <developerHowToDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>
+        This document describes how to debug the task processor when executing tasks defined in <link xlink:href="ff788bb8-8087-4699-b316-f0678e12dab2" />
+      </para>
+    </introduction>
+
+    <procedure>
+      <title>How to Debug WFM Live Tasks in Task Processor</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              Build the <link xlink:href="ff788bb8-8087-4699-b316-f0678e12dab2" /> in Debug mode.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Copy everything from <token>SvnFolder</token>\Radoslav.WfmLive.TaskProcessor\bin\Debug folder to
+              <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug folder.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Copy <token>SvnFolder</token>\Radoslav.WfmLive.TaskProcessor\Configuration\Radoslav.TaskProcessor.ServiceLocator.config
+              to <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug folder.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Copy <token>SvnFolder</token>\Radoslav.WfmLive.TaskProcessor\Configuration\Radoslav.TaskProcessor.AppSettings.config
+              to <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug folder.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Copy <token>SvnFolder</token>\Radoslav.WfmLive.TaskProcessor\Configuration\Radoslav.TaskProcessor.ConnectionStrings.config
+              to <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug folder.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Copy <token>SvnFolder</token>\Radoslav.WfmLive.TaskProcessor\Configuration\Radoslav.TaskProcessor.TaskWorker.config
+              to <token>SvnFolder</token>\Radoslav.TaskProcessor\TaskProcessor\TaskWorker\App.config.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Copy <token>SvnFolder</token>\Radoslav.WfmLive.TaskProcessor\Configuration\Radoslav.TaskProcessor.config
+              to <token>SvnFolder</token>\Radoslav.TaskProcessor\TaskProcessor.Dev\Monitor.ConsoleApp\App.config.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Copy <token>SvnFolder</token>\Radoslav.WfmLive.TaskProcessor\Configuration\Radoslav.TaskProcessor.Monitor.Wpf.config
+              to <token>SvnFolder</token>\Radoslav.TaskProcessor\TaskProcessor.Dev\Monitor.Wpf\App.config.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Build the <link xlink:href="cb1a9e27-f92d-48a9-b4de-90a9d7399404" /> in Debug mode.
+            </para>
+          </content>
+        </step>
+      </steps>
+
+      <conclusion>
+        <content>
+          <para>
+            Now you can start the Radoslav.TaskProcessor.Monitor.ConsoleApp project in the
+            <link xlink:href="cb1a9e27-f92d-48a9-b4de-90a9d7399404" /> in debug mode and submit tasks from the WFM Live Web Application.
+          </para>
+        </content>
+      </conclusion>
+    </procedure>
+
+    <relatedTopics>
+      <link xlink:href="fc4aa659-ebc5-4d8e-9b34-d78a52db9c06" />
+    </relatedTopics>
+  </developerHowToDocument>
+</topic>

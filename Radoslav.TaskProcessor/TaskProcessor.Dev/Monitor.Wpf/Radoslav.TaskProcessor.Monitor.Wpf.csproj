@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4233F179-5DAE-44B7-8F3A-9355E1D8078A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Radoslav.TaskProcessor</RootNamespace>
+    <AssemblyName>Radoslav.TaskProcessor.Monitor.Wpf</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\..\..\Radoslav.Common\StaticCodeAnalysis.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\..\..\references\Redis_SessionProvider\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\references\Redis_SessionProvider\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\references\Redis_SessionProvider\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\references\Redis_SessionProvider\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="..\..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="ArchiveWindow.xaml.cs">
+      <DependentUpon>ArchiveWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\TaskStatusConverter.cs" />
+    <Compile Include="MessageBus\RedisMonitoringMessageBusChannels.cs" />
+    <Compile Include="MessageBus\RedisTaskProcessorMonitoringMessageBusSender.cs" />
+    <Compile Include="MessageBus\RedisTaskProcessorMonitoringMessageBusReceiver.cs" />
+    <Compile Include="MessageBus\RedisTaskMonitoringMessageBusSender.cs" />
+    <Compile Include="MessageBus\RedisTaskMonitoringMessageBusReceiver.cs" />
+    <Compile Include="Model\DemoException.cs" />
+    <Compile Include="Model\DemoPollingJob.cs" />
+    <Compile Include="Model\DemoPollingQueueTask.cs" />
+    <Compile Include="Model\DemoRecurrenceDefinition.cs" />
+    <Compile Include="Model\DemoScheduledTask.cs" />
+    <Compile Include="Model\DemoTask.cs" />
+    <Compile Include="Model\DemoTaskDuration.cs" />
+    <Compile Include="Model\DemoTaskJobSettings.cs" />
+    <Compile Include="Model\DemoTaskWorker.cs" />
+    <Compile Include="PollingQueuesConfigControl.xaml.cs">
+      <DependentUpon>PollingQueuesConfigControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PollingJobsConfigControl.xaml.cs">
+      <DependentUpon>PollingJobsConfigControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigurationWindow.xaml.cs">
+      <DependentUpon>ConfigurationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\CpuTimeToStringConverter.cs" />
+    <Compile Include="Converters\IntegerToVisibilityConverter.cs" />
+    <Compile Include="Converters\MasterTaskProcessorConverter.cs" />
+    <Compile Include="Converters\TaskProcessorStateConverter.cs" />
+    <Compile Include="ScheduleTaskWindow.xaml.cs">
+      <DependentUpon>ScheduleTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubmitPollingQueueTasksWindow.xaml.cs">
+      <DependentUpon>SubmitPollingQueueTasksWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DemoTaskJobSettingsWindow.xaml.cs">
+      <DependentUpon>DemoTaskJobSettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TasksConfigControl.xaml.cs">
+      <DependentUpon>TasksConfigControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="SubmitTaskWindow.xaml.cs">
+      <DependentUpon>SubmitTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\SummaryType.cs" />
+    <Compile Include="ViewModels\TaskProcessorViewModel.cs" />
+    <Compile Include="ViewModels\TaskViewModel.cs" />
+    <Page Include="ArchiveWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PollingQueuesConfigControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PollingJobsConfigControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfigurationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="ScheduleTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SubmitPollingQueueTasksWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DemoTaskJobSettingsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SubmitTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TasksConfigControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="NLog.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Radoslav.Common\DateTimeProvider.Redis\Radoslav.DateTimeProvider.Redis.csproj">
+      <Project>{cd9075d8-ed44-47c7-a8d1-c4d4d2adde97}</Project>
+      <Name>Radoslav.DateTimeProvider.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\Helpers\Radoslav.Helpers.csproj">
+      <Project>{7a3cbcc0-43e6-44e1-adfa-245055f4e36d}</Project>
+      <Name>Radoslav.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\DateTimeProvider\Radoslav.DateTimeProvider.csproj">
+      <Project>{02be1ae4-b099-4aef-a327-b5d272690000}</Project>
+      <Name>Radoslav.DateTimeProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\Redis.ServiceStack\Radoslav.Redis.ServiceStack.csproj">
+      <Project>{45f8aea0-62c2-4656-9773-a89a827f085d}</Project>
+      <Name>Radoslav.Redis.ServiceStack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\Redis\Radoslav.Redis.csproj">
+      <Project>{f143340b-3635-4a24-949b-5196ef04c3f2}</Project>
+      <Name>Radoslav.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\ServiceLocator\Radoslav.ServiceLocator.csproj">
+      <Project>{963deba2-7936-4077-95b4-137b0ab73486}</Project>
+      <Name>Radoslav.ServiceLocator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\Helpers\Radoslav.TaskProcessor.Helpers.csproj">
+      <Project>{7934c29d-21fb-4f10-8831-f3d5a4ff6057}</Project>
+      <Name>Radoslav.TaskProcessor.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\MessageBus.Redis\Radoslav.TaskProcessor.MessageBus.Redis.csproj">
+      <Project>{ac68e80d-2a36-497b-a410-25a259a0e2d1}</Project>
+      <Name>Radoslav.TaskProcessor.MessageBus.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\MessageBus\Radoslav.TaskProcessor.MessageBus.csproj">
+      <Project>{7f9bf0d3-6629-4d2e-9cb7-7061d8728f7b}</Project>
+      <Name>Radoslav.TaskProcessor.MessageBus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\Model\Radoslav.TaskProcessor.Model.csproj">
+      <Project>{6917cfc2-4f2b-4c1a-939e-b05d07accfea}</Project>
+      <Name>Radoslav.TaskProcessor.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\Repository.Redis\Radoslav.TaskProcessor.Repository.Redis.csproj">
+      <Project>{7205fb51-1a99-4baf-8e4b-855f21ad275d}</Project>
+      <Name>Radoslav.TaskProcessor.Repository.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\Repository\Radoslav.TaskProcessor.Repository.csproj">
+      <Project>{974e0791-f6a4-4aae-9613-4d9deace4ff4}</Project>
+      <Name>Radoslav.TaskProcessor.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TaskProcessor\TaskProcessorFacade\Radoslav.TaskProcessor.Facade.csproj">
+      <Project>{75f0b73f-e1c4-4484-9209-bd1ebda352d6}</Project>
+      <Name>Radoslav.TaskProcessor.Facade</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\..\..\Radoslav.Common\CodeAnalysisDictionary.xml">
+      <Link>Properties\CodeAnalysisDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>copy $(ProjectDir)NLog.config $(TargetPath).nlog</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

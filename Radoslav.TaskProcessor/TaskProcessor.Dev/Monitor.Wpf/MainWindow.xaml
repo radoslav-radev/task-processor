@@ -1,0 +1,244 @@
+﻿<Window x:Class="Radoslav.TaskProcessor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Radoslav="clr-namespace:Radoslav.TaskProcessor"
+        Title="Task Processor Administration" Height="600" Width="1024"
+        Loaded="OnWindowLoaded" Closing="OnWindowClosing">
+
+    <Window.Resources>
+        <Radoslav:IntegerToVisibilityConverter x:Key="IntegerToVisibilityConverter" />
+        <Radoslav:CpuTimeToStringConverter x:Key="CpuTimeToStringConverter" />
+        <Radoslav:MasterTaskProcessorConverter x:Key="MasterTaskProcessorConverter" />
+        <Radoslav:TaskProcessorStateConverter x:Key="TaskProcessorStateConverter" />
+        <Radoslav:TaskStatusConverter x:Key="TaskStatusConverter" />
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0">
+            <Menu.Resources>
+                <Style TargetType="MenuItem">
+                    <Setter Property="Padding" Value="4" />
+                </Style>
+            </Menu.Resources>
+
+            <MenuItem Header="Add Processor" Click="OnAddTaskProcessorButtonClick" />
+
+            <MenuItem Header="Tasks">
+                <MenuItem Name="btnSubmitDemoTask" Header="Submit Demo Task" Click="OnSubmitDemoTaskButtonClick" />
+                <MenuItem Name="btnPollingQueueTasks" Header="Submit Polling Queue Tasks" Click="OnSubmitPollingQueueTasksButtonClick" />
+                <MenuItem Name="btnScheduleTask" Header="Schedule Task" Click="OnScheduleTaskButtonClick" />
+                <Separator />
+                <MenuItem Header="Demo Task Job Settings" Click="OnDemoTaskJobSettingsClick" />
+                <Separator />
+                <MenuItem Header="Archive" Click="OnTasksArchiveButtonClick" />
+            </MenuItem>
+
+            <MenuItem Header="Monitoring">
+                <MenuItem Header="Start" Click="OnStartMonitoringButtonClick" />
+                <MenuItem Header="Stop" Click="OnStopMonitoringButtonClick" />
+            </MenuItem>
+
+            <MenuItem Header="Logs">
+                <MenuItem Header="Monitoring.Wpf" Click="OnMonitoringWpfLogsClick" />
+                <MenuItem Header="Task Processor" Click="OnTaskProcessorLogsClick" />
+                <MenuItem Header="Tasks" Click="OnTasksLogsClick" />
+            </MenuItem>
+        </Menu>
+
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding PendingTasks}"
+                  Visibility="{Binding PendingTasks.Count, Converter={StaticResource IntegerToVisibilityConverter}}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="False">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding TaskId}" Width="Auto" />
+                <DataGridTextColumn Header="Queue" Binding="{Binding PollingQueue}" Width="Auto" />
+                <DataGridTextColumn Header="Type" Binding="{Binding TaskType.Name}" Width="Auto" />
+                <DataGridTextColumn Header="Priority" Binding="{Binding Priority}" Width="Auto" />
+                <DataGridTextColumn Header="Submitted" Binding="{Binding SubmittedUtc}" Width="Auto" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="Auto" />
+                <DataGridTextColumn Header="Canceled" Binding="{Binding CanceledUtc}" Width="Auto" />
+
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Button Content="Cancel" Margin="4" Padding="4"
+                                        Click="OnCancelTaskButtonClick" />
+
+                                <Button Content="Summary" Margin="4" Padding="4"
+                                        Click="OnShowTaskSummaryClick" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <ScrollViewer Grid.Row="2"
+                      VerticalScrollBarVisibility="Auto">
+
+            <ItemsControl ItemsSource="{Binding TaskProcessors}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="8" CornerRadius="8" Padding="8"
+                                BorderThickness="{Binding IsMaster, Converter={StaticResource MasterTaskProcessorConverter}}"
+                                BorderBrush="{Binding IsMaster, Converter={StaticResource MasterTaskProcessorConverter}}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Row="0" Grid.Column="0">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Margin" Value="4 1" />
+                                        </Style>
+                                    </StackPanel.Resources>
+
+                                    <TextBlock Text="{Binding TaskProcessorId, StringFormat='Id: {0}'}" />
+                                    <TextBlock Text="{Binding MachineName, StringFormat='Machine: {0}'}" />
+                                    <TextBlock Text="{Binding IsMaster, StringFormat='Master: {0}'}" />
+                                    <TextBlock Text="{Binding State, StringFormat='State: {0}'}" />
+                                    <TextBlock Text="{Binding CpuPercent, StringFormat='CPU: {0} %'}" Width="Auto" />
+                                    <TextBlock Text="{Binding RamPercent, StringFormat='RAM: {0} %'}" Width="Auto" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Bottom">
+                                    <StackPanel.Resources>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Margin" Value="4" />
+                                            <Setter Property="Padding" Value="4" />
+                                        </Style>
+                                    </StackPanel.Resources>
+
+                                    <Button Content="Configuration"
+                                            IsEnabled="{Binding State, Converter={StaticResource TaskProcessorStateConverter}, ConverterParameter=Active}"
+                                            Click="OnTaskProcessorConfigurationClick" />
+
+                                    <Button Content="Make Master"
+                                            IsEnabled="{Binding IsMakeMasterEnabled}"
+                                            Click="OnChangeMasterModeClick" />
+
+                                    <Button Content="Stop Processor"
+                                            IsEnabled="{Binding State, Converter={StaticResource TaskProcessorStateConverter}, ConverterParameter=Active}"
+                                            Click="OnStopTaskProcessorButtonClick" />
+                                </StackPanel>
+
+                                <DataGrid Name="dgTasks"
+                                          Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
+                                          ItemsSource="{Binding ActiveTasks}"
+                                          AutoGenerateColumns="False" HeadersVisibility="None" IsReadOnly="True">
+
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn Width="*">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Grid>
+                                                        <Grid.Resources>
+                                                            <Style x:Key="Label" TargetType="TextBlock">
+                                                                <Setter Property="Margin" Value="4" />
+                                                            </Style>
+
+                                                            <Style x:Key="Value" TargetType="TextBlock">
+                                                                <Setter Property="Margin" Value="4" />
+                                                            </Style>
+                                                        </Grid.Resources>
+
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="Auto" />
+                                                        </Grid.RowDefinitions>
+
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="ID: " Style="{StaticResource Label}" />
+                                                        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding TaskId}" Style="{StaticResource Value}" />
+
+                                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Type: " Style="{StaticResource Label}" />
+                                                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding TaskType.Name}" Style="{StaticResource Value}" />
+
+                                                        <TextBlock Grid.Row="1" Grid.Column="2" Text="Status: " Style="{StaticResource Label}" />
+                                                        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Status}" Style="{StaticResource Value}" />
+
+                                                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Priority: " Style="{StaticResource Label}" />
+                                                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Priority}" Style="{StaticResource Value}" />
+
+                                                        <TextBlock Grid.Row="2" Grid.Column="2" Text="Queue: " Style="{StaticResource Label}" />
+                                                        <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding PollingQueue}" Style="{StaticResource Value}" />
+
+                                                        <ProgressBar Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4"
+                                                                     Value="{Binding Percentage}" Margin="8" />
+
+                                                        <TextBlock Grid.Row="0" Grid.Column="4" Text="Submitted: " Style="{StaticResource Label}" />
+                                                        <TextBlock Grid.Row="0" Grid.Column="5" Text="{Binding SubmittedUtc}" Style="{StaticResource Value}" />
+
+                                                        <TextBlock Grid.Row="1" Grid.Column="4" Text="Started: " Style="{StaticResource Label}" />
+                                                        <TextBlock Grid.Row="1" Grid.Column="5" Text="{Binding StartedUtc}" Style="{StaticResource Value}" />
+
+                                                        <TextBlock Grid.Row="2" Grid.Column="4" Text="Canceled: " Style="{StaticResource Label}" />
+                                                        <TextBlock Grid.Row="2" Grid.Column="5" Text="{Binding CanceledUtc}" Style="{StaticResource Value}" />
+
+                                                        <TextBlock Grid.Row="3" Grid.Column="4" Text="Completed: " Style="{StaticResource Label}" />
+                                                        <TextBlock Grid.Row="3" Grid.Column="5" Text="{Binding CompletedUtc}" Style="{StaticResource Value}" />
+
+                                                        <TextBlock Grid.Row="0" Grid.Column="6" Text="RAM: " Style="{StaticResource Label}" />
+                                                        <TextBlock Grid.Row="0" Grid.Column="7" Text="{Binding RamPercent, StringFormat=' {0} %'}" Style="{StaticResource Value}" />
+
+                                                        <TextBlock Grid.Row="1" Grid.Column="6" Text="CPU: " Style="{StaticResource Label}" />
+                                                        <TextBlock Grid.Row="1" Grid.Column="7" Text="{Binding CpuPercent, StringFormat=' {0} %'}" Style="{StaticResource Value}" />
+
+                                                        <TextBlock Grid.Row="2" Grid.Column="6" Text="CPU Time: " Style="{StaticResource Label}" />
+                                                        <TextBlock Grid.Row="2" Grid.Column="7" Text="{Binding CpuTime, Converter={StaticResource CpuTimeToStringConverter}}" Style="{StaticResource Value}" />
+
+                                                        <StackPanel Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" Orientation="Horizontal">
+                                                            <Button Content="Cancel" Margin="2" Padding="4"
+                                                                    IsEnabled="{Binding Status, Converter={StaticResource TaskStatusConverter}, ConverterParameter='Pending,InProgress'}"
+                                                                    Click="OnCancelTaskButtonClick" />
+
+                                                            <Button Content="Summary" Margin="2" Padding="4"
+                                                                    Click="OnShowTaskSummaryClick" />
+
+                                                            <Button Content="Error" Margin="2" Padding="4"
+                                                                    IsEnabled="{Binding Status, Converter={StaticResource TaskStatusConverter}, ConverterParameter='Failed'}"
+                                                                    Click="OnShowTaskErrorClick" />
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Window>

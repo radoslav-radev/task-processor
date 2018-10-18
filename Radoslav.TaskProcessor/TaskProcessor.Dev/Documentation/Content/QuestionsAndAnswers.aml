@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="05a70fa1-74b0-4a0b-a9e2-9dac83a56358" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>This document gives answers to questions concerning the Radoslav 6.1 Task Processor.</para>
+
+      <autoOutline />
+    </introduction>
+
+    <section address="Crash">
+      <title>What happens if a task processor crashes?</title>
+
+      <content>
+        <para>
+          The Task Processor Runtime Information record for the task processor in Redis will expire because the task processor will not renew it.
+          Thus the task processor will be invisible for the master (it will not assign tasks to him neither will consider it when distributing the tasks)
+          and the monitoring tools. It is important to know that all currently executed tasks processes will be killed.
+          We assume that it is not correct to have ghost tasks running while their task processor is gone.
+          If the task processor is hosted as a windows service, it will automatically restart after the crash.
+        </para>
+      </content>
+    </section>
+
+    <section address="MasterCrash">
+      <title>What happens if the master task processor crashes?</title>
+
+      <content>
+        <para>
+          There will be no master until the master key in Redis expires (because the master has crashed and will not renew it). In that period all other task processors continue to work undisturbed. They can add master commands to the master commands queue which will be processed when there is a new master. Clients can continue to request tasks (they also are added to master commands). After the master key in Redis expires, on its next heartbeat each task processor will try to become the master by setting the <token>SETNX</token> command for the master key. The first task processor will success and will become the new master. It will process all master commands added after the old master crash so no command will be lost. In this way there will be no master for a very short period of time – about several seconds.
+        </para>
+      </content>
+    </section>
+
+    <section address="MasterAliveCriteria">
+      <title>What are the criteria that the master is still active?</title>
+
+      <content>
+        <para>
+          Each task processor has its own unique ID. In Redis there is a key holding the ID of the current master task processor. The key is volatile and has a timeout. When the timeout expires the key is automatically deleted by Redis. Each master heartbeat refreshes the key timeout. Respectively, if a master crashes/freezes/lost network connection/etc. it will not heartbeat and the key will expire soon. The master is considered “still active” until the key is available, i.e. it has not expired.
+        </para>
+      </content>
+    </section>
+
+    <section address="TwoSlavesToMaster">
+      <title>What happens if two slaves attempt to become master at the same time?</title>
+
+      <content>
+        <para>
+          Redis provides a command <token>SETNX</token> that sets a value for a key only if the key does not exists. If the key already exists, no operation is performed. The <token>SETNX</token> command returns 1 (true) if the key did not exists and was created with the provided value, and 0 (false) if the key already exists and was left unchanged. When a slave tries to become a master, it calls the <token>SETNX</token> command for the master key in Redis with its own ID and if the result is 1, it means the slave has become master; if the result is 0, someone else has already become the master and the slave remains slave. Redis takes care to process internally the <token>SETNX</token> commands in a transactional way so it is not possible two different callers to receive 1 as an answer simultaneously.
+        </para>
+      </content>
+    </section>
+
+    <section address="SingleMaster">
+      <title>How it is ensured that there is only one master at a time?</title>
+
+      <content>
+        <para>
+          Once a task processor has become a master, it heartbeats regularly to indicate that it is still alive. If for some reason this heartbeat fails, the task processor crashes immediately (it terminates its own process along with all its task processes). If the task processor is hosted as a windows service, it could be configured to restart after the crash. Then a new task processor ID is generated and for the task processor ecosystem this is another slave task processor instance so it cannot be confused with the crashed one.
+          Because the only way for a slave to become a master is if first the master key has expired; this in turn can happen only if a master heartbeat has not been received too long. But if a master fails to heartbeat, it crashes immediately. So if a slave succeeds in becoming master, it means that the previous master has already crashed and has terminated its own process.
+        </para>
+      </content>
+    </section>
+
+    <section address="SubmitForecastTask">
+      <title>Where is the code for submitting forecast tasks in Radoslav WFM Live?</title>
+
+      <content>
+        <para>
+          It is in the class <legacyItalic>Task Manager</legacyItalic> in the project
+          <legacyItalic>Radoslav.WfmLive.BL</legacyItalic> in <link xlink:href="ff788bb8-8087-4699-b316-f0678e12dab2" />
+        </para>
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="1e80db64-587d-445c-af51-5b4ca2f96383" />
+      <link xlink:href="db298ec6-cbea-4f98-8305-63e8308827ff" />
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

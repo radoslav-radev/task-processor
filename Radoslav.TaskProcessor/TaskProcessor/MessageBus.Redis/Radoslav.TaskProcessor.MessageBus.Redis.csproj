@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AC68E80D-2A36-497B-A410-25A259A0E2D1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Radoslav.TaskProcessor.MessageBus.Redis</RootNamespace>
+    <AssemblyName>Radoslav.TaskProcessor.MessageBus.Redis</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\..\..\Radoslav.Common\StaticCodeAnalysis.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>..\..\bin\Debug\Radoslav.TaskProcessor.MessageBus.Redis.xml</DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="RedisMessageBusReceiverBase.IMessageBusReceiver.cs" />
+    <Compile Include="RedisTaskMessageBusSender.cs" />
+    <Compile Include="RedisTaskProcessorChannels.cs" />
+    <Compile Include="RedisTaskProcessorMessageBusSender.cs" />
+    <Compile Include="RedisTaskProcessorMessageBusReceiver.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedisTaskProcessorMessageQueue.ITaskProcessorMessageQueue.cs" />
+    <Compile Include="RedisTaskProcessorMessageQueue.cs" />
+    <Compile Include="RedisMessageBusReceiverBase.cs" />
+    <Compile Include="RedisTaskMessageBusReceiver.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Radoslav.Common\Helpers\Radoslav.Helpers.csproj">
+      <Project>{7a3cbcc0-43e6-44e1-adfa-245055f4e36d}</Project>
+      <Name>Radoslav.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\Serialization\Radoslav.Serialization.csproj">
+      <Project>{1f4df8ba-6022-4920-9490-5383796d072d}</Project>
+      <Name>Radoslav.Serialization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MessageBus\Radoslav.TaskProcessor.MessageBus.csproj">
+      <Project>{7f9bf0d3-6629-4d2e-9cb7-7061d8728f7b}</Project>
+      <Name>Radoslav.TaskProcessor.MessageBus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Radoslav.TaskProcessor.Model.csproj">
+      <Project>{6917cfc2-4f2b-4c1a-939e-b05d07accfea}</Project>
+      <Name>Radoslav.TaskProcessor.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Radoslav.Common\Redis\Radoslav.Redis.csproj">
+      <Project>{f143340b-3635-4a24-949b-5196ef04c3f2}</Project>
+      <Name>Radoslav.Redis</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\..\..\Radoslav.Common\CodeAnalysisDictionary.xml">
+      <Link>Properties\CodeAnalysisDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

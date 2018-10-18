@@ -1,0 +1,102 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radoslav.Helpers", "Helpers\Radoslav.Helpers.csproj", "{7A3CBCC0-43E6-44E1-ADFA-245055F4E36D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4496C129-22F7-4B68-B722-81B0B1E07CE0}"
+	ProjectSection(SolutionItems) = preProject
+		CodeAnalysisDictionary.xml = CodeAnalysisDictionary.xml
+		CommonAssemblyInfo.cs = CommonAssemblyInfo.cs
+		LegitLogViewerFormat.xml = LegitLogViewerFormat.xml
+		Settings.StyleCop = Settings.StyleCop
+		StaticCodeAnalysis.ruleset = StaticCodeAnalysis.ruleset
+		StaticCodeAnalysis.UnitTests.ruleset = StaticCodeAnalysis.UnitTests.ruleset
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radoslav.Common.UnitTests", "UnitTests\Radoslav.Common.UnitTests.csproj", "{99131EDA-1650-48BD-A6C0-CA28F9218E46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radoslav.Diagnostics", "Diagnostics\Radoslav.Diagnostics.csproj", "{EA64DBD4-614A-4CC9-8EEC-D2F652646E0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radoslav.Configuration", "Configuration\Radoslav.Configuration.csproj", "{0F0E722B-41C8-4518-A513-1B493DC5A430}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radoslav.UnitTesting", "UnitTesting\Radoslav.UnitTesting.csproj", "{86CE3E8B-AA8A-42B4-ACDB-2F1C53D3ADE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radoslav.Redis", "Redis\Radoslav.Redis.csproj", "{F143340B-3635-4A24-949B-5196EF04C3F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radoslav.Redis.ServiceStack", "Redis.ServiceStack\Radoslav.Redis.ServiceStack.csproj", "{45F8AEA0-62C2-4656-9773-A89A827F085D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radoslav.DateTimeProvider", "DateTimeProvider\Radoslav.DateTimeProvider.csproj", "{02BE1AE4-B099-4AEF-A327-B5D272690000}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radoslav.DateTimeProvider.Redis", "DateTimeProvider.Redis\Radoslav.DateTimeProvider.Redis.csproj", "{CD9075D8-ED44-47C7-A8D1-C4D4D2ADDE97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radoslav.Common.UnitTests.ConsoleApp", "UnitTests.ConsoleApp\Radoslav.Common.UnitTests.ConsoleApp.csproj", "{17C60BF1-78DB-4449-BFD9-2217FA745B41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radoslav.ServiceLocator", "ServiceLocator\Radoslav.ServiceLocator.csproj", "{963DEBA2-7936-4077-95B4-137B0AB73486}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radoslav.Serialization", "Serialization\Radoslav.Serialization.csproj", "{1F4DF8BA-6022-4920-9490-5383796D072D}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A3CBCC0-43E6-44E1-ADFA-245055F4E36D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A3CBCC0-43E6-44E1-ADFA-245055F4E36D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A3CBCC0-43E6-44E1-ADFA-245055F4E36D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A3CBCC0-43E6-44E1-ADFA-245055F4E36D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99131EDA-1650-48BD-A6C0-CA28F9218E46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99131EDA-1650-48BD-A6C0-CA28F9218E46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99131EDA-1650-48BD-A6C0-CA28F9218E46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99131EDA-1650-48BD-A6C0-CA28F9218E46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA64DBD4-614A-4CC9-8EEC-D2F652646E0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA64DBD4-614A-4CC9-8EEC-D2F652646E0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA64DBD4-614A-4CC9-8EEC-D2F652646E0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA64DBD4-614A-4CC9-8EEC-D2F652646E0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F0E722B-41C8-4518-A513-1B493DC5A430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F0E722B-41C8-4518-A513-1B493DC5A430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F0E722B-41C8-4518-A513-1B493DC5A430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F0E722B-41C8-4518-A513-1B493DC5A430}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86CE3E8B-AA8A-42B4-ACDB-2F1C53D3ADE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86CE3E8B-AA8A-42B4-ACDB-2F1C53D3ADE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86CE3E8B-AA8A-42B4-ACDB-2F1C53D3ADE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86CE3E8B-AA8A-42B4-ACDB-2F1C53D3ADE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F143340B-3635-4A24-949B-5196EF04C3F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F143340B-3635-4A24-949B-5196EF04C3F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F143340B-3635-4A24-949B-5196EF04C3F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F143340B-3635-4A24-949B-5196EF04C3F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45F8AEA0-62C2-4656-9773-A89A827F085D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45F8AEA0-62C2-4656-9773-A89A827F085D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45F8AEA0-62C2-4656-9773-A89A827F085D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45F8AEA0-62C2-4656-9773-A89A827F085D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02BE1AE4-B099-4AEF-A327-B5D272690000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02BE1AE4-B099-4AEF-A327-B5D272690000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02BE1AE4-B099-4AEF-A327-B5D272690000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02BE1AE4-B099-4AEF-A327-B5D272690000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD9075D8-ED44-47C7-A8D1-C4D4D2ADDE97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD9075D8-ED44-47C7-A8D1-C4D4D2ADDE97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD9075D8-ED44-47C7-A8D1-C4D4D2ADDE97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD9075D8-ED44-47C7-A8D1-C4D4D2ADDE97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17C60BF1-78DB-4449-BFD9-2217FA745B41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17C60BF1-78DB-4449-BFD9-2217FA745B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17C60BF1-78DB-4449-BFD9-2217FA745B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17C60BF1-78DB-4449-BFD9-2217FA745B41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{963DEBA2-7936-4077-95B4-137B0AB73486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{963DEBA2-7936-4077-95B4-137B0AB73486}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{963DEBA2-7936-4077-95B4-137B0AB73486}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{963DEBA2-7936-4077-95B4-137B0AB73486}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F4DF8BA-6022-4920-9490-5383796D072D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F4DF8BA-6022-4920-9490-5383796D072D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F4DF8BA-6022-4920-9490-5383796D072D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F4DF8BA-6022-4920-9490-5383796D072D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

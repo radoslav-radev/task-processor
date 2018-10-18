@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="0f7136c8-acf4-42c4-adbd-ce9dccc5bd3a" revisionNumber="1">
+  <developerHowToDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>
+        This document describes how to change the algorithm that distributes the tasks among the task processors.
+      </para>
+
+      <para>
+        The algorithm itself is defined by
+        <codeEntityReference>T:Radoslav.TaskProcessor.TaskDistributor.ITaskDistributor</codeEntityReference>
+        Currently there are two implementations of it - a very simple one
+        (<codeEntityReference>T:Radoslav.TaskProcessor.TaskDistributor.ITaskDistributor</codeEntityReference>)
+        for debug purposes and a more complex one
+        (<codeEntityReference>T:Radoslav.TaskProcessor.TaskDistributor.DefaultTaskDistributor</codeEntityReference>)
+        that takes into account the configuration of the task processors.
+      </para>
+    </introduction>
+
+    <procedure>
+      <title>How to Change the Task Distributor</title>
+
+      <steps class="ordered">
+        <step>
+          <content>
+            <para>
+              Build the <link xlink:href="cb1a9e27-f92d-48a9-b4de-90a9d7399404" /> in Debug. Explanations below will be for Debug mode.
+              For Release build in Release mode and replace Debug with Release in all folder paths below.
+            </para>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Open the Radoslav.TaskProcessor.Monitor.ConsoleApp.exe.config file in <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug folder and find:
+            </para>
+
+            <code>
+              <![CDATA[
+               <add contract="Radoslav.TaskProcessor.TaskDistributor.ITaskDistributor, Radoslav.TaskProcessor.TaskDistributor"
+                    implementation="Radoslav.TaskProcessor.TaskDistributor.DefaultTaskDistributor, Radoslav.TaskProcessor.TaskDistributor" />
+              ]]>
+            </code>
+
+            <para>Replace it with the following:</para>
+
+            <code>
+              <![CDATA[
+              <add contract="Radoslav.TaskProcessor.TaskDistributor.ITaskDistributor, Radoslav.TaskProcessor.TaskDistributor"
+                   implementation="YOUR-TASK-DISTRIBUTOR-FULLY-QUALIFIED-TYPE-NAME" />
+              ]]>
+            </code>
+          </content>
+        </step>
+
+        <step>
+          <content>
+            <para>
+              Repeat the same in <legacyItalic>Radoslav.TaskProcessor.WindowsService.exe.config</legacyItalic> file in <token>SvnFolder</token>\Radoslav.TaskProcessor\bin\Debug folder:
+            </para>
+          </content>
+        </step>
+      </steps>
+    </procedure>
+
+    <procedure>
+      <title>How to Change the Task Distributor in WFM Live</title>
+
+      <steps class="ordered">
+
+        <step>
+          <content>
+            <para>
+              Open the Radoslav.TaskProcessor.config file in the folder Configuration in the Radoslav.WfmLive.TaskProcessor project and add the following line:
+            </para>
+
+            <code>
+              <![CDATA[
+               <add contract="Radoslav.TaskProcessor.TaskDistributor.ITaskDistributor, Radoslav.TaskProcessor.TaskDistributor"
+                    implementation="Radoslav.TaskProcessor.TaskDistributor.DefaultTaskDistributor, Radoslav.TaskProcessor.TaskDistributor" />
+              ]]>
+            </code>
+
+            <para>Replace it with the following:</para>
+
+            <code>
+              <![CDATA[
+              <add contract="Radoslav.TaskProcessor.TaskDistributor.ITaskDistributor, Radoslav.TaskProcessor.TaskDistributor"
+                   implementation="YOUR-TASK-DISTRIBUTOR-FULLY-QUALIFIED-TYPE-NAME" />
+              ]]>
+            </code>
+          </content>
+        </step>
+      </steps>
+    </procedure>
+
+    <relatedTopics>
+      <link xlink:href="db298ec6-cbea-4f98-8305-63e8308827ff" />
+
+      <externalLink>
+        <linkText>Specifying Fully Qualified Type Names</linkText>
+        <linkUri>https://msdn.microsoft.com/en-us/library/yfsftwz6(v=vs.110).aspx</linkUri>
+      </externalLink>
+    </relatedTopics>
+  </developerHowToDocument>
+</topic>

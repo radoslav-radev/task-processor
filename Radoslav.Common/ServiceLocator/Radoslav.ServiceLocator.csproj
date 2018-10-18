@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{963DEBA2-7936-4077-95B4-137B0AB73486}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Radoslav.ServiceLocator</RootNamespace>
+    <AssemblyName>Radoslav.ServiceLocator</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\StaticCodeAnalysis.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Debug\Radoslav.ServiceLocator.xml</DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Configuration\RemoveServiceConfigurationElement.cs" />
+    <Compile Include="Configuration\SourceConfigurationElement.cs" />
+    <Compile Include="Configuration\Properties\Collection\CollectionPropertyConfigurationElement.cs" />
+    <Compile Include="Configuration\Properties\Collection\CollectionPropertyValueConfigurationElement.cs" />
+    <Compile Include="Configuration\Composition\CompositionConfigurationElement.cs" />
+    <Compile Include="Configuration\Composition\CompositionMode.cs" />
+    <Compile Include="Configuration\Constructor\ConstructorConfigurationCollection.cs" />
+    <Compile Include="Configuration\Constructor\ConstructorConfigurationElementBase.cs" />
+    <Compile Include="Configuration\Constructor\ConstructorResolveConfigurationElement.cs" />
+    <Compile Include="Configuration\Constructor\ConstructorValueConfigurationElement.cs" />
+    <Compile Include="Configuration\SourcesConfigurationCollection.cs" />
+    <Compile Include="Configuration\Values\IValueConfigurationElement.extentions.cs" />
+    <Compile Include="Configuration\Values\IValueConfigurationElement.cs" />
+    <Compile Include="Configuration\Properties\PropertiesConfigurationCollection.cs" />
+    <Compile Include="Configuration\Properties\PropertyConfigurationElementBase.cs" />
+    <Compile Include="Configuration\Properties\ResolvePropertyConfigurationElement.cs" />
+    <Compile Include="Configuration\ServiceConfigurationElement.cs" />
+    <Compile Include="Configuration\ServiceLocatorConfiguration.cs" />
+    <Compile Include="Configuration\ServicesConfigurationCollection.cs" />
+    <Compile Include="Configuration\Properties\Collection\CollectionPropertyValuesConfigurationCollection.cs" />
+    <Compile Include="Configuration\Properties\ValuePropertyConfigurationElement.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="IRadoslavServiceLocator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RadoslavServiceLocator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Configuration\Radoslav.Configuration.csproj">
+      <Project>{0f0e722b-41c8-4518-a513-1b493dc5a430}</Project>
+      <Name>Radoslav.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Helpers\Radoslav.Helpers.csproj">
+      <Project>{7a3cbcc0-43e6-44e1-adfa-245055f4e36d}</Project>
+      <Name>Radoslav.Helpers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\CodeAnalysisDictionary.xml">
+      <Link>Properties\CodeAnalysisDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
